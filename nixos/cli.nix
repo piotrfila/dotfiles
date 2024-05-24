@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }: {
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+  boot.consoleLogLevel = lib.mkDefault 1;
 
   console = {
     font = "Lat2-Terminus16";
@@ -42,9 +43,7 @@
       wget = "wget --hsts-file=$XDG_DATA_HOME/wget-hsts";
     };
 
-    systemPackages = with pkgs; [
-      nano
-    ];
+    systemPackages = [ pkgs.nano ];
   };
 
   networking.firewall.enable = lib.mkDefault false;

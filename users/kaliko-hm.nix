@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, osConfig, pkgs, ... }: {
   imports = [
     ../homemanager/alacritty.nix
     ../homemanager/dunst.nix
@@ -11,7 +11,8 @@
     ../homemanager/waybar.nix
     ../homemanager/wofi.nix
   ];
-  home.file = builtins.listToAttrs (
+  home.file = if osConfig.networking.hostName == "um425"
+  then (builtins.listToAttrs (
     builtins.map ( x: {
       name = x;
       value = {
@@ -58,30 +59,27 @@
       "Pictures"
       "Source"
     ]
-  );
+  )) else { };
 
   home.packages = with pkgs; [
-    # eww
     libnotify
     pavucontrol
-    # swaynotificationcenter
     # swayosd
-    wl-clipboard
-    # xfce.exo
+    # wl-clipboard
 
     # gui
     # arduino
     # audacity
     discord
-    firefox
+    # firefox
     # foliate
     gimp
     # gnuradio
     # gparted
     # gqrx
-    kicad-small
+    # kicad-small
     libreoffice
-    logisim-evolution
+    # logisim-evolution
     mission-center
     mpv
     mullvad-vpn
@@ -90,9 +88,9 @@
     # okteta
     # prismlauncher
     spotify
-    qalculate-gtk
+    qalculate-qt
     ungoogled-chromium
-    verilator
+    # verilator
     # vlc
     vscodium
     xfce.ristretto
@@ -151,7 +149,6 @@
     enable = true;
     components = [ "ssh" ];
   };
-
 
   gtk = let
     gtk-settings = {
@@ -216,13 +213,16 @@
   };
 
   dconf.enable = true;
-  dconf.settings = {
+  dconf.settings = if osConfig.networking.hostName == "homelab"
+  then {
     "org/gnome/desktop/interface".color-scheme = "prefer-dark";
-    
-    # "org/virt-manager/virt-manager/connections" = {
-    #   autoconnect = ["qemu:///system"];
-    #   uris = ["qemu:///system"];
-    # };
+
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
+  } else {
+    "org/gnome/desktop/interface".color-scheme = "prefer-dark";
   };
 
 

@@ -18,7 +18,6 @@
   ];
 
   boot = {
-    consoleLogLevel = 1;
     initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" ];
     initrd.kernelModules = [ ];
     kernelModules = [ "kvm-amd" ];
@@ -27,10 +26,7 @@
 
   environment = {
     etc.machine-id.text = "0797e38666bb4669a69854f927d8936f\n";
-    systemPackages = with pkgs; [
-      nano
-      ntfs3g
-    ];
+    systemPackages = [ pkgs.ntfs3g ];
   };
 
   fileSystems = lib.recursiveUpdate {

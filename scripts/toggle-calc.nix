@@ -6,7 +6,7 @@ pkgs.writeShellScriptBin "toggle-calc" ''
   echo $pidq
   # start qalculate if it is not running
   if [ $pidq == "null.null" ]; then
-    hyprctl dispatch exec '[workspace special:q] qalculate-gtk'
+    hyprctl dispatch exec '[workspace special:q] qalculate-qt'
     exit 0
   fi
   

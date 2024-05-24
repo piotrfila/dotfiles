@@ -19,7 +19,10 @@
       "plugdev"
       "udev"
       "wheel"
-    ];
+    ] ++ (if config.networking.hostName == "homelab"
+    then [
+      "libvirtd"
+    ] else [ ]);
     hashedPasswordFile = "/nix/persist/home/kaliko/passwd";
     isNormalUser = true;
     shell = pkgs.fish;
