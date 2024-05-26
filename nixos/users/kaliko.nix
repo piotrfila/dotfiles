@@ -1,8 +1,26 @@
 { config, pkgs, ... }: {
+  fileSystems = (builtins.listToAttrs (
+    builtins.map ( x: {
+      name = "/home/kaliko/${x}";
+      value = {
+        device = "/nix/persist/home/kaliko/${x}";
+        fsType = "none";
+        options = [ "bind" ];
+      };
+    }) [
+      ".cache"
+      ".mozilla"
+      "Documents"
+      "Downloads"
+      "Pictures"
+      "Source"
+    ]
+  ));
+
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    users.kaliko.imports = [ ./kaliko-hm.nix ];
+    users.kaliko.imports = [ ../../homemanager/kaliko.nix ];
     # extraSpecialArgs = {
     #   inherit inputs;
     # };

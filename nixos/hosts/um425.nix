@@ -1,6 +1,5 @@
 { config, lib, pkgs, modulesPath, ... }: {
   imports = [
-    ../../users/kaliko.nix
     # ../binfmt/aarch64.nix
     ../boot/systemd.nix
     ../cli.nix
@@ -8,6 +7,7 @@
     ../gui.nix
     ../locale/pl.nix
     ../network/networkmanager.nix
+    ../users/kaliko.nix
     ../various/bluetooth.nix
     ../various/fonts.nix
     # ../various/laserjet2300.nix

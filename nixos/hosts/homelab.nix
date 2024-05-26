@@ -1,10 +1,10 @@
 { config, lib, modulesPath, pkgs, ... }: {
   imports = [
-    ../../users/kaliko.nix
     ../boot/systemd.nix
     ../cli.nix
     ../gui.nix
     ../locale/pl.nix
+    ../users/kaliko.nix
     ../various/fonts.nix
     ../various/passthrough.nix
     ../various/thunar.nix
