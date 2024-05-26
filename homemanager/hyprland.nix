@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }: {
+  imports = [
+    ../scripts/screenshot.nix
+    ../scripts/toggle-calc.nix
+  ];
 
-{
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
@@ -20,7 +23,7 @@
       ];
 
       windowrule = let
-        float-left = "^(qalculate-)((qt)|(gtk))$";
+        float-left = "(qalculate-)((qt)|(gtk))$";
         float-right = "^(io\.missioncenter\.MissionCenter)|(nm-connection-editor)|(\.blueman-manager-wrapped)$";
       in [
         "float,${float-left}"
@@ -227,9 +230,4 @@
 
     xwayland.enable = true;
   };
-
-  home.packages = with pkgs; [
-    (import ../scripts/screenshot.nix { inherit pkgs; })
-    (import ../scripts/toggle-calc.nix { inherit pkgs; })
-  ];
 }

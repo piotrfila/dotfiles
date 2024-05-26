@@ -65,13 +65,13 @@
     libnotify
     pavucontrol
     # swayosd
-    # wl-clipboard
+    wl-clipboard
 
     # gui
     # arduino
     # audacity
     discord
-    # firefox
+    firefox
     # foliate
     gimp
     # gnuradio

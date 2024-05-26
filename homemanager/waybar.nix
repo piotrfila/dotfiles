@@ -1,4 +1,16 @@
-{ osConfig, pkgs, ... }: {
+{ osConfig, lib, pkgs, ... }: {
+  imports = [
+    ../scripts/brightness.nix
+    ../scripts/battery-charge-cap.nix
+    ../scripts/volume.nix
+    ../scripts/wpctl-current-sink.nix
+  ];
+
+  home.packages = with pkgs; [
+    playerctl
+    util-linux
+  ];
+
   programs.waybar = {
     enable = true;
     settings.mainBar = {
@@ -76,8 +88,8 @@
         tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
         tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
         tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
-        on-click = "${pkgs.util-linux}/bin/rfkill unblock bluetooth";
-        on-click-right = "${pkgs.util-linux}/bin/rfkill block bluetooth";
+        on-click = "rfkill unblock bluetooth";
+        on-click-right = "rfkill block bluetooth";
         on-click-middle = "blueman-manager";
         format-icons = [ "󰥇" "󰤾" "󰤿" "󰥀" "󰥁" "󰥂" "󰥃" "󰥄" "󰥅" "󰥆" "󰥈" ];
       };
@@ -129,17 +141,17 @@
         format-disabled = "󰀝";
         format-disconnected = "󰌙";
         format-ethernet = "󰈀";
-        format-linked = "󰌹 {ifname}";
+        format-linked = "󰈀"; # 󰌹 {ifname}";
         format-wifi = "{icon} {essid}";
         tooltip-format = "{ifname}";
-        tooltip-format-disconnected = "Brak dostępu do sieci {ifname}";
-        tooltip-format-disabled = "Wyłączono";
-        tooltip-format-ethernet = "Podłączono przez interfejs {ifname}";
-        tooltip-format-linked = "Podłączono przez interfejs {ifname}";
-        tooltip-format-wifi = "Podłączono przez interfejs {ifname}\nSiła sygnału: {signalStrength}%";
+        # tooltip-format-disconnected = "Brak dostępu do sieci {ifname}";
+        tooltip-format-disabled = "Tryb samolotowy";
+        # tooltip-format-ethernet = "Podłączono przez interfejs {ifname}";
+        # tooltip-format-linked = "Podłączono przez interfejs {ifname}";
+        tooltip-format-wifi = "{ifname}: {signalStrength}%";
         max-length = 20;
-        on-click = "${pkgs.util-linux}/bin/rfkill unblock wlan";
-        on-click-right = "${pkgs.util-linux}/bin/rfkill block wlan";
+        on-click = "rfkill unblock wlan";
+        on-click-right = "rfkill block wlan";
         format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
       };
       pulseaudio = {
@@ -168,12 +180,4 @@
     };
     style = ./waybar-style.css;
   };
-
-  home.packages = with pkgs; [
-    (import ../scripts/brightness.nix { inherit pkgs; })
-    (import ../scripts/battery-charge-cap.nix { inherit pkgs; })
-    (import ../scripts/volume.nix { inherit pkgs; })
-    (import ../scripts/wpctl-current-sink.nix { inherit pkgs; })
-    playerctl
-  ];
 }
