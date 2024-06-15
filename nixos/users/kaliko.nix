@@ -9,11 +9,12 @@
       };
     }) [
       ".cache"
+      ".factorio"
+      ".librewolf"
       ".mozilla"
-      "Documents"
-      "Downloads"
-      "Pictures"
-      "Source"
+      ".pki"
+      ".ssh"
+      ".vscode-oss"
     ]
   ));
 
@@ -34,7 +35,6 @@
     extraGroups = [
       "input"
       "dialout"
-      "plugdev"
       "udev"
       "wheel"
     ] ++ (if config.networking.hostName == "homelab"

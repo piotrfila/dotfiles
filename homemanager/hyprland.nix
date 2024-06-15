@@ -78,15 +78,18 @@
         ];
       };
 
-      bind = [
+      bind = let
+        browser_f = "librewolf";
+        browser_w = "chromium";
+      in [
         # app launchers
         # "$mainMod, A, exec, arduino"
         # "$mainMod, B, exec, bitwarden"
         "$mainMod, D, exec, discord"
         "$mainMod, E, exec, thunar"
-        "$mainMod, F, exec, firefox"
-        "$mainMod SHIFT, F, exec, firefox --private-window"
-        "$mainMod CTRL, F, exec, MOZ_ENABLE_WAYLAND=0 firefox"
+        "$mainMod, F, exec, ${browser_f}"
+        "$mainMod SHIFT, F, exec, ${browser_f} --private-window"
+        "$mainMod CTRL, F, exec, MOZ_ENABLE_WAYLAND=0 ${browser_f}"
         "$mainMod, G, exec, steam"
         "$mainMod, I, exec, gimp"
         "$mainMod, K, exec, kicad"
@@ -102,8 +105,8 @@
         "$mainMod, T, exec, kitty"
         "$mainMod SHIFT, T, exec, alacritty"
         "$mainMod, V, exec, mullvad-vpn"
-        "$mainMod, W, exec, chromium"
-        "$mainMod SHIFT, W, exec, chromium --incognito"
+        "$mainMod, W, exec, ${browser_w}"
+        "$mainMod SHIFT, W, exec, ${browser_w} --incognito"
 
         "CTRL ALT, DELETE, exec, missioncenter"
         "CTRL, ESCAPE, exec, missioncenter"

@@ -20,52 +20,55 @@
       };
     }) [
       ".config/chromium"
+      ".config/cura"
       ".config/discord"
       ".config/hypr/extra.conf"
+      ".config/kicad"
       ".config/Mullvad VPN"
       ".config/qalculate"
+      ".config/Raspberry Pi"
       ".config/spotify"
       ".config/VSCodium"
       ".config/xfce4"
       ".config/batt-cap"
-      ".factorio"
       ".local/share/cargo"
+      ".local/share/cura"
       ".local/share/fish/generated-completions"
       ".local/share/fish/fish_history"
       ".local/share/fish/fonts"
+      ".local/share/kicad"
       ".local/share/rustup"
       ".local/share/Steam"
       ".local/state/wireplumber"
       ".local/state/python_history"
-      ".pki"
-      ".ssh"
-      ".vscode-oss"
+      "Documents"
+      "Downloads"
+      "Pictures"
+      "Source"
     ]
   )) else { };
 
   home.packages = with pkgs; [
     libnotify
     pavucontrol
-    # swayosd
     wl-clipboard
 
     # gui
     # arduino
     # audacity
+    cura
     discord
     firefox
     # foliate
     gimp
     # gnuradio
-    # gparted
     # gqrx
-    # kicad-small
+    kicad
     libreoffice
-    # logisim-evolution
+    logisim-evolution
     mission-center
     mpv
     mullvad-vpn
-    # obs-studio
     # obsidian
     # okteta
     # prismlauncher
@@ -99,6 +102,8 @@
   manual.manpages.enable = false;
 
   programs = {
+    bash.enable = false;
+    
     fish = {
       enable = true;
 
@@ -123,8 +128,38 @@
 
       plugins = [ ];
     };
-    bash.enable = false;
+  
+    git = {
+      enable = true;
+      userName = "Piotr Fila";
+      userEmail = "piotr.fila.stud@pw.edu.pl";
+      extraConfig.init.defaultBranch = "main";
+    };
+    
     home-manager.enable = true;
+
+    librewolf = {
+      enable = true;
+      # Enable WebGL, cookies and history
+      settings = {
+        "webgl.disabled" = false;
+        # "security.OCSP.require" = false;
+        "middlemouse.paste" = false;
+        "general.autoScroll" = true;
+        "privacy.clearOnShutdown.history" = false;
+        "privacy.resistFingerprinting.letterboxing" = true;
+        "network.cookie.lifetimePolicy" = 0;
+      };
+    };
+
+    obs-studio = {
+      enable = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+        obs-backgroundremoval
+        obs-pipewire-audio-capture
+      ];
+    };
   };
 
   services.gnome-keyring = {
@@ -139,11 +174,6 @@
     };
   in {
     enable = true;
-    font = {
-      name = "Sans"; # "MesloLGS Nerd Font";
-      size = 11;
-    };
-
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
     gtk2.extraConfig = ''
       gtk-error-bell=0
@@ -159,21 +189,20 @@
       "file://${dirs.pictures}"
       "file://${home}/Source"
       "file://${dirs.documents}/pw24L"
+      "file://${dirs.documents}/kicad"
+      "file://${dirs.documents}/datasheets"
+      "file://${dirs.documents}/3D_Models"
       "file:///nix/persist${home}"
     ];
     gtk3.extraConfig = gtk-settings;
-
     gtk4.extraConfig = gtk-settings;
-    
-    iconTheme = {
-      name = "Arc";
-      package = pkgs.arc-icon-theme;
-    };
 
-    # iconTheme = {
-    #   name = "Papirus-Dark";
-    #   package = pkgs.papirus-icon-theme;
-    # };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    #   name = "Arc";
+    #   package = pkgs.arc-icon-theme;
+    };
 
     theme = {
       name = "Arc-Dark";
@@ -208,14 +237,6 @@
     };
   } else {
     "org/gnome/desktop/interface".color-scheme = "prefer-dark";
-  };
-
-
-  programs.git = {
-    enable = true;
-    userName = "Piotr Fila";
-    userEmail = "piotr.fila.stud@pw.edu.pl";
-    extraConfig.init.defaultBranch = "main";
   };
   
   home.stateVersion = "23.11";

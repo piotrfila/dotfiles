@@ -98,9 +98,7 @@
         tooltip-format = "<tt><big>{:%d} {calendar}</big></tt>";
       };
       "clock#date" = {
-        # format = " {:L%A, %d %B}";
-        format = "{:L%A, %d %B}";
-        locale = "pl_PL.utf8";
+        format = " {:L%A, %e %B}";
         tooltip-format = "<tt><big>{:%d} {calendar}</big></tt>";
       };
       "custom/power-btn" = {

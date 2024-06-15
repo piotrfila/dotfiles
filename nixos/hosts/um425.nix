@@ -67,6 +67,7 @@
       "/etc/mullvad-vpn"
       "/root"
       "/var/log"
+      "/var/lib/alsa"
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
@@ -109,13 +110,14 @@
     mullvad-vpn.enable = true;
     printing = {
       enable = true;
-      drivers = [ pkgs.hplipWithPlugin ];
+      # drivers = [ pkgs.hplipWithPlugin ];
     };
     thermald.enable = false;
     udev.extraRules = ''
       ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="amdgpu_bl1", MODE="0666", RUN+="${pkgs.coreutils-full}/bin/chmod a+w /sys/class/backlight/%k/brightness"
-      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", TAG+="uaccess"
+      SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", MODE:="0666", SYMLINK+="stlinkv2-1_%n"
     '';
+      # SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", TAG+="uaccess"
   };
 
   system.stateVersion = "23.11";
