@@ -39,6 +39,7 @@
         options = [ "bind" ];
       };
     }) [
+      "/boot"
       "/root"
       "/home"
       #"/var/log"
