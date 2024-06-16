@@ -2,7 +2,7 @@
   services = {
     klipper = {
       enable = true;
-      configFile = ./printer
+      configFile = ./printer-creality-ender3-v2-2020.cfg;
       # firmwares = {
       #   mcu = {
       #     enable = true;
