@@ -21,36 +21,37 @@
   };
 
   fileSystems = {
+    # "/" = {
+    #   device = "tmpfs";
+    #   fsType = "tmpfs";
+    #   options = [ "size=32G" "mode=755" ];
+    # };
     "/" = {
-      device = "tmpfs";
-      fsType = "tmpfs";
-      options = [ "size=32G" "mode=755" ];
-    };
-    "/nix" = {
       device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
       fsType = "ext4";
     };
-    "/boot" = {
-      device = "/nix/boot";
-      fsType = "none";
-      options = [ "bind" ];
-    };
-  } // (builtins.listToAttrs (
-    builtins.map ( x: {
-      name = x;
-      value = {
-        device = "/nix/persist${x}";
-        fsType = "none";
-        options = [ "bind" ];
-      };
-    }) [
-      "/root"
-      "/home"
-      #"/var/log"
-      #"/var/lib/nixos"
-      #"/var/lib/systemd/coredump"
-    ]
-  ));
+  };
+#     "/boot" = {
+#       device = "/nix/boot";
+#       fsType = "none";
+#       options = [ "bind" ];
+#     };
+#   } // (builtins.listToAttrs (
+#     builtins.map ( x: {
+#       name = x;
+#       value = {
+#         device = "/nix/persist${x}";
+#         fsType = "none";
+#         options = [ "bind" ];
+#       };
+#     }) [
+#       "/root"
+#       "/home"
+#       #"/var/log"
+#       #"/var/lib/nixos"
+#       #"/var/lib/systemd/coredump"
+#     ]
+#   ));
 
   networking.hostName = "octoprint";
   # networking.interfaces.end0.useDHCP = lib.mkDefault true;
