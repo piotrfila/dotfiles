@@ -30,6 +30,11 @@
       device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
       fsType = "ext4";
     };
+    "/boot" = {
+      device = "/nix/boot";
+      fsType = "none";
+      options = [ "bind" ];
+    };
   } // (builtins.listToAttrs (
     builtins.map ( x: {
       name = x;
@@ -39,7 +44,6 @@
         options = [ "bind" ];
       };
     }) [
-      "/boot"
       "/root"
       "/home"
       #"/var/log"
