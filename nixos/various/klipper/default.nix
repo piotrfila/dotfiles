@@ -3,15 +3,13 @@
     klipper = {
       enable = true;
       configFile = ./printer-creality-ender3-v2-2020.cfg;
-      # firmwares = {
-      #   mcu = {
-      #     enable = true;
-      #     Run klipper-genconf to generate this
-      #     configFile = ./avr.cfg;
-      #     Serial port connected to the microcontroller
-      #     serial = "/dev/serial/by-id/usb-Arduino__www.arduino.cc__0042_55639303235351D01152-if00";
-      #   };
-      # };
+      firmwares = {
+        mcu = {
+          enable = true;
+          configFile = ./board-stm32.cfg;
+          serial = "/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0";
+        };
+      };
     };
     moonraker = {
       address = "0.0.0.0";
