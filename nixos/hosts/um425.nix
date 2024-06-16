@@ -29,7 +29,7 @@
     systemPackages = [ pkgs.ntfs3g ];
   };
 
-  fileSystems = lib.recursiveUpdate {
+  fileSystems = {
     "/" = {
       device = "tmpfs";
       fsType = "tmpfs";
@@ -53,7 +53,7 @@
     #   fsType = "none";
     #   options = [ "bind" ];
     # }
-  } (builtins.listToAttrs (
+  } // (builtins.listToAttrs (
     builtins.map ( x: {
       name = x;
       value = {
@@ -63,7 +63,6 @@
       };
     }) [
       "/etc/NetworkManager/system-connections"
-      # "etc/nixos"
       "/etc/mullvad-vpn"
       "/root"
       "/var/log"

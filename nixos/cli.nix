@@ -39,7 +39,7 @@
       la = "ls -lAh";
       neofetch = "fastfetch";
       python = "python3";
-      ssh = "TERM=xterm ssh";
+      ssh = "TERM=xterm /run/current-system/sw/bin/ssh"; # just calling ssh leads to infinite recursion
       untar = "tar -xvf";
       wget = "wget --hsts-file=$XDG_DATA_HOME/wget-hsts";
     };
