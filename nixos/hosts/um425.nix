@@ -150,31 +150,12 @@
 
   systemd.network.links = {
     "10-eth0" = {
+      linkConfig.Name = "eth0";
       matchConfig.MACAddress = "0c:37:96:1b:27:d3";
-      linkConfig = {
-        Name = "eth0";
-      };
     };
     "15-wlan0" = {
+      linkConfig.Name = "wlan0";
       matchConfig.MACAddress = "ac:12:03:17:a5:a7";
-      linkConfig = {
-        Name = "wlan0";
-      };
     };        
   };
-
-  # networks = {
-  # #   "20-wired" = {
-  # #     DHCP = "yes";
-  # #     # dhcpV4Config = "RouteMetric=10";
-  # #     # ipv6AcceptRAConfig = "RouteMetric=10";
-  # #     name = "eth0";
-  # #   };
-  #   "25-wireless.link" = {
-  #     DHCP = "yes";
-  #     # dhcpV4Config = "RouteMetric=10";
-  #     # ipv6AcceptRAConfig = "RouteMetric=10";
-  #     name = "wlan0";
-  #   };
-  # };
 }
