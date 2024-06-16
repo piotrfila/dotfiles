@@ -59,7 +59,7 @@
     openssh.enable = true;
 
     klipper = {
-      enable = true;
+      # enable = true;
       # firmwares = {
       #   mcu = {
       #     enable = true;
@@ -70,6 +70,10 @@
       #   };
       # };
     };
+
+    mainsail = {
+      enable = true;
+    }
   };
 
   programs.fish.enable = true;
