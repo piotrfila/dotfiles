@@ -1,4 +1,5 @@
 { ... }: {
+  network.interfaces.wlan0.useDHCP = true;
   networking.wireless = {
     enable = true;
 
@@ -23,7 +24,5 @@
         psk = "@PSK_siec2@";
       };
     };
-
-    # userControlled.enable = true;
   };
 }

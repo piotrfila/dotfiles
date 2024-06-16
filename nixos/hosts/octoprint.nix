@@ -14,7 +14,10 @@
     extraModulePackages = [ ];
   };
 
-  environment.etc.machine-id.text = "326361ad04094a9b86bd130186912b6f\n";
+  environment = {
+    etc.machine-id.text = "326361ad04094a9b86bd130186912b6f\n";
+    systemPackages = [ pkgs.libraspberrypi ];
+  };
 
   fileSystems = {
     "/" = {
@@ -54,11 +57,22 @@
   services = {
     getty.autologinUser = "printer";
     openssh.enable = true;
+
+    klipper = {
+      enable = true;
+      # firmwares = {
+      #   mcu = {
+      #     enable = true;
+      #     Run klipper-genconf to generate this
+      #     configFile = ./avr.cfg;
+      #     Serial port connected to the microcontroller
+      #     serial = "/dev/serial/by-id/usb-Arduino__www.arduino.cc__0042_55639303235351D01152-if00";
+      #   };
+      # };
+    };
   };
 
-  programs = {
-    fish.enable = true;
-  };
+  programs.fish.enable = true;
 
   system.stateVersion = "24.05";
 
@@ -80,6 +94,7 @@
     extraGroups = [ "wheel" ];
     hashedPasswordFile = "/nix/persist/home/printer/passwd";
     isNormalUser = true;
+    openssh.authorizedKeys.keys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM73MctM8BEu5LaUwtmK3rxAJCvVAxN4XqEttArbJpAb piotr.fila.stud@pw.edu.pl";
     packages = [ pkgs.git ];
     shell = pkgs.fish;
   };

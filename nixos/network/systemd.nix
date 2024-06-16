@@ -1,18 +1,5 @@
 { ... }: {
-  # networking = {
-  #   dhcpcd.enable = false;
-  #   nameservers = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
-  # };
-
-  # services.resolved = {
-  #   enable = true;
-  #   dnssec = "true";
-  #   fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
-  #   extraConfig = ''
-  #     DNSOverTLS=yes
-  #   '';
-  # };
-
+  networking.interfaces.eth0.useDHCP = true;
   systemd.network = {
     enable = true;
     wait-online.enable = false;
