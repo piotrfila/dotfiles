@@ -61,6 +61,8 @@
 
   nixpkgs.hostPlatform = "aarch64-linux";
 
+  security.sudo.wheelNeedsPassword = false;
+
   services = {
     getty.autologinUser = "printer";
     openssh.enable = true;
@@ -89,7 +91,7 @@
     hashedPasswordFile = "/nix/persist/home/printer/passwd";
     isNormalUser = true;
     openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM73MctM8BEu5LaUwtmK3rxAJCvVAxN4XqEttArbJpAb piotr.fila.stud@pw.edu.pl"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM73MctM8BEu5LaUwtmK3rxAJCvVAxN4XqEttArbJpAb piotr.fila.stud@pw.edu.pl"
     ];
     packages = [ pkgs.git ];
     shell = pkgs.fish;
