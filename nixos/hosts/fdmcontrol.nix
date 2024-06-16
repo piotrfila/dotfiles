@@ -53,7 +53,7 @@
 #     ]
 #   ));
 
-  networking.hostName = "octoprint";
+  networking.hostName = "fdmcontrol";
   # networking.interfaces.end0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlan0.useDHCP = lib.mkDefault true;
   networking.useDHCP = lib.mkDefault true;
