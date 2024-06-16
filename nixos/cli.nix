@@ -39,6 +39,7 @@
       la = "ls -lAh";
       neofetch = "fastfetch";
       python = "python3";
+      ssh = "TERM=xterm ssh";
       untar = "tar -xvf";
       wget = "wget --hsts-file=$XDG_DATA_HOME/wget-hsts";
     };
