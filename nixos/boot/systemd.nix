@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
   boot.loader = {
     efi.canTouchEfiVariables = true;
     systemd-boot = {
@@ -7,6 +7,6 @@
       enable = true;
       # memtest86.enable = true;
     };
-    timeout = 1;
+    timeout = lib.mkDefault 1;
   };      
 }
