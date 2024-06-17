@@ -18,6 +18,7 @@
     moonraker = {
       address = "0.0.0.0";
       enable = true;
+      klipperSocket = "/run/klipper/api";
       settings = {
         octoprint_compat = { };
         history = { };
