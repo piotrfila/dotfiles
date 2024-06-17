@@ -14,6 +14,7 @@
       };
       inputTTY = "/run/klipper/tty";
       logFile = "/var/lib/klipper/klipper.log";
+      user = "printer";
     };
     moonraker = {
       address = "0.0.0.0";
