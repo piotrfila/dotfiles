@@ -8,6 +8,7 @@
     ../various/fonts.nix
     ../various/passthrough.nix
     ../various/thunar.nix
+    # ../various/zram.nix
     <home-manager/nixos>
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -82,12 +83,6 @@
   system.stateVersion = "23.11";
 
   swapDevices = [ ];
-
-  zramSwap = {
-    enable = true;
-    algorithm = "zstd";
-    memoryPercent = 75;
-  };
 
   systemd.network.links = {
     "10-eth0" = {

@@ -5,6 +5,7 @@
     ../locale/pl.nix
     ../network/systemd-wireless.nix
     ../various/klipper/default.nix
+    ../various/zram.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
