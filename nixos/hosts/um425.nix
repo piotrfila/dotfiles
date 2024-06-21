@@ -13,6 +13,7 @@
     # ../various/laserjet2300.nix
     # ../various/steam.nix
     ../various/thunar.nix
+    # ../various/zram.nix
     <home-manager/nixos>
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
