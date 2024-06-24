@@ -42,6 +42,31 @@
             "::1/128"
           ];
         };
+
+        "preheat P1" = {
+          extruder = 200;
+          heater_bed = 50;
+        };
+        "preheat P2" = {
+          extruder = 220;
+          heater_bed = 60;
+        };
+        "preheat P3" = {
+          extruder = 235;
+          heater_bed = 60;
+        };
+        
+        "power printer" = {
+          type = "gpio";
+          pin = "!gpiochip0/gpio23";
+          # off_when_shutdown = true;
+          initial_state = "off";
+        };
+        "power lights" = {
+          type = "gpio";
+          pin = "!gpiochip0/gpio24";
+          initial_state = "off";
+        };
       };
       user = "printer";
     };
