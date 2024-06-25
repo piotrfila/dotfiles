@@ -6,6 +6,7 @@
     ../locale/pl.nix
     ../users/kaliko.nix
     ../various/fonts.nix
+    ../various/logind.nix
     ../various/passthrough.nix
     ../various/thunar.nix
     # ../various/zram.nix

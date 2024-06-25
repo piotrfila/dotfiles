@@ -11,6 +11,7 @@
     ../various/bluetooth.nix
     ../various/fonts.nix
     # ../various/laserjet2300.nix
+    ../various/logind.nix
     # ../various/steam.nix
     ../various/thunar.nix
     # ../various/zram.nix
