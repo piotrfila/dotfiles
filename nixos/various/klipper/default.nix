@@ -58,13 +58,13 @@
         
         "power printer" = {
           type = "gpio";
-          pin = "!gpiochip0/gpio23";
-          # off_when_shutdown = true;
+          pin = "!gpiochip0/gpio24";
+          off_when_shutdown = true;
           initial_state = "off";
         };
         "power lights" = {
           type = "gpio";
-          pin = "!gpiochip0/gpio24";
+          pin = "!gpiochip0/gpio23";
           initial_state = "off";
         };
       };
