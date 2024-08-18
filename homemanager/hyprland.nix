@@ -212,10 +212,6 @@
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
       };
 
-      master = {
-        new_is_master = "true";
-      };
-
       misc = {
         # disable_autoreload = "true";
         disable_hyprland_logo = "true";

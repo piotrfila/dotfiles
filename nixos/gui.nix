@@ -17,7 +17,6 @@
     jack.enable = true;
     pulse.enable = true;
   };
-  sound.enable = true;
 
   # environment.etc = let
   #   gtk-settings = ''
