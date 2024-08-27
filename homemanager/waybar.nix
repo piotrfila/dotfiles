@@ -61,9 +61,9 @@
         format-plugged = "󰁹 {capacity}%";
         format-time = "{H}:{m}";
         interval = 60;
-        on-click = "battery-charge-cap 60";
-        on-click-middle = "battery-charge-cap 80";
-        on-click-right = "battery-charge-cap 100";
+        # on-click = "battery-charge-cap 60";
+        # on-click-middle = "battery-charge-cap 80";
+        # on-click-right = "battery-charge-cap 100";
         on-scroll-up = "battery-charge-cap up";
         on-scroll-down = "battery-charge-cap down";
         states = {

@@ -11,7 +11,7 @@
     # music = "pkgs.vlc}/bin/vlc";
     # video = "pkgs.vlc}/bin/vlc";
     archive = none;
-    browser = [ "firefox.desktop" ];
+    browser = [ "librewolf.desktop" ];
     code = [ "codium.desktop" ];
     hex = [ "okteta.desktop" ];
     image = [ "org.xfce.ristretto.desktop" ];

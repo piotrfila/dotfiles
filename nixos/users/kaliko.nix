@@ -35,6 +35,7 @@
     extraGroups = [
       "input"
       "dialout"
+      "plugdev"
       "udev"
       "wheel"
     ] ++ (if config.networking.hostName == "homelab"

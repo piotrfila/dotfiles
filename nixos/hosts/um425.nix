@@ -12,6 +12,7 @@
     ../various/fonts.nix
     # ../various/laserjet2300.nix
     ../various/logind.nix
+    ../various/rtl-sdr.nix
     # ../various/steam.nix
     ../various/thunar.nix
     # ../various/zram.nix

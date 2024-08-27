@@ -14,6 +14,7 @@
       wallpaper = [
         "eDP-1,${wp}/autumn.png"
         "DP-1,${wp}/autumn.png"
+        "DP-2,${wp}/autumn.png"
         "HDMI-A-1,${wp}/autumn.png"
         "HDMI-A-2,${wp}/autumn.png"
       ];

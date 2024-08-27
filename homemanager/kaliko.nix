@@ -56,13 +56,13 @@
     # gui
     # arduino
     # audacity
-    cura
+    # cura
     discord
     firefox
     # foliate
     gimp
-    # gnuradio
-    # gqrx
+    gnuradio
+    gqrx
     kicad
     libreoffice
     logisim-evolution
@@ -162,10 +162,10 @@
     };
   };
 
-  services.gnome-keyring = {
-    enable = true;
-    components = [ "ssh" ];
-  };
+  # services.gnome-keyring = {
+  #   enable = true;
+  #   components = [ "ssh" ];
+  # };
 
   gtk = let
     gtk-settings = {
