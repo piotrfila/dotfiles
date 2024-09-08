@@ -85,6 +85,7 @@
   nixpkgs.hostPlatform = "x86_64-linux";
 
   programs = {
+    adb.enable = true;
     dconf.enable = true;
     fish.enable = true;
     hyprland = {

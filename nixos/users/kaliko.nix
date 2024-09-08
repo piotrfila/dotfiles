@@ -38,6 +38,7 @@
       "plugdev"
       "udev"
       "wheel"
+      "adbusers"
     ] ++ (if config.networking.hostName == "homelab"
     then [
       "libvirtd"
