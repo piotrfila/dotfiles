@@ -37,6 +37,7 @@
       ".local/share/fish/fish_history"
       ".local/share/fish/fonts"
       ".local/share/kicad"
+      ".local/share/PrismLauncher"
       ".local/share/rustup"
       ".local/share/Steam"
       ".local/state/wireplumber"
@@ -71,7 +72,7 @@
     mullvad-vpn
     # obsidian
     # okteta
-    # prismlauncher
+    (prismlauncher.override { jdks = [ jdk8 jdk17 jdk21 ]; })
     spotify
     qalculate-qt
     ungoogled-chromium
