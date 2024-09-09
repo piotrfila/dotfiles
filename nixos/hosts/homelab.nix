@@ -10,7 +10,6 @@
     ../cli.nix
     ../gui.nix
     ../locale/pl.nix
-    ../network/systemd-eth0.nix
     ../users/kaliko.nix
     ../various/fonts.nix
     ../various/logind.nix
