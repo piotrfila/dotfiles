@@ -21,7 +21,7 @@
   ];
 
   boot = {
-    initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme"];
+    initrd.availableKernelModules = ["ahci" "nvme" "xhci_pci"];
     initrd.kernelModules = [];
     kernelModules = ["kvm-intel"];
     extraModulePackages = [];
@@ -43,12 +43,13 @@
       "/boot" = {
         device = "/dev/disk/by-uuid/4444-3E58";
         fsType = "vfat";
-        options = ["fmask=0022" "dmask=0022"];
+        options = ["fmask=0022" "dmask=0022" "noatime"];
       };
 
       "/nix" = {
         device = "/dev/disk/by-uuid/6c5dd40d-7e9a-4402-b14b-2cad05e39385";
         fsType = "ext4";
+        options = ["noatime"];
       };
     }
     // (builtins.listToAttrs (
@@ -60,7 +61,6 @@
           options = ["bind"];
         };
       }) [
-        "/home"
         "/etc/mullvad-vpn"
         "/root"
         "/var/log"

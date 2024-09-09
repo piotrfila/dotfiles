@@ -1,8 +1,8 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
+  pkgs,
   ...
 }: {
   imports = [
@@ -23,7 +23,7 @@
   ];
 
   boot = {
-    initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci"];
+    initrd.availableKernelModules = ["ahci" "nvme" "xhci_pci"];
     initrd.kernelModules = [];
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
