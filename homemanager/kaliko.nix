@@ -26,88 +26,93 @@
           value = {
             source = config.lib.file.mkOutOfStoreSymlink "/nix/persist${config.home.homeDirectory}/${x}";
           };
-        }) [
-          ".config/chromium"
-          ".config/cura"
-          ".config/discord"
-          ".config/hypr/extra.conf"
-          ".config/kicad"
-          ".config/Mullvad VPN"
-          ".config/qalculate"
-          ".config/Raspberry Pi"
-          ".config/spotify"
-          ".config/VSCodium"
-          ".config/xfce4"
-          ".config/batt-cap"
-          ".local/share/cargo"
-          ".local/share/cura"
-          ".local/share/fish/generated-completions"
-          ".local/share/fish/fish_history"
-          ".local/share/fish/fonts"
-          ".local/share/kicad"
-          ".local/share/PrismLauncher"
-          ".local/share/rustup"
-          ".local/share/Steam"
-          ".local/state/wireplumber"
-          ".local/state/python_history"
-          "Documents"
-          "Downloads"
-          "Pictures"
-          "Source"
-        ]
+        }) ([
+            ".config/chromium"
+            ".config/hypr/extra.conf"
+            ".config/Mullvad VPN"
+            ".config/qalculate"
+            ".config/Raspberry Pi"
+            ".config/spotify"
+            ".config/VSCodium"
+            ".config/xfce4"
+            ".local/share/cargo"
+            ".local/share/fish/generated-completions"
+            ".local/share/fish/fish_history"
+            ".local/share/fish/fonts"
+            ".local/share/rustup"
+            ".local/state/wireplumber"
+            ".local/state/python_history"
+            "Documents"
+            "Downloads"
+            "Pictures"
+            "Source"
+          ]
+          ++ (
+            if osConfig.networking.hostName == "um425"
+            then [
+              ".config/cura"
+              ".config/discord"
+              ".config/kicad"
+              ".config/batt-cap"
+              ".local/share/cura"
+              ".local/share/kicad"
+              ".local/share/PrismLauncher"
+            ]
+            else []
+          ))
       ))
     else {};
 
-  home.packages = with pkgs; [
-    libnotify
-    pavucontrol
-    wl-clipboard
+  home.packages = with pkgs;
+    [
+      libnotify
+      pavucontrol
+      wl-clipboard
 
-    # gui
-    # arduino
-    # audacity
-    # cura
-    discord
-    firefox
-    # foliate
-    gimp
-    gnuradio
-    gqrx
-    kicad
-    libreoffice
-    logisim-evolution
-    mission-center
-    mpv
-    mullvad-vpn
-    # obsidian
-    # okteta
-    (prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})
-    spotify
-    qalculate-qt
-    ungoogled-chromium
-    # verilator
-    # vlc
-    vscodium
-    xfce.ristretto
+      # gui
+      firefox
+      libreoffice
+      mission-center
+      mpv
+      mullvad-vpn
+      spotify
+      qalculate-qt
+      ungoogled-chromium
+      vscodium
+      xfce.ristretto
 
-    # cli
-    alejandra
-    btop
-    dnsutils
-    git
-    fastfetch
-    file
-    htop
-    jq
-    killall
-    nano
-    pciutils
-    screen
-    unzip
-    usbutils
-    wget
-    xdg-ninja
-  ];
+      # cli
+      alejandra
+      btop
+      dnsutils
+      git
+      fastfetch
+      file
+      htop
+      jq
+      killall
+      nano
+      pciutils
+      screen
+      unzip
+      usbutils
+      wget
+      xdg-ninja
+    ]
+    ++ (
+      if osConfig.networking.hostName == "um425"
+      then [
+        discord
+        gimp
+        gnuradio
+        gqrx
+        kicad
+        logisim-evolution
+        (prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})
+        # verilator
+      ]
+      else []
+    );
 
   manual.manpages.enable = false;
 
