@@ -66,7 +66,6 @@
       wl-clipboard
 
       # gui
-      firefox
       libreoffice
       mission-center
       mpv

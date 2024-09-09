@@ -13,9 +13,8 @@
       };
     }) [
       ".cache"
-      ".factorio"
+      # ".factorio"
       ".librewolf"
-      ".mozilla"
       ".pki"
       ".ssh"
       ".vscode-oss"
