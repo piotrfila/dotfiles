@@ -17,51 +17,47 @@
     ./waybar.nix
     ./wofi.nix
   ];
-  home.file =
-    if osConfig.networking.hostName == "um425"
-    then
-      (builtins.listToAttrs (
-        builtins.map (x: {
-          name = x;
-          value = {
-            source = config.lib.file.mkOutOfStoreSymlink "/nix/persist${config.home.homeDirectory}/${x}";
-          };
-        }) ([
-            ".config/chromium"
-            ".config/hypr/extra.conf"
-            ".config/Mullvad VPN"
-            ".config/qalculate"
-            ".config/Raspberry Pi"
-            ".config/spotify"
-            ".config/VSCodium"
-            ".config/xfce4"
-            ".local/share/cargo"
-            ".local/share/fish/generated-completions"
-            ".local/share/fish/fish_history"
-            ".local/share/fish/fonts"
-            ".local/share/rustup"
-            ".local/state/wireplumber"
-            ".local/state/python_history"
-            "Documents"
-            "Downloads"
-            "Pictures"
-            "Source"
-          ]
-          ++ (
-            if osConfig.networking.hostName == "um425"
-            then [
-              ".config/cura"
-              ".config/discord"
-              ".config/kicad"
-              ".config/batt-cap"
-              ".local/share/cura"
-              ".local/share/kicad"
-              ".local/share/PrismLauncher"
-            ]
-            else []
-          ))
+  home.file = builtins.listToAttrs (
+    builtins.map (x: {
+      name = x;
+      value = {
+        source = config.lib.file.mkOutOfStoreSymlink "/nix/persist${config.home.homeDirectory}/${x}";
+      };
+    }) ([
+        ".config/chromium"
+        ".config/hypr/extra.conf"
+        ".config/Mullvad VPN"
+        ".config/qalculate"
+        ".config/Raspberry Pi"
+        ".config/spotify"
+        ".config/VSCodium"
+        ".config/xfce4"
+        ".local/share/cargo"
+        ".local/share/fish/generated-completions"
+        ".local/share/fish/fish_history"
+        ".local/share/fish/fonts"
+        ".local/share/rustup"
+        ".local/state/wireplumber"
+        ".local/state/python_history"
+        "Documents"
+        "Downloads"
+        "Pictures"
+        "Source"
+      ]
+      ++ (
+        if osConfig.networking.hostName == "um425"
+        then [
+          ".config/cura"
+          ".config/discord"
+          ".config/kicad"
+          ".config/batt-cap"
+          ".local/share/cura"
+          ".local/share/kicad"
+          ".local/share/PrismLauncher"
+        ]
+        else []
       ))
-    else {};
+  );
 
   home.packages = with pkgs;
     [
