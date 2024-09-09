@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.kitty = {
     enable = true;
     font.name = "FiraCode Nerd Font Mono";
@@ -33,7 +33,7 @@
       cursor_stop_blinking_after = 15;
 
       # Number of lines of history to keep in memory for scrolling back
-      scrollback_lines =  2000;
+      scrollback_lines = 2000;
 
       # Program with which to view scrollback in a new window. The scrollback buffer is passed as
       # STDIN to this program. If you change it, make sure the program you use can
@@ -113,7 +113,6 @@
       active_tab_background = "#eee";
       inactive_tab_foreground = "#444";
       inactive_tab_background = "#999";
-
 
       # The 16 terminal colors. There are 8 basic colors, each color has a dull and
       # bright version.

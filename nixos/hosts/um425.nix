@@ -1,81 +1,79 @@
-{ config, lib, pkgs, modulesPath, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}: {
   imports = [
-    # ../binfmt/aarch64.nix
     ../boot/systemd.nix
     ../cli.nix
-    # ../cachix/hyprland.nix
     ../gui.nix
     ../locale/pl.nix
     ../network/networkmanager.nix
     ../users/kaliko.nix
     ../various/bluetooth.nix
     ../various/fonts.nix
-    # ../various/laserjet2300.nix
     ../various/logind.nix
     ../various/rtl-sdr.nix
-    # ../various/steam.nix
     ../various/thunar.nix
-    # ../various/zram.nix
+    ../various/zram.nix
     <home-manager/nixos>
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   boot = {
-    initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" ];
-    initrd.kernelModules = [ ];
-    kernelModules = [ "kvm-amd" ];
-    extraModulePackages = [ ];
+    initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci"];
+    initrd.kernelModules = [];
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
   };
 
   environment = {
     etc.machine-id.text = "0797e38666bb4669a69854f927d8936f\n";
-    systemPackages = [ pkgs.ntfs3g ];
+    systemPackages = [pkgs.ntfs3g];
   };
 
-  fileSystems = {
-    "/" = {
-      device = "tmpfs";
-      fsType = "tmpfs";
-      options = [ "size=32G" "mode=755" ];
-    };
-
-    "/boot" = {
-      device = "/dev/disk/by-uuid/9F24-380D";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" "noatime" ];
-    };
-
-    "/nix" = {
-      device = "/dev/disk/by-uuid/1bf92b6d-6db2-42e8-9b26-6341f09808ef";
-      fsType = "ext4";
-      options = [ "noatime" ];
-    };
-
-    # "/home/kaliko/.local/share/Steam" = {
-    #   device = "/nix/persist/home/kaliko/.local/share/Steam";
-    #   fsType = "none";
-    #   options = [ "bind" ];
-    # }
-  } // (builtins.listToAttrs (
-    builtins.map ( x: {
-      name = x;
-      value = {
-        device = "/nix/persist${x}";
-        fsType = "none";
-        options = [ "bind" ];
+  fileSystems =
+    {
+      "/" = {
+        device = "tmpfs";
+        fsType = "tmpfs";
+        options = ["size=32G" "mode=755"];
       };
-    }) [
-      "/etc/NetworkManager/system-connections"
-      "/etc/mullvad-vpn"
-      "/root"
-      "/var/log"
-      "/var/lib/alsa"
-      "/var/lib/bluetooth"
-      "/var/lib/nixos"
-      "/var/lib/systemd/coredump"
-      "/var/lib/cups"
-    ]
-  ));
+
+      "/boot" = {
+        device = "/dev/disk/by-uuid/9F24-380D";
+        fsType = "vfat";
+        options = ["fmask=0022" "dmask=0022" "noatime"];
+      };
+
+      "/nix" = {
+        device = "/dev/disk/by-uuid/1bf92b6d-6db2-42e8-9b26-6341f09808ef";
+        fsType = "ext4";
+        options = ["noatime"];
+      };
+    }
+    // (builtins.listToAttrs (
+      builtins.map (x: {
+        name = x;
+        value = {
+          device = "/nix/persist${x}";
+          fsType = "none";
+          options = ["bind"];
+        };
+      }) [
+        "/etc/NetworkManager/system-connections"
+        "/etc/mullvad-vpn"
+        "/root"
+        "/var/log"
+        "/var/lib/alsa"
+        "/var/lib/bluetooth"
+        "/var/lib/nixos"
+        "/var/lib/systemd/coredump"
+        "/var/lib/cups"
+      ]
+    ));
 
   hardware.cpu.amd.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
@@ -111,16 +109,12 @@
     };
     getty.autologinUser = "kaliko";
     mullvad-vpn.enable = true;
-    printing = {
-      enable = true;
-      # drivers = [ pkgs.hplipWithPlugin ];
-    };
+    printing.enable = true;
     thermald.enable = false;
     udev.extraRules = ''
       ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="amdgpu_bl1", MODE="0666", RUN+="${pkgs.coreutils-full}/bin/chmod a+w /sys/class/backlight/%k/brightness"
       SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", MODE:="0666", SYMLINK+="stlinkv2-1_%n"
     '';
-      # SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", TAG+="uaccess"
   };
 
   system.stateVersion = "23.11";
@@ -131,25 +125,17 @@
       ExecStart = "/bin/sh -c \"cat /nix/persist/home/kaliko/.config/batt-cap > /sys/class/power_supply/BATT/charge_control_end_threshold\"";
       Type = "oneshot";
     };
-    wantedBy = [ "default.target" ];
+    wantedBy = ["default.target"];
   };
-  
+
   systemd.services."fix-battery-permission" = {
     description = "change permission of charge_control_end_threshold";
     serviceConfig = {
       ExecStart = "/bin/sh -c \"sleep 1; chmod a+w /sys/class/power_supply/BATT/charge_control_end_threshold\"";
       Type = "oneshot";
     };
-    wantedBy = [ "default.target" ];
-    wants = [ "multi-user.target" ];
-  };
-
-  swapDevices = [ ];
-
-  zramSwap = {
-    enable = true;
-    algorithm = "zstd";
-    memoryPercent = 75;
+    wantedBy = ["default.target"];
+    wants = ["multi-user.target"];
   };
 
   systemd.network.links = {
@@ -160,6 +146,6 @@
     "15-wlan0" = {
       linkConfig.Name = "wlan0";
       matchConfig.MACAddress = "ac:12:03:17:a5:a7";
-    };        
+    };
   };
 }

@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   networking.interfaces.eth0.useDHCP = true;
   systemd.network = {
     enable = true;
@@ -7,6 +7,6 @@
       matchConfig.Name = "eth0";
       networkConfig.DHCP = "yes";
       linkConfig.RequiredForOnline = "no";
-    }
+    };
   };
 }

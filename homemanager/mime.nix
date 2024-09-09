@@ -1,9 +1,7 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   xdg.mimeApps.enable = true;
   xdg.mimeApps.defaultApplications = let
-    none = [ "okteta.desktop" ]; #"notify-send \"Could not open MIME type\" abc";
+    none = ["okteta.desktop"]; #"notify-send \"Could not open MIME type\" abc";
     # archive = "none";
     # book = "pkgs.foliate}/bin/foliate}";
     # hex = "pkgs.okteta}/bin/okteta";
@@ -11,10 +9,10 @@
     # music = "pkgs.vlc}/bin/vlc";
     # video = "pkgs.vlc}/bin/vlc";
     archive = none;
-    browser = [ "librewolf.desktop" ];
-    code = [ "codium.desktop" ];
-    hex = [ "okteta.desktop" ];
-    image = [ "org.xfce.ristretto.desktop" ];
+    browser = ["librewolf.desktop"];
+    code = ["codium.desktop"];
+    hex = ["okteta.desktop"];
+    image = ["org.xfce.ristretto.desktop"];
     music = none;
     text = none;
     video = none;
@@ -33,7 +31,7 @@
     # "application/dxf" = none; # .dxf
     "application/ecmascript" = code; # .js
     # "application/envoy" = none; # .evy
-    "application/excel" = [ "calc.desktop" ]; # .xl .xla .xlb .xlc .xld .xlk .xll .xlm .xls .xlt .xlv .xlw
+    "application/excel" = ["calc.desktop"]; # .xl .xla .xlb .xlc .xld .xlk .xll .xlm .xls .xlt .xlv .xlw
     # "application/fractals" = none; # .fif
     # "application/freeloader" = none; # .frl
     # "application/futuresplash" = none; # .spl
@@ -58,8 +56,8 @@
     # "application/mbedlet" = none; # .mbd
     # "application/mcad" = none; # .mcd
     # "application/mime" = none; # .aps
-    "application/mspowerpoint" = [ "impress.desktop" ]; # .pot .pps .ppt .ppz
-    "application/msword" = [ "writer.desktop" ]; # .doc .dot .w6w .wiz .word
+    "application/mspowerpoint" = ["impress.desktop"]; # .pot .pps .ppt .ppz
+    "application/msword" = ["writer.desktop"]; # .doc .dot .w6w .wiz .word
     # "application/mswrite" = none; # .wri
     # "application/netmc" = none; # .mcp
     # "application/octet-stream" = none; # .a .arc .arj .bin .com .dump .exe .lha .lhx .lzh .lzx .o .psd .saveme .uu .zoo
@@ -74,7 +72,7 @@
     # "application/pkix-crl" = none; # .crl
     # "application/plain" = none; # .text
     # "application/postscript" = none; # .ai .eps .ps
-    "application/powerpoint" = [ "impress.desktop" ]; # .ppt
+    "application/powerpoint" = ["impress.desktop"]; # .ppt
     # "application/pro_eng" = none; # .part .prt
     # "application/ringing-tones" = none; # .rng
     # "application/rtf" = none; # .rtf .rtx
@@ -352,7 +350,7 @@
     # "text/mcf" = text; # .mcf
     "text/pascal" = code; # .pas
     "text/plain" = code; # .c .c++ .cc .com .conf .cxx .def .f .f90 .for .g .h .hh .idc .jav .java .list .log .lst .m .mar .pl .sdml .text .txt
-    "text/richtext" = [ "writer.desktop" ]; # .rt .rtf .rtx
+    "text/richtext" = ["writer.desktop"]; # .rt .rtf .rtx
     # "text/scriplet" = text; # .wsc
     # "text/sgml" = text; # .sgm .sgml
     "text/tab-separated-values" = code; # .tsv

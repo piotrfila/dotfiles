@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   services = {
     klipper = {
       apiSocket = "/run/klipper/api";
@@ -22,8 +22,8 @@
       enable = true;
       klipperSocket = "/run/klipper/api";
       settings = {
-        octoprint_compat = { };
-        history = { };
+        octoprint_compat = {};
+        history = {};
         authorization = {
           force_logins = true;
           cors_domains = [
@@ -55,7 +55,7 @@
           extruder = 235;
           heater_bed = 60;
         };
-        
+
         "power printer" = {
           type = "gpio";
           pin = "!gpiochip0/gpio24";

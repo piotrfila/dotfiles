@@ -2,9 +2,9 @@
 pkgs.mkShell {
   buildInputs = with pkgs; [
     # build requirements
-    clang
+    # clang
     cmake
-    flip-link
+    # flip-link
     gnumake
 
     # missing libraries
@@ -16,7 +16,7 @@ pkgs.mkShell {
     # vulkan-headers
     # vulkan-loader
     # vulkan-tools
-    
+
     # GTK
     # atkmm
     # glib
@@ -26,23 +26,23 @@ pkgs.mkShell {
     # gtk-layer-shell
     # libdbusmenu-gtk3
   ];
-  shellHook = ''
-    export OPENSSL_DIR="${pkgs.openssl.dev}"
-    export OPENSSL_LIB_DIR="${pkgs.openssl.out}/lib"
-    export LIBCLANG_PATH="${pkgs.libclang.lib}/lib";
-    export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib:${
-      with pkgs;
-        lib.makeLibraryPath [
-          # libGL
-          # vulkan-loader
+  # shellHook = ''
+  #   export OPENSSL_DIR="${pkgs.openssl.dev}"
+  #   export OPENSSL_LIB_DIR="${pkgs.openssl.out}/lib"
+  #   export LIBCLANG_PATH="${pkgs.libclang.lib}/lib";
+  #   export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib:${
+  #     with pkgs;
+  #       lib.makeLibraryPath [
+  #         # libGL
+  #         # vulkan-loader
 
-          # xorg.libX11
-          # xorg.libXi
-          # xorg.libXcursor
-          # xorg.libXrandr
+  #         # xorg.libX11
+  #         # xorg.libXi
+  #         # xorg.libXcursor
+  #         # xorg.libXrandr
 
-          # glib.out
-        ]
-    }"
-  '';
+  #         # glib.out
+  #       ]
+  #   }"
+  # '';
 }

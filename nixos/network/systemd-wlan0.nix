@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   networking.interfaces.wlan0.useDHCP = true;
   networking.wireless = {
     enable = true;

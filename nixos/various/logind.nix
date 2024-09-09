@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   services.logind = {
     hibernateKey = "ignore";
     hibernateKeyLongPress = "ignore";
@@ -8,7 +8,7 @@
     suspendKeyLongPress = "ignore";
     rebootKey = "ignore";
     rebootKeyLongPress = "ignore";
-    
+
     lidSwitch = "suspend";
     lidSwitchDocked = "ignore";
     lidSwitchExternalPower = "suspend";

@@ -1,5 +1,5 @@
-{ ... }: {
-  home-manager.users.kaliko = { pkgs, ... }: {
+{...}: {
+  home-manager.users.kaliko = {pkgs, ...}: {
     home.packages = with pkgs; [
       steam
       steam-run

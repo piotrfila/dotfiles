@@ -1,4 +1,9 @@
-{ osConfig, lib, pkgs, ... }: {
+{
+  osConfig,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ../scripts/brightness.nix
     ../scripts/battery-charge-cap.nix
@@ -26,27 +31,29 @@
         "hyprland/workspaces"
         "tray"
       ];
-      modules-center = [ "mpris" ];
-      modules-right = if osConfig.networking.hostName == "um425"
-      then [
-        "bluetooth"
-        "network"
-        "backlight"
-        # "idle_inhibitor"
-        "battery"
-        "pulseaudio"
-        "clock"
-        "custom/power-btn"
-      ] else [
-        "network"
-        "pulseaudio"
-        "clock"
-        "custom/power-btn"
-      ];
+      modules-center = ["mpris"];
+      modules-right =
+        if osConfig.networking.hostName == "um425"
+        then [
+          "bluetooth"
+          "network"
+          "backlight"
+          # "idle_inhibitor"
+          "battery"
+          "pulseaudio"
+          "clock"
+          "custom/power-btn"
+        ]
+        else [
+          "network"
+          "pulseaudio"
+          "clock"
+          "custom/power-btn"
+        ];
       backlight = {
         device = "intel_backlight";
         format = "{icon}";
-        format-icons = [ "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ];
+        format-icons = ["" "" "" "" "" "" "" "" "" "" "" "" "" "" ""];
         tooltip-format = "Jasność: {percent}%";
         on-click = "battery-charge-cap 60";
         on-click-middle = "battery-charge-cap 80";
@@ -57,7 +64,7 @@
       battery = {
         format = "{icon} {capacity}%";
         format-charging = "󰂄 {capacity}%";
-        format-icons = [ "󰂃" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+        format-icons = ["󰂃" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
         format-plugged = "󰁹 {capacity}%";
         format-time = "{H}:{m}";
         interval = 60;
@@ -91,7 +98,7 @@
         on-click = "rfkill unblock bluetooth";
         on-click-right = "rfkill block bluetooth";
         on-click-middle = "blueman-manager";
-        format-icons = [ "󰥇" "󰤾" "󰤿" "󰥀" "󰥁" "󰥂" "󰥃" "󰥄" "󰥅" "󰥆" "󰥈" ];
+        format-icons = ["󰥇" "󰤾" "󰤿" "󰥀" "󰥁" "󰥂" "󰥃" "󰥄" "󰥅" "󰥆" "󰥈"];
       };
       clock = {
         format = " {:%R}";
@@ -120,7 +127,7 @@
         tooltip-format-deactivated = "Tryb prezentacji nieaktywny";
       };
       mpris = {
-        dynamic-order = [ "title" "artist" ];
+        dynamic-order = ["title" "artist"];
         format = "{player_icon}{dynamic}";
         max-length = 80;
         player-icons = {
@@ -131,7 +138,7 @@
           vlc = "󰕼 ";
         };
         status-icons = {
-            paused = "⏸";
+          paused = "⏸";
         };
       };
       network = {
@@ -150,7 +157,7 @@
         max-length = 20;
         on-click = "rfkill unblock wlan";
         on-click-right = "rfkill block wlan";
-        format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
+        format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
       };
       pulseaudio = {
         format = "{icon} {volume}%";

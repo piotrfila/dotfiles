@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
   boot.consoleLogLevel = lib.mkDefault 1;
 
@@ -8,16 +13,15 @@
   };
 
   environment = {
-    defaultPackages = [ ];
+    defaultPackages = [];
 
-    etc."current-system-packages".text =
-      let
+    etc."current-system-packages".text = let
       packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
       sortedUnique = builtins.sort builtins.lessThan (lib.unique packages);
       formatted = builtins.concatStringsSep "\n" sortedUnique;
-      in
-      formatted; 
-    
+    in
+      formatted;
+
     etc."nixos/configuration.nix".text = lib.mkDefault "{ ... }: { imports = [ /nix/persist/home/${config.services.getty.autologinUser}/Source/dotfiles/nixos/hosts/${config.networking.hostName}.nix ]; }";
 
     sessionVariables = rec {
@@ -44,18 +48,18 @@
       wget = "wget --hsts-file=$XDG_DATA_HOME/wget-hsts";
     };
 
-    systemPackages = [ pkgs.nano ];
+    systemPackages = [pkgs.nano];
   };
 
   networking.firewall.enable = lib.mkDefault false;
 
   nix.settings = {
-    # auto-optimise-store = true;
-    experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ "@wheel" "root" ];
+    auto-optimise-store = true;
+    experimental-features = ["nix-command" "flakes"];
+    trusted-users = ["@wheel" "root"];
   };
   nix.extraOptions = "use-xdg-base-directories = true";
-  
+
   nixpkgs.config.allowUnfree = lib.mkDefault true;
 
   security.polkit = {
@@ -70,7 +74,7 @@
           action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
           action.id == "org.freedesktop.login1.halt" ||
           action.id == "org.freedesktop.login1.halt-multiple-sessions"
-        )) {    
+        )) {
           return polkit.Result.YES
         }
       })

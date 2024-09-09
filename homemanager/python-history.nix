@@ -1,5 +1,5 @@
-{ ... }: {
-    home.file.".config/pythonrc.py".text = ''
+{...}: {
+  home.file.".config/pythonrc.py".text = ''
     def is_vanilla() -> bool:
         import sys
         return not hasattr(__builtins__, '__IPYTHON__') and 'bpython' not in sys.argv[0]
@@ -18,7 +18,7 @@
             state_home = Path.home() / '.local' / 'state'
 
         history: str = f"/nix/persist{str(state_home)}/python_history"
-        
+
         if not os.path.exists(history):
             open(history, "w")
 
@@ -28,5 +28,5 @@
 
     if is_vanilla():
         setup_history()
-    '';
+  '';
 }

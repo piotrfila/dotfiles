@@ -1,4 +1,10 @@
-{ config, lib, osConfig, pkgs, ... }: {
+{
+  config,
+  lib,
+  osConfig,
+  pkgs,
+  ...
+}: {
   imports = [
     ./alacritty.nix
     ./dunst.nix
@@ -11,43 +17,46 @@
     ./waybar.nix
     ./wofi.nix
   ];
-  home.file = if osConfig.networking.hostName == "um425"
-  then (builtins.listToAttrs (
-    builtins.map ( x: {
-      name = x;
-      value = {
-        source = config.lib.file.mkOutOfStoreSymlink "/nix/persist${config.home.homeDirectory}/${x}";
-      };
-    }) [
-      ".config/chromium"
-      ".config/cura"
-      ".config/discord"
-      ".config/hypr/extra.conf"
-      ".config/kicad"
-      ".config/Mullvad VPN"
-      ".config/qalculate"
-      ".config/Raspberry Pi"
-      ".config/spotify"
-      ".config/VSCodium"
-      ".config/xfce4"
-      ".config/batt-cap"
-      ".local/share/cargo"
-      ".local/share/cura"
-      ".local/share/fish/generated-completions"
-      ".local/share/fish/fish_history"
-      ".local/share/fish/fonts"
-      ".local/share/kicad"
-      ".local/share/PrismLauncher"
-      ".local/share/rustup"
-      ".local/share/Steam"
-      ".local/state/wireplumber"
-      ".local/state/python_history"
-      "Documents"
-      "Downloads"
-      "Pictures"
-      "Source"
-    ]
-  )) else { };
+  home.file =
+    if osConfig.networking.hostName == "um425"
+    then
+      (builtins.listToAttrs (
+        builtins.map (x: {
+          name = x;
+          value = {
+            source = config.lib.file.mkOutOfStoreSymlink "/nix/persist${config.home.homeDirectory}/${x}";
+          };
+        }) [
+          ".config/chromium"
+          ".config/cura"
+          ".config/discord"
+          ".config/hypr/extra.conf"
+          ".config/kicad"
+          ".config/Mullvad VPN"
+          ".config/qalculate"
+          ".config/Raspberry Pi"
+          ".config/spotify"
+          ".config/VSCodium"
+          ".config/xfce4"
+          ".config/batt-cap"
+          ".local/share/cargo"
+          ".local/share/cura"
+          ".local/share/fish/generated-completions"
+          ".local/share/fish/fish_history"
+          ".local/share/fish/fonts"
+          ".local/share/kicad"
+          ".local/share/PrismLauncher"
+          ".local/share/rustup"
+          ".local/share/Steam"
+          ".local/state/wireplumber"
+          ".local/state/python_history"
+          "Documents"
+          "Downloads"
+          "Pictures"
+          "Source"
+        ]
+      ))
+    else {};
 
   home.packages = with pkgs; [
     libnotify
@@ -72,7 +81,7 @@
     mullvad-vpn
     # obsidian
     # okteta
-    (prismlauncher.override { jdks = [ jdk8 jdk17 jdk21 ]; })
+    (prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})
     spotify
     qalculate-qt
     ungoogled-chromium
@@ -104,7 +113,7 @@
 
   programs = {
     bash.enable = false;
-    
+
     fish = {
       enable = true;
 
@@ -127,16 +136,16 @@
         end
       '';
 
-      plugins = [ ];
+      plugins = [];
     };
-  
+
     git = {
       enable = true;
       userName = "Piotr Fila";
       userEmail = "piotr.fila.stud@pw.edu.pl";
       extraConfig.init.defaultBranch = "main";
     };
-    
+
     home-manager.enable = true;
 
     librewolf = {
@@ -181,8 +190,8 @@
       gtk-application-prefer-dark-theme=1
     '';
 
-    gtk3.bookmarks = let 
-      dirs = config.xdg.userDirs; 
+    gtk3.bookmarks = let
+      dirs = config.xdg.userDirs;
       home = config.home.homeDirectory;
     in [
       "file://${dirs.documents}"
@@ -201,8 +210,8 @@
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
-    #   name = "Arc";
-    #   package = pkgs.arc-icon-theme;
+      #   name = "Arc";
+      #   package = pkgs.arc-icon-theme;
     };
 
     theme = {
@@ -217,7 +226,7 @@
     name = "Bibata-Modern-Classic";
     size = 12;
   };
-  
+
   qt = {
     enable = true;
     platformTheme.name = "adwaita";
@@ -228,17 +237,19 @@
   };
 
   dconf.enable = true;
-  dconf.settings = if osConfig.networking.hostName == "homelab"
-  then {
-    "org/gnome/desktop/interface".color-scheme = "prefer-dark";
+  dconf.settings =
+    if osConfig.networking.hostName == "homelab"
+    then {
+      "org/gnome/desktop/interface".color-scheme = "prefer-dark";
 
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
+      "org/virt-manager/virt-manager/connections" = {
+        autoconnect = ["qemu:///system"];
+        uris = ["qemu:///system"];
+      };
+    }
+    else {
+      "org/gnome/desktop/interface".color-scheme = "prefer-dark";
     };
-  } else {
-    "org/gnome/desktop/interface".color-scheme = "prefer-dark";
-  };
-  
+
   home.stateVersion = "23.11";
 }

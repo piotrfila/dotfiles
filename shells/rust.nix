@@ -14,21 +14,21 @@ pkgs.mkShell {
     # podman
 
     # build requirements
-    clang
-    cmake
+    # clang
+    # cmake
     flip-link
-    gnumake
+    # gnumake
 
     # missing libraries
-    fontconfig
+    # fontconfig
     # libGL
     # openssl
-    pkg-config
+    # pkg-config
     # pipewire.dev
     # vulkan-headers
     # vulkan-loader
     # vulkan-tools
-    
+
     # GTK
     # atkmm
     # glib
@@ -38,25 +38,25 @@ pkgs.mkShell {
     # gtk-layer-shell
     # libdbusmenu-gtk3
   ];
-  shellHook = ''
-    export CARGO_HOME="$XDG_DATA_HOME/cargo"
-    export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
-    export OPENSSL_DIR="${pkgs.openssl.dev}"
-    export OPENSSL_LIB_DIR="${pkgs.openssl.out}/lib"
-    export LIBCLANG_PATH="${pkgs.libclang.lib}/lib";
-    export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib:${
-      with pkgs;
-        lib.makeLibraryPath [
-          # libGL
-          # vulkan-loader
+  # shellHook = ''
+  #   export CARGO_HOME="$XDG_DATA_HOME/cargo"
+  #   export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+  #   export OPENSSL_DIR="${pkgs.openssl.dev}"
+  #   export OPENSSL_LIB_DIR="${pkgs.openssl.out}/lib"
+  #   export LIBCLANG_PATH="${pkgs.libclang.lib}/lib";
+  #   export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib:${
+  #     with pkgs;
+  #       lib.makeLibraryPath [
+  #         # libGL
+  #         # vulkan-loader
 
-          # xorg.libX11
-          # xorg.libXi
-          # xorg.libXcursor
-          # xorg.libXrandr
+  #         # xorg.libX11
+  #         # xorg.libXi
+  #         # xorg.libXcursor
+  #         # xorg.libXrandr
 
-          # glib.out
-        ]
-    }"
-  '';
+  #         # glib.out
+  #       ]
+  #   }"
+  # '';
 }

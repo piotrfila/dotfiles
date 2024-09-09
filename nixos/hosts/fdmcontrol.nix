@@ -1,62 +1,41 @@
-{ config, lib, pkgs, modulesPath, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}: {
   imports = [
     ../boot/extlinux.nix
     ../cli.nix
     ../locale/pl.nix
-    ../network/systemd-wireless.nix
+    ../network/systemd-eth0.nix
+    ../network/systemd-wlan0.nix
     ../various/klipper/default.nix
     ../various/zram.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   boot = {
-    initrd.availableKernelModules = [ "xhci_pci" ];
-    initrd.kernelModules = [ ];
-    kernelModules = [ ];
-    extraModulePackages = [ ];
+    initrd.availableKernelModules = ["xhci_pci"];
+    initrd.kernelModules = [];
+    kernelModules = [];
+    extraModulePackages = [];
   };
 
   environment = {
     etc.machine-id.text = "326361ad04094a9b86bd130186912b6f\n";
-    systemPackages = [ pkgs.libraspberrypi ];
+    systemPackages = [pkgs.libraspberrypi];
   };
 
-  fileSystems = {
-    # "/" = {
-    #   device = "tmpfs";
-    #   fsType = "tmpfs";
-    #   options = [ "size=32G" "mode=755" ];
-    # };
-    "/" = {
-      device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
+    fsType = "ext4";
   };
-#     "/boot" = {
-#       device = "/nix/boot";
-#       fsType = "none";
-#       options = [ "bind" ];
-#     };
-#   } // (builtins.listToAttrs (
-#     builtins.map ( x: {
-#       name = x;
-#       value = {
-#         device = "/nix/persist${x}";
-#         fsType = "none";
-#         options = [ "bind" ];
-#       };
-#     }) [
-#       "/root"
-#       "/home"
-#       #"/var/log"
-#       #"/var/lib/nixos"
-#       #"/var/lib/systemd/coredump"
-#     ]
-#   ));
+
+  hardware.enableRedistributableFirmware = true;
 
   networking.hostName = "fdmcontrol";
-  # networking.interfaces.end0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlan0.useDHCP = lib.mkDefault true;
   networking.useDHCP = lib.mkDefault true;
   networking.wireless.enable = true;
 
@@ -64,12 +43,12 @@
 
   security.sudo.wheelNeedsPassword = false;
 
+  programs.fish.enable = true;
+
   services = {
     getty.autologinUser = "printer";
     openssh.enable = true;
   };
-
-  programs.fish.enable = true;
 
   system.stateVersion = "24.05";
 
@@ -84,23 +63,15 @@
     };
   };
 
-  swapDevices = [ ];
-
   users.mutableUsers = false;
   users.users.printer = {
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     hashedPasswordFile = "/nix/persist/home/printer/passwd";
     isNormalUser = true;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM73MctM8BEu5LaUwtmK3rxAJCvVAxN4XqEttArbJpAb piotr.fila.stud@pw.edu.pl"
     ];
-    packages = [ pkgs.git ];
+    packages = [pkgs.git];
     shell = pkgs.fish;
-  };
-
-  zramSwap = {
-    enable = true;
-    algorithm = "zstd";
-    memoryPercent = 75;
   };
 }

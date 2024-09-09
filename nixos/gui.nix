@@ -1,4 +1,8 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   boot.extraModulePackages = [
     config.boot.kernelPackages.v4l2loopback
   ];
@@ -36,7 +40,7 @@
   #     ${gtk-settings}
   #   '';
   # };
-  
+
   xdg.portal = {
     enable = true;
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
