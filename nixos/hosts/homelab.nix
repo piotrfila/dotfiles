@@ -67,7 +67,6 @@
   networking.hostName = "homelab";
 
   programs = {
-    dconf.enable = true;
     fish.enable = true;
     hyprland = {
       enable = true;

@@ -26,15 +26,16 @@ in { pkgs, lib, config, ... }: {
   };
 
   # set max locked ram to 20 GiB (not working currently)
-  environment.etc."security/limits.conf".text = ''
-    @kvm	hard	memlock	21474836480
-    @kvm	soft	memlock	21474836480
-  '';
+  environment = {
+    etc."security/limits.conf".text = ''
+      @kvm	hard	memlock	21474836480
+      @kvm	soft	memlock	21474836480
+    '';
 
-  environment.systemPackages = with pkgs; [
-    virt-manager
-    virt-viewer
-  ];
+    systemPackages = [ pkgs.virt-viewer ];
+  };
+
+  programs.virt-manager.enable = true;
 
   virtualisation = {
     libvirtd.enable = true;
