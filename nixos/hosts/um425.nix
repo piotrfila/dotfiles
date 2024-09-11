@@ -53,6 +53,12 @@
         fsType = "ext4";
         options = ["noatime"];
       };
+
+      "/mnt/homelab" = {
+        device = "192.168.1.3:/vol1";
+        fsType = "nfs";
+        options = [ "x-systemd.automount" "x-systemd.idle-timeout=60" "noauto" "noatime" ];
+      };
     }
     // (builtins.listToAttrs (
       builtins.map (x: {
