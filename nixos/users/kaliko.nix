@@ -14,6 +14,7 @@
     }) [
       ".cache"
       # ".factorio"
+      ".gnupg"
       ".librewolf"
       ".pki"
       ".ssh"
