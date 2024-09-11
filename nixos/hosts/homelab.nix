@@ -50,6 +50,11 @@
         fsType = "ext4";
         options = ["noatime"];
       };
+
+      "/export/vol1" = {
+        device = "/nix/server";
+        options = [ "bind" ];
+      };
     }
     // (builtins.listToAttrs (
       builtins.map (x: {
@@ -89,6 +94,13 @@
   services = {
     getty.autologinUser = "kaliko";
     mullvad-vpn.enable = true;
+    nfs.server = {
+      enable = true;
+      exports = ''
+        /export        192.168.1.2(rw,fsid=0,no_subtree_check)
+        /export/vol1   192.168.1.2(rw,nohide,insecure,no_subtree_check)
+      '';
+    };
   };
 
   system.stateVersion = "23.11";
