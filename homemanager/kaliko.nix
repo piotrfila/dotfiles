@@ -143,7 +143,10 @@
       enable = true;
       userName = "Piotr Fila";
       userEmail = "piotr.fila.stud@pw.edu.pl";
-      extraConfig.init.defaultBranch = "main";
+      extraConfig = {
+        commit.gpgsign = true;
+        init.defaultBranch = "main";
+      };
     };
 
     gpg.enable = true;
