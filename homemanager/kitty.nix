@@ -2,7 +2,6 @@
   programs.kitty = {
     enable = true;
     font.name = "FiraCode Nerd Font Mono";
-    font.package = pkgs.nerdfonts;
     font.size = 12;
     settings = {
       # The foreground color

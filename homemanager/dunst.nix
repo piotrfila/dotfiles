@@ -11,7 +11,7 @@
         gap_size = 4;
         follow = "mouse";
         frame_width = 0;
-        font = "MesloLGS Nerd Font 15";
+        font = "FiraCode Nerd Font 15";
         min_icon_size = 128;
       };
 
