@@ -61,6 +61,7 @@
           pin = "!gpiochip0/gpio24";
           off_when_shutdown = true;
           initial_state = "off";
+          bound_services = "klipper";
         };
         "power lights" = {
           type = "gpio";
