@@ -81,8 +81,8 @@
 
     udev.extraRules = ''
       SUBSYSTEM=="bcm2835-gpiomem", KERNEL=="gpiomem", GROUP="users",MODE="0666"
-      SUBSYSTEM=="gpio", KERNEL=="gpiochip*", ACTION=="add", RUN+="${pkgs.sh}/bin/sh -c 'chown root:users /sys/class/gpio/export /sys/class/gpio/unexport ; chmod 666 /sys/class/gpio/export /sys/class/gpio/unexport'"
-      SUBSYSTEM=="gpio", KERNEL=="gpio*", ACTION=="add",RUN+="${pkgs.sh}/bin/sh -c 'chown root:users /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value ; chmod 666 /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value'"
+      SUBSYSTEM=="gpio", KERNEL=="gpiochip*", ACTION=="add", RUN+="${pkgs.bash}/bin/bash -c 'chown root:users /sys/class/gpio/export /sys/class/gpio/unexport ; chmod 666 /sys/class/gpio/export /sys/class/gpio/unexport'"
+      SUBSYSTEM=="gpio", KERNEL=="gpio*", ACTION=="add",RUN+="${pkgs.bash}/bin/bash -c 'chown root:users /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value ; chmod 666 /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value'"
     '';
   };
 }
