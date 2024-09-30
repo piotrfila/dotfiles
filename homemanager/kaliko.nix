@@ -104,7 +104,7 @@
         kicad
         logisim-evolution
         (prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})
-        # verilator
+        verilator
       ]
       else []
     );

@@ -1,4 +1,7 @@
-{...}: {
+{
+  pkgs,
+  ...
+}: {
   services = {
     klipper = {
       apiSocket = "/run/klipper/api";
@@ -43,18 +46,18 @@
           ];
         };
 
-        "preheat P1" = {
-          extruder = 200;
-          heater_bed = 50;
-        };
-        "preheat P2" = {
-          extruder = 220;
-          heater_bed = 60;
-        };
-        "preheat P3" = {
-          extruder = 235;
-          heater_bed = 60;
-        };
+        # "preheat P1" = {
+        #   extruder = 200;
+        #   heater_bed = 50;
+        # };
+        # "preheat P2" = {
+        #   extruder = 220;
+        #   heater_bed = 60;
+        # };
+        # "preheat P3" = {
+        #   extruder = 235;
+        #   heater_bed = 60;
+        # };
 
         "power printer" = {
           type = "gpio";
@@ -75,5 +78,11 @@
     mainsail = {
       enable = true;
     };
+
+    udev.extraRules = ''
+      SUBSYSTEM=="bcm2835-gpiomem", KERNEL=="gpiomem", GROUP="moonraker",MODE="0660"
+      SUBSYSTEM=="gpio", KERNEL=="gpiochip*", ACTION=="add", RUN+="${pkgs.sh}/bin/sh -c 'chown root:moonraker /sys/class/gpio/export /sys/class/gpio/unexport ; chmod 220 /sys/class/gpio/export /sys/class/gpio/unexport'"
+      SUBSYSTEM=="gpio", KERNEL=="gpio*", ACTION=="add",RUN+="${pkgs.sh}/bin/sh -c 'chown root:moonraker /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value ; chmod 660 /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value'"
+    '';
   };
 }

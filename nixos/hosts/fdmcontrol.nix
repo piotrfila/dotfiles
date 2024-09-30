@@ -9,7 +9,7 @@
     ../boot/extlinux.nix
     ../cli.nix
     ../locale/pl.nix
-    ../network/systemd-eth0.nix
+    # ../network/systemd-eth0.nix
     ../network/systemd-wlan0.nix
     ../various/klipper/default.nix
     ../various/zram.nix
@@ -25,7 +25,11 @@
 
   environment = {
     etc.machine-id.text = "326361ad04094a9b86bd130186912b6f\n";
-    systemPackages = [pkgs.libraspberrypi];
+    systemPackages = with pkgs; [
+      libraspberrypi
+      libgpiod
+      raspberrypi-eeprom
+    ];
   };
 
   fileSystems."/" = {
@@ -36,7 +40,6 @@
   hardware.enableRedistributableFirmware = true;
 
   networking.hostName = "fdmcontrol";
-  networking.useDHCP = lib.mkDefault true;
   networking.wireless.enable = true;
 
   nixpkgs.hostPlatform = "aarch64-linux";
