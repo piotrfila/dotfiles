@@ -55,7 +55,7 @@
         gcc-arm-embedded = prev.gcc-arm-embedded-11;
       };
       moonraker = let
-        moonrakerPythonEnv = python3.withPackages (
+        moonrakerPythonEnv = prev.python3.withPackages (
           packages:
             with packages; [
               tornado
