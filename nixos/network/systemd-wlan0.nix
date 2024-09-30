@@ -4,24 +4,24 @@
     enable = true;
 
     # wi-fi passwords
-    environmentFile = "/nix/persist/wireless.env";
+    secretsFile = "/nix/persist/wireless.env";
 
     networks = {
       "Pixel_4710" = {
         priority = 30;
-        psk = "@PSK_Pixel_4710@";
+        pskRaw = "ext:PSK_Pixel_4710";
       };
       "siec1" = {
         priority = 10;
-        psk = "@PSK_siec1@";
+        pskRaw = "ext:PSK_siec1";
       };
       "siec2_25" = {
         priority = 20;
-        psk = "@PSK_siec2@";
+        pskRaw = "ext:PSK_siec2";
       };
       "siec2_50" = {
         priority = 25;
-        psk = "@PSK_siec2@";
+        pskRaw = "ext:PSK_siec2";
       };
     };
   };
