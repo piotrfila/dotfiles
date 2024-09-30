@@ -67,7 +67,7 @@
     };
 
     udev.extraRules = let
-      shell = "${pkgs.bash}/bin/bash -c";
+      shell = "/bin/sh -c";
       user = "printer";
       group = "users";
     in ''
@@ -75,5 +75,14 @@
       SUBSYSTEM=="gpio", KERNEL=="gpiochip*", ACTION=="add", RUN+="${shell} 'chown ${user}:${group} /sys/class/gpio/export /sys/class/gpio/unexport ; chmod 220 /sys/class/gpio/export /sys/class/gpio/unexport'"
       SUBSYSTEM=="gpio", KERNEL=="gpio*", ACTION=="add",RUN+="${shell} 'chown ${user}:${group} /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value ; chmod 660 /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value'"
     '';
+  };
+  systemd.services."fix-gpiochip-permission" = {
+    description = "change permission of /dev/gpiochip0";
+    serviceConfig = {
+      ExecStart = "/bin/sh -c \"sleep 1; chown printer:users /dev/gpiochip0\"";
+      Type = "oneshot";
+    };
+    wantedBy = ["default.target"];
+    wants = ["multi-user.target"];
   };
 }
