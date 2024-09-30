@@ -46,19 +46,6 @@
           ];
         };
 
-        "preheat P1" = {
-          extruder = 190;
-          heater_bed = 50;
-        };
-        "preheat P2" = {
-          extruder = 210;
-          heater_bed = 60;
-        };
-        "preheat P3" = {
-          extruder = 235;
-          heater_bed = 60;
-        };
-
         "power printer" = {
           type = "gpio";
           pin = "!gpiochip0/gpio24";
