@@ -53,7 +53,7 @@
 
       "/export/vol1" = {
         device = "/nix/server";
-        options = [ "bind" ];
+        options = ["bind"];
       };
     }
     // (builtins.listToAttrs (

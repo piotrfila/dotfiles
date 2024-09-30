@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{...}: {
   services = {
     klipper = {
       apiSocket = "/run/klipper/api";
