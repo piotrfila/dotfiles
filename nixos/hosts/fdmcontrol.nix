@@ -49,36 +49,36 @@
   networking.wireless.enable = true;
 
   nixpkgs.hostPlatform = "aarch64-linux";
-  nixpkgs.overlays = let
-    moonrakerPythonEnv = python3.withPackages (
-      packages:
-        with packages; [
-          tornado
-          pyserial-asyncio
-          pillow
-          lmdb
-          streaming-form-data
-          distro
-          inotify-simple
-          libnacl
-          paho-mqtt
-          pycurl
-          zeroconf
-          preprocess-cancellation
-          jinja2
-          dbus-next
-          apprise
-          python-periphery
-          ldap3
-          libgpiod
-        ]
-    );
-  in [
+  nixpkgs.overlays = [
     (final: prev: {
       klipper-firmware = prev.klipper-firmware.override {
         gcc-arm-embedded = prev.gcc-arm-embedded-11;
       };
-      moonraker = prev.moonraker.overrideAttrs {
+      moonraker = let
+        moonrakerPythonEnv = python3.withPackages (
+          packages:
+            with packages; [
+              tornado
+              pyserial-asyncio
+              pillow
+              lmdb
+              streaming-form-data
+              distro
+              inotify-simple
+              libnacl
+              paho-mqtt
+              pycurl
+              zeroconf
+              preprocess-cancellation
+              jinja2
+              dbus-next
+              apprise
+              python-periphery
+              ldap3
+              libgpiod
+            ]
+        );
+      in prev.moonraker.overrideAttrs {
         installPhase = ''
           mkdir -p $out $out/bin $out/lib
           cp -r moonraker $out/lib
