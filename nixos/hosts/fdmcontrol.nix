@@ -9,8 +9,7 @@
     ../boot/extlinux.nix
     ../cli.nix
     ../locale/pl.nix
-    # ../network/systemd-eth0.nix
-    ../network/systemd-wlan0.nix
+    ../network/networkmanager.nix
     ../various/klipper/default.nix
     ../various/zram.nix
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -46,7 +45,6 @@
   # };
 
   networking.hostName = "fdmcontrol";
-  networking.wireless.enable = true;
 
   nixpkgs.hostPlatform = "aarch64-linux";
   nixpkgs.overlays = [
