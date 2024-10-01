@@ -24,11 +24,7 @@
 
   environment = {
     etc.machine-id.text = "326361ad04094a9b86bd130186912b6f\n";
-    systemPackages = with pkgs; [
-      libraspberrypi
-      libgpiod
-      raspberrypi-eeprom
-    ];
+    systemPackages = [pkgs.libraspberrypi];
   };
 
   fileSystems."/" = {
@@ -49,9 +45,11 @@
   nixpkgs.hostPlatform = "aarch64-linux";
   nixpkgs.overlays = [
     (final: prev: {
+      # fails to compile with gcc 13
       klipper-firmware = prev.klipper-firmware.override {
         gcc-arm-embedded = prev.gcc-arm-embedded-11;
       };
+      # missing libgpiod python package
       moonraker = let
         moonrakerPythonEnv = prev.python3.withPackages (
           packages:
@@ -96,6 +94,17 @@
   services = {
     getty.autologinUser = "printer";
     openssh.enable = true;
+
+    # gpio permissions
+    udev.extraRules = let
+      shell = "/bin/sh -c";
+      user = "printer";
+      group = "users";
+    in ''
+      SUBSYSTEM=="bcm2835-gpiomem", KERNEL=="gpiomem", GROUP="${group}",MODE="0660"
+      SUBSYSTEM=="gpio", KERNEL=="gpiochip*", ACTION=="add", RUN+="${shell} 'chown ${user}:${group} /sys/class/gpio/export /sys/class/gpio/unexport ; chmod 220 /sys/class/gpio/export /sys/class/gpio/unexport'"
+      SUBSYSTEM=="gpio", KERNEL=="gpio*", ACTION=="add",RUN+="${shell} 'chown ${user}:${group} /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value ; chmod 660 /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value'"
+    '';
   };
 
   system.stateVersion = "24.05";
@@ -109,6 +118,17 @@
       matchConfig.MACAddress = "e4:5f:01:4b:cb:7b";
       linkConfig.Name = "wlan0";
     };
+  };
+
+  # I'm tot sure how to change this with udev
+  systemd.services."fix-gpiochip-permission" = {
+    description = "change permission of /dev/gpiochip0";
+    serviceConfig = {
+      ExecStart = "/bin/sh -c \"sleep 1; chown printer:users /dev/gpiochip0\"";
+      Type = "oneshot";
+    };
+    wantedBy = ["default.target"];
+    wants = ["multi-user.target"];
   };
 
   users.mutableUsers = false;

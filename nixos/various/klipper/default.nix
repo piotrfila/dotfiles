@@ -50,6 +50,7 @@
           initial_state = "off";
           bound_services = "klipper";
         };
+
         "power lights" = {
           type = "gpio";
           pin = "!gpiochip0/gpio23";
@@ -62,24 +63,5 @@
     mainsail = {
       enable = true;
     };
-
-    udev.extraRules = let
-      shell = "/bin/sh -c";
-      user = "printer";
-      group = "users";
-    in ''
-      SUBSYSTEM=="bcm2835-gpiomem", KERNEL=="gpiomem", GROUP="${group}",MODE="0660"
-      SUBSYSTEM=="gpio", KERNEL=="gpiochip*", ACTION=="add", RUN+="${shell} 'chown ${user}:${group} /sys/class/gpio/export /sys/class/gpio/unexport ; chmod 220 /sys/class/gpio/export /sys/class/gpio/unexport'"
-      SUBSYSTEM=="gpio", KERNEL=="gpio*", ACTION=="add",RUN+="${shell} 'chown ${user}:${group} /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value ; chmod 660 /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value'"
-    '';
-  };
-  systemd.services."fix-gpiochip-permission" = {
-    description = "change permission of /dev/gpiochip0";
-    serviceConfig = {
-      ExecStart = "/bin/sh -c \"sleep 1; chown printer:users /dev/gpiochip0\"";
-      Type = "oneshot";
-    };
-    wantedBy = ["default.target"];
-    wants = ["multi-user.target"];
   };
 }
