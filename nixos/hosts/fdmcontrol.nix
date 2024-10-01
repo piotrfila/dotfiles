@@ -76,15 +76,16 @@
               libgpiod
             ]
         );
-      in prev.moonraker.overrideAttrs {
-        installPhase = ''
-          mkdir -p $out $out/bin $out/lib
-          cp -r moonraker $out/lib
+      in
+        prev.moonraker.overrideAttrs {
+          installPhase = ''
+            mkdir -p $out $out/bin $out/lib
+            cp -r moonraker $out/lib
 
-          makeWrapper ${moonrakerPythonEnv}/bin/python $out/bin/moonraker \
-            --add-flags "$out/lib/moonraker/moonraker.py"
-        '';
-      };
+            makeWrapper ${moonrakerPythonEnv}/bin/python $out/bin/moonraker \
+              --add-flags "$out/lib/moonraker/moonraker.py"
+          '';
+        };
     })
   ];
 
