@@ -4,9 +4,15 @@
     settings = {
       https.address = "127.0.0.1:3003";
       dns.upstream_dns = [
-        # Example config with quad9
-        "9.9.9.9#dns.quad9.net"
-        "149.112.112.112#dns.quad9.net"
+        "https://doh.libredns.gr/noads"
+        "tls://noads.libredns.gr"
+        "tls://116.202.176.26"
+        "https://security.cloudflare-dns.com/dns-query"
+        "tls://security.cloudflare-dns.com"
+        "https://dns.quad9.net/dns-query"
+        "tls://dns.quad9.net"
+        "https://dns.adguard.com/dns-query"
+        "tls://dns.adguard.com"
       ];
       filtering = {
         protection_enabled = true;
