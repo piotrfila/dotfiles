@@ -10,6 +10,7 @@
     ../cli.nix
     ../locale/pl.nix
     ../network/networkmanager.nix
+    ../various/adguard.nix
     ../various/klipper/default.nix
     ../various/zram.nix
     (modulesPath + "/installer/scan/not-detected.nix")
