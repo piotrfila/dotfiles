@@ -5,8 +5,8 @@
   ...
 }: {
   imports = [
-    ../scripts/screenshot.nix
-    ../scripts/toggle-calc.nix
+    ../../scripts/screenshot.nix
+    ../../scripts/toggle-calc.nix
   ];
 
   wayland.windowManager.hyprland = {

@@ -6,17 +6,17 @@
   ...
 }: {
   imports = [
-    ./alacritty.nix
-    ./dunst.nix
-    ./hyprland.nix
-    ./hyprpaper.nix
-    ./kitty.nix
-    ./mime.nix
+    ./apps/kitty.nix
+    ./apps/vscodium.nix
+    ./apps/thunar.nix
+    ./gui/alacritty.nix
+    ./gui/dunst.nix
+    ./gui/hyprland.nix
+    ./gui/hyprpaper.nix
+    ./gui/mime.nix
+    ./gui/waybar.nix
+    ./gui/wofi.nix
     ./python-history.nix
-    ./thunar-actions.nix
-    ./vscodium.nix
-    ./waybar.nix
-    ./wofi.nix
   ];
   home.file = builtins.listToAttrs (
     builtins.map (x: {
