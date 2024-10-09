@@ -14,6 +14,7 @@
     ./mime.nix
     ./python-history.nix
     ./thunar-actions.nix
+    ./vscodium.nix
     ./waybar.nix
     ./wofi.nix
   ];
@@ -30,7 +31,6 @@
         ".config/qalculate"
         ".config/Raspberry Pi"
         ".config/spotify"
-        ".config/VSCodium"
         ".config/xfce4"
         ".local/share/cargo"
         ".local/share/fish/generated-completions"
@@ -73,7 +73,6 @@
       spotify
       qalculate-qt
       ungoogled-chromium
-      vscodium
       xfce.ristretto
 
       # cli
