@@ -98,6 +98,13 @@
       if osConfig.networking.hostName == "um425"
       then [
         discord
+        # go to factorio.com/profile for the token
+        # file homemanager/factorio-credentials.nix should look like this:
+        # {
+        #   username = "your_username";
+        #   token = "0123456789abcdefgijklmnopqrstu";
+        # }
+        (factorio.override (import ./factorio-credentials.nix))
         gimp
         gnuradio
         gqrx

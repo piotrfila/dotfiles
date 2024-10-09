@@ -13,7 +13,7 @@
       };
     }) [
       ".cache"
-      # ".factorio"
+      ".factorio"
       ".gnupg"
       ".librewolf"
       ".pki"
