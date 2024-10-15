@@ -54,10 +54,12 @@
     package = pkgs.vscodium;
     userSettings = {
       "[nix]"."editor.tabSize" = 2;
-      "zig"."initialSetupDone" = true;
-      "zig"."path" = "zig";
-      "zig"."zls.path" = "zls";
-      "diffEditor"."maxComputationTime" = 0;
+      zig = {
+        initialSetupDone = true;
+        path = "zig";
+        zls.path = "zls";
+      };
+      diffEditor.maxComputationTime = 0;
     };
   };
 
