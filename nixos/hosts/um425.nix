@@ -15,6 +15,7 @@
     ../various/bluetooth.nix
     ../various/fonts.nix
     ../various/logind.nix
+    ../various/nix-ld.nix
     ../various/rtl-sdr.nix
     ../various/thunar.nix
     ../various/zram.nix
