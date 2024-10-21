@@ -71,6 +71,7 @@
       mission-center
       mpv
       mullvad-vpn
+      obsidian
       spotify
       qalculate-qt
       ungoogled-chromium
@@ -106,9 +107,9 @@
         # }
         (factorio.override (import ./factorio-credentials.nix))
         gimp
-        gnuradio
-        gqrx
-        kicad
+        # gnuradio
+        # gqrx
+        # kicad
         logisim-evolution
         (prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})
         verilator
