@@ -100,7 +100,7 @@
       ]
     )
     // {
-      "/nix/persist${config.home.homeDirectory}/.config/VSCodium/languagepacks.json".text = "{}";
-      "/nix/persist${config.home.homeDirectory}/.config/VSCodium/machineid".text = "05ba50a4-8665-403f-a22a-a4a914426063";
+      ".config/VSCodium/languagepacks.json".text = "{}";
+      ".config/VSCodium/machineid".text = "05ba50a4-8665-403f-a22a-a4a914426063";
     };
 }
