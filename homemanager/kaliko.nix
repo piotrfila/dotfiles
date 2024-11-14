@@ -29,6 +29,7 @@
         ".config/chromium"
         ".config/hypr/extra.conf"
         ".config/Mullvad VPN"
+        ".config/OrcaSlicer"
         ".config/qalculate"
         ".config/Raspberry Pi"
         ".config/spotify"
