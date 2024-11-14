@@ -105,12 +105,17 @@
         #   username = "your_username";
         #   token = "0123456789abcdefgijklmnopqrstu";
         # }
-        (factorio.override (import ./factorio-credentials.nix))
+        # (factorio.override (import ./factorio-credentials.nix))
         gimp
-        # gnuradio
-        # gqrx
+        gnome2.GConf
+        gnuradio
+        gqrx
+        gtkwave
+        gqrx
+        iverilog
         # kicad
         logisim-evolution
+        orca-slicer
         (prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})
         verilator
       ]
