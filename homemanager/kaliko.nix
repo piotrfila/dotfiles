@@ -38,6 +38,7 @@
         ".local/share/fish/generated-completions"
         ".local/share/fish/fish_history"
         ".local/share/fish/fonts"
+        ".local/share/orca-slicer"
         ".local/share/rustup"
         ".local/state/wireplumber"
         ".local/state/python_history"
