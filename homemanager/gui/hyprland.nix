@@ -175,7 +175,7 @@
 
       decoration = {
         dim_special = 0;
-        drop_shadow = "yes";
+        # shadow.enabled = "true";
         # shadow_range = 4;
         # shadow_render_power = 3;
         # "col.shadow" = "rgba(1a1a1aee)";
@@ -185,7 +185,7 @@
         pseudotile = "yes";
         preserve_split = "yes";
         # smart_split = "yes";
-        no_gaps_when_only = 1;
+        # no_gaps_when_only = 1;
       };
 
       general = {
