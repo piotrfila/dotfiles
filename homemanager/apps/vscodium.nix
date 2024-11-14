@@ -90,7 +90,7 @@
         "Service Worker"
         "Shared Dictionary"
         "SharedStorage"
-        "TransportSecurity"
+        # "TransportSecurity"
         "Trust Tokens"
         "Trust Tokens-journal"
         "User/globalStorage"
