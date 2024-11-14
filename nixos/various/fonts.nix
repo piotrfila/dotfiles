@@ -3,7 +3,7 @@
     packages = with pkgs; [
       (nerdfonts.override {fonts = ["FiraCode"];})
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
     ];
 
