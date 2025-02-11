@@ -115,20 +115,14 @@
         # }
         # (factorio.override (import ./factorio-credentials.nix))
         gimp
-        gnome2.GConf
-        gnuradio
-        gqrx
-        gtkwave
-        gqrx
-        iverilog
         kicad
         logisim-evolution
         orca-slicer
         (prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})
-        verible
-        verilator
-        zig
-        zls
+
+        gnuradio gqrx # sdr
+        gnome2.GConf gtkwave iverilog verible verilator # verilog
+        zig zls # zig
       ]
       else []
     );
