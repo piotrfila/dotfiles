@@ -86,6 +86,7 @@
       git
       fastfetch
       file
+      fftw.dev
       htop
       jq
       killall
@@ -145,7 +146,9 @@
 
       interactiveShellInit = ''
         set fish_greeting ""
-      '';
+      '' + (if true then ''
+        export FFTW3_PATH=${pkgs.fftw.dev}
+      '' else "");
 
       loginShellInit = ''
         if test -z $DISPLAY
