@@ -116,7 +116,7 @@
         gtkwave
         gqrx
         iverilog
-        # kicad
+        kicad
         logisim-evolution
         orca-slicer
         (prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})
