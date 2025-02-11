@@ -75,6 +75,9 @@
       mpv
       mullvad-vpn
       obsidian
+      (python3Full.withPackages (ps: with ps; [
+        pyserial
+      ]))
       spotify
       qalculate-qt
       ungoogled-chromium
