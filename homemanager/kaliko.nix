@@ -79,6 +79,7 @@
         pyserial
       ]))
       spotify
+      transmission_4-qt
       qalculate-qt
       ungoogled-chromium
       xfce.ristretto
