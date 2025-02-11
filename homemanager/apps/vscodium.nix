@@ -60,6 +60,11 @@
         zls.path = "zls";
       };
       diffEditor.maxComputationTime = 0;
+      files.watcherExclude = {
+        "**/.bloop" = true;
+        "**/.metals" = true;
+        "**/.ammonite" = true;
+      };
     };
   };
 
