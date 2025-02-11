@@ -120,6 +120,8 @@
         orca-slicer
         (prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})
         verilator
+        zig
+        zls
       ]
       else []
     );
