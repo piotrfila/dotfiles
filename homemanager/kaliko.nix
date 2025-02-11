@@ -50,6 +50,7 @@
       ++ (
         if osConfig.networking.hostName == "um425"
         then [
+          ".config/calibre"
           ".config/cura"
           ".config/discord"
           ".config/kicad"
@@ -101,6 +102,7 @@
     ++ (
       if osConfig.networking.hostName == "um425"
       then [
+        calibre
         discord
         # go to factorio.com/profile for the token
         # file homemanager/factorio-credentials.nix should look like this:
