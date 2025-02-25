@@ -92,7 +92,6 @@
       git
       fastfetch
       file
-      fftw.dev
       htop
       jq
       killall
