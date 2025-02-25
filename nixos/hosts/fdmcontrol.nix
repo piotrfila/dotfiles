@@ -8,7 +8,7 @@
   imports = [
     ../boot/extlinux.nix
     ../cli.nix
-    ../locale/pl.nix
+    ../locale.nix
     ../network/networkmanager.nix
     ../various/adguard.nix
     ../various/klipper/default.nix

@@ -9,7 +9,7 @@
     ../boot/systemd.nix
     ../cli.nix
     ../gui.nix
-    ../locale/pl.nix
+    ../locale.nix
     ../users/kaliko.nix
     ../various/fonts.nix
     ../various/logind.nix

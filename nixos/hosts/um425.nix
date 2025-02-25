@@ -9,7 +9,7 @@
     ../boot/systemd.nix
     ../cli.nix
     ../gui.nix
-    ../locale/pl.nix
+    ../locale.nix
     ../network/networkmanager.nix
     ../users/kaliko.nix
     ../various/bluetooth.nix
