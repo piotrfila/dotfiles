@@ -13,6 +13,7 @@
     ../network/networkmanager.nix
     ../users/kaliko.nix
     ../various/bluetooth.nix
+    ../various/fcitx.nix
     ../various/fonts.nix
     ../various/logind.nix
     ../various/nix-ld.nix

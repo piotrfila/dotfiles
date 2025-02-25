@@ -169,6 +169,7 @@
         "waybar"
         "dunst"
         "hyprpaper"
+        "fcitx5 -d"
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         "[workspace special:q silent] qalculate-gtk"
       ];

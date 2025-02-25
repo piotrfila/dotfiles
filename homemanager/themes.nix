@@ -7,6 +7,7 @@
     gtk-settings = {
       gtk-error-bell = false;
       gtk-application-prefer-dark-theme = 1;
+      gtk-im-module = "fcitx";
     };
   in {
     enable = true;
@@ -14,6 +15,7 @@
     gtk2.extraConfig = ''
       gtk-error-bell=0
       gtk-application-prefer-dark-theme=1
+      gtk-im-module="fcitx"
     '';
 
     gtk3.bookmarks = let

@@ -11,6 +11,7 @@
     ../gui.nix
     ../locale.nix
     ../users/kaliko.nix
+    ../various/fcitx.nix
     ../various/fonts.nix
     ../various/logind.nix
     ../various/passthrough.nix

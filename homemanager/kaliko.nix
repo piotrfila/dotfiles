@@ -27,6 +27,7 @@
       };
     }) ([
         ".config/chromium"
+        ".config/fcitx5"
         ".config/hypr/extra.conf"
         ".config/Mullvad VPN"
         ".config/OrcaSlicer"
