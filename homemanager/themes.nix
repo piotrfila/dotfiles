@@ -26,7 +26,7 @@
       "file://${dirs.download}"
       "file://${dirs.pictures}"
       "file://${home}/Source"
-      "file://${dirs.documents}/pw24Z"
+      "file://${dirs.documents}/pw25L"
       "file://${dirs.documents}/kicad"
       "file://${dirs.documents}/datasheets"
       "file://${dirs.documents}/3D_Models"
