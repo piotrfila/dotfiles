@@ -123,6 +123,8 @@
     udev.extraRules = ''
       ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="amdgpu_bl1", MODE="0666", RUN+="${pkgs.coreutils-full}/bin/chmod a+w /sys/class/backlight/%k/brightness"
       SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", MODE:="0666", SYMLINK+="stlinkv2-1_%n"
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="10c4", MODE="0666"
+      SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", MODE="0666"
     '';
   };
 
