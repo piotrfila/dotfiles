@@ -76,9 +76,10 @@
       mpv
       mullvad-vpn
       obsidian
-      (python3Full.withPackages (ps: with ps; [
-        pyserial
-      ]))
+      (python3Full.withPackages (ps:
+        with ps; [
+          pyserial
+        ]))
       spotify
       transmission_4-qt
       qalculate-qt
@@ -121,9 +122,20 @@
         orca-slicer
         (prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})
 
-        gnuradio gqrx # sdr
-        gnome2.GConf gtkwave iverilog verible verilator # verilog
-        zig zls # zig
+        # sdr
+        gnuradio
+        gqrx
+
+        # verilog
+        gnome2.GConf
+        gtkwave
+        iverilog
+        verible
+        verilator
+
+        # zig
+        zig
+        zls
       ]
       else []
     );
@@ -147,9 +159,7 @@
 
       interactiveShellInit = ''
         set fish_greeting ""
-      '' + (if true then ''
-        export FFTW3_PATH=${pkgs.fftw.dev}
-      '' else "");
+      '';
 
       loginShellInit = ''
         if test -z $DISPLAY
