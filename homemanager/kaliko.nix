@@ -41,6 +41,7 @@
         ".local/share/fish/fonts"
         ".local/share/orca-slicer"
         ".local/share/rustup"
+        ".local/share/wine"
         ".local/state/wireplumber"
         ".local/state/python_history"
         "Documents"
@@ -230,4 +231,17 @@
     };
 
   home.stateVersion = "23.11";
+
+  xdg.desktopEntries = {
+    ltspice = let
+      docs = "/home/kaliko/Documents/LTspiceXVII";
+      ltspice_path = "/home/kaliko/.local/share/wine/drive_c/users/kaliko/AppData/Local/Programs/ADI/LTspice/";
+    in {
+      name = "LTspice";
+      exec = "wine ${ltspice_path}LTspice.exe -ini ${docs}/keybinds.ini";
+      terminal = false;
+      icon = "${docs}/icon.jpg";
+      categories = ["Application"];
+    };
+  };
 }
