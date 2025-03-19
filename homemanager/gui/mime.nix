@@ -105,6 +105,9 @@
     "application/vnd.oasis.opendocument.text" = libreoffice_writer; # .odt
     "application/vnd.oasis.opendocument.spreadsheet" = libreoffice_calc; # .ods
     "application/vnd.oasis.opendocument.presentation" = libreoffice_impress; # .odp
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = libreoffice_writer; # .docx
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = libreoffice_calc; # .xlsx
+    "application/vnd.openxmlformats-officedocument.presentationml.presentation" = libreoffice_impress; # .pptx
     # "application/vnd.rn-realmedia" = none; # .rm
     # "application/vnd.rn-realplayer" = none; # .rnx
     # "application/vnd.wap.wmlc" = none; # .wmlc
