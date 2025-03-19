@@ -107,7 +107,9 @@
     ]
     ++ (
       if osConfig.networking.hostName == "um425"
-      then [
+      then let
+        unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+      in [
         calibre
         discord
         # go to factorio.com/profile for the token
@@ -135,8 +137,8 @@
         verilator
 
         # zig
-        zig
-        zls
+        unstable.zig
+        unstable.zls
       ]
       else []
     );
