@@ -104,11 +104,12 @@
       usbutils
       wget
       xdg-ninja
+      zip
     ]
     ++ (
       if osConfig.networking.hostName == "um425"
       then let
-        unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+        unstable = import <nixos-unstable> {config = {allowUnfree = true;};};
       in [
         calibre
         discord
