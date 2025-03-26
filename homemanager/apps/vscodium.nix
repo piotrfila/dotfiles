@@ -54,16 +54,17 @@
     package = pkgs.vscodium;
     userSettings = {
       "[nix]"."editor.tabSize" = 2;
-      zig = {
-        initialSetupDone = true;
-        path = "zig";
-        zls.path = "zls";
-      };
       diffEditor.maxComputationTime = 0;
       files.watcherExclude = {
         "**/.bloop" = true;
         "**/.metals" = true;
         "**/.ammonite" = true;
+      };
+      redhat.telemetry.enabled = false;
+      zig = {
+        initialSetupDone = true;
+        path = "zig";
+        zls.path = "zls";
       };
     };
   };
