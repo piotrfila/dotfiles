@@ -73,6 +73,7 @@
 
       # gui
       libreoffice
+      localsend
       mission-center
       mpv
       mullvad-vpn
