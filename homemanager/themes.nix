@@ -26,11 +26,19 @@
       "file://${dirs.download}"
       "file://${dirs.pictures}"
       "file://${home}/Source"
-      "file://${dirs.documents}/pw25L"
       "file://${dirs.documents}/kicad"
       "file://${dirs.documents}/datasheets"
       "file://${dirs.documents}/3D_Models"
       "file:///nix/persist${home}"
+      "file://${dirs.documents}/pw25L"
+      "file://${dirs.documents}/pw25L/japoński"
+      "file://${dirs.documents}/pw25L/telfo"
+      "file://${dirs.documents}/pw25L/proo"
+      "file://${dirs.documents}/pw25L/fos"
+      "file://${dirs.documents}/pw25L/lela1"
+      "file://${dirs.documents}/pw25L/angielski"
+      "file://${dirs.documents}/pw25L/mike"
+      "file://${dirs.documents}/pw25L/pomik"
     ];
     gtk3.extraConfig = gtk-settings;
     gtk4.extraConfig = gtk-settings;
