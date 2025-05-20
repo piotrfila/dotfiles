@@ -10,7 +10,6 @@
     ../cli.nix
     ../gui.nix
     ../locale.nix
-    ../network/networkmanager.nix
     ../users/kaliko.nix
     ../various/bluetooth.nix
     ../various/fcitx.nix
@@ -93,6 +92,8 @@
   hardware.enableRedistributableFirmware = true;
 
   networking.hostName = "um425";
+  networking.networkmanager.enable = true;
+  systemd.network.wait-online.enable = false;
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
