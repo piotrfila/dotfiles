@@ -28,17 +28,17 @@
       ];
 
       windowrule = let
-        float-left = "(qalculate-)((qt)|(gtk))$";
-        float-right = "^(io\.missioncenter\.MissionCenter)|(nm-connection-editor)|(\.blueman-manager-wrapped)$";
+        float-left = "class:(qalculate-)((qt)|(gtk))$";
+        float-right = "class:^(io\.missioncenter\.MissionCenter)|(nm-connection-editor)|(\.blueman-manager-wrapped)$";
       in [
         "float,${float-left}"
         "size 30% 80%,${float-left}"
         "move 5% 10%,${float-left}"
         # "workspace special,${float-left}"
 
-        "float,^(Mullvad VPN)$"
+        "float,class:^(Mullvad VPN)$"
         # "size 25% 80%,^(Mullvad VPN)$"
-        "move 11.7% 23.7%,^(Mullvad VPN)$"
+        "move 11.7% 23.7%,class:^(Mullvad VPN)$"
 
         "float,${float-right}"
         "size 60% 60%,${float-right}"
@@ -55,12 +55,10 @@
         "float,title:^(Confirm to replace files)$"
         "float,title:^(File Operation Progress)$"
 
-        "float,^(pavucontrol)$"
-        "size 60% 80%,^(pavucontrol)$"
-        "move 35% 10%,^(pavucontrol)$"
-      ];
-
-      windowrulev2 = [
+        "float,class:^(pavucontrol)$"
+        "size 60% 80%,class:^(pavucontrol)$"
+        "move 35% 10%,class:^(pavucontrol)$"
+        
         "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
         "noanim,class:^(xwaylandvideobridge)$"
         "nofocus,class:^(xwaylandvideobridge)$"

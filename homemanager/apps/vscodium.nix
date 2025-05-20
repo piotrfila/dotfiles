@@ -5,6 +5,9 @@
 }: {
   programs.vscode = {
     enable = true;
+    package = pkgs.vscodium;
+  };
+  programs.vscode.profiles.default = {
     extensions = let
       ext = pkgs.vscode-extensions;
     in [
@@ -51,7 +54,6 @@
         };
       };
     };
-    package = pkgs.vscodium;
     userSettings = {
       "[nix]"."editor.tabSize" = 2;
       diffEditor.maxComputationTime = 0;

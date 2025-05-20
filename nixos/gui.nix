@@ -12,7 +12,6 @@
   security.polkit.enable = true;
 
   # sound
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -21,6 +20,7 @@
     jack.enable = true;
     pulse.enable = true;
   };
+  services.pulseaudio.enable = false;
 
   # environment.etc = let
   #   gtk-settings = ''
