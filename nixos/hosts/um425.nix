@@ -35,7 +35,7 @@
     etc.machine-id.text = "0797e38666bb4669a69854f927d8936f\n";
     systemPackages = with pkgs; [
       ntfs3g
-      wineWowPackages.staging
+      wineWowPackages.stable
       winetricks
       wineWowPackages.waylandFull
     ];
