@@ -90,6 +90,7 @@
 
   hardware.cpu.amd.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
+  hardware.i2c.enable = true;
 
   networking.hostName = "um425";
   networking.networkmanager.enable = true;

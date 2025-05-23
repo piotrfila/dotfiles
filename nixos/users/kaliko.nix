@@ -32,6 +32,7 @@
   users.users.kaliko = {
     extraGroups =
       [
+        "i2c"
         "input"
         "dialout"
         "plugdev"

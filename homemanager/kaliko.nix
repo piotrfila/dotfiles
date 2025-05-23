@@ -122,6 +122,11 @@
         # }
         # (factorio.override (import ./factorio-credentials.nix))
         gimp
+
+        # ddc
+        ddcutil
+        ddcui
+
         # kicad
         logisim-evolution
         orca-slicer
