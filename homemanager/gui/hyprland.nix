@@ -28,7 +28,7 @@
       ];
 
       windowrule = let
-        float-left = "class:(qalculate-)((qt)|(gtk))$";
+        float-left = "class:(io.github.Qalculate.qalculate-)((qt)|(gtk))$";
         float-right = "class:^(io\.missioncenter\.MissionCenter)|(nm-connection-editor)|(\.blueman-manager-wrapped)$";
       in [
         "float,${float-left}"
