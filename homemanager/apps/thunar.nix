@@ -1,34 +1,55 @@
-{...}: {
-  home.file.".config/Thunar/uca.xml".text = ''
-    <actions>
-      <action>
-        <icon>utilities-terminal</icon>
-        <name>Open Terminal Here</name>
-        <submenu/>
-        <unique-id>1715452666870153-1</unique-id>
-        <command>
-        kitty %f
-        </command>
-        <description>Open Terminal Here</description>
-        <range/>
-        <patterns>*</patterns>
-        <startup-notify/>
-        <directories/>
-      </action>
-      <action>
-        <icon>utilities-terminal</icon>
-        <name>Open VSCodium Here</name>
-        <submenu/>
-        <unique-id>1715662666870153-1</unique-id>
-        <command>
-        codium %f
-        </command>
-        <description>Open VSCodium Here</description>
-        <range/>
-        <patterns>*</patterns>
-        <startup-notify/>
-        <directories/>
-      </action>
-    </actions>
-  '';
+{config, ...}: {
+  home.file = import ../util/persist.nix {
+    inherit config;
+    symlinks = [
+      ".config/chromium"
+      ".config/fcitx5"
+      ".config/Mullvad VPN"
+      ".config/qalculate"
+      ".config/Raspberry Pi"
+      ".config/spotify"
+      ".config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml"
+      ".local/share/cargo"
+      ".local/share/rustup"
+      ".local/share/wine"
+      ".local/state/wireplumber"
+      ".local/state/python_history"
+      "Documents"
+      "Downloads"
+      "Pictures"
+      "Source"
+    ];
+    text.".config/Thunar/uca.xml".text = ''
+      <actions>
+        <action>
+          <icon>utilities-terminal</icon>
+          <name>Open Terminal Here</name>
+          <submenu/>
+          <unique-id>1715452666870153-1</unique-id>
+          <command>
+          kitty %f
+          </command>
+          <description>Open Terminal Here</description>
+          <range/>
+          <patterns>*</patterns>
+          <startup-notify/>
+          <directories/>
+        </action>
+        <action>
+          <icon>utilities-terminal</icon>
+          <name>Open VSCodium Here</name>
+          <submenu/>
+          <unique-id>1715662666870153-1</unique-id>
+          <command>
+          codium %f
+          </command>
+          <description>Open VSCodium Here</description>
+          <range/>
+          <patterns>*</patterns>
+          <startup-notify/>
+          <directories/>
+        </action>
+      </actions>
+    '';
+  };
 }

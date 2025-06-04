@@ -6,9 +6,20 @@
   ...
 }: {
   imports = [
+    ./apps/calibre.nix
+    # ./apps/cura.nix
+    ./apps/discord.nix
+    ./apps/fish.nix
+    ./apps/gimp.nix
+    ./apps/kicad.nix
     ./apps/kitty.nix
-    ./apps/vscodium.nix
+    # ./apps/orca-slicer.nix
+    # ./apps/prism-launcher.nix
+    ./apps/ristretto.nix
+    ./apps/spotify.nix
     ./apps/thunar.nix
+    ./apps/ungoogled-chromium.nix
+    ./apps/vscodium.nix
     ./gui/alacritty.nix
     ./gui/dunst.nix
     ./gui/hyprland.nix
@@ -19,27 +30,15 @@
     ./python-history.nix
     ./themes.nix
   ];
-  home.file = builtins.listToAttrs (
-    builtins.map (x: {
-      name = x;
-      value = {
-        source = config.lib.file.mkOutOfStoreSymlink "/nix/persist${config.home.homeDirectory}/${x}";
-      };
-    }) ([
-        ".config/chromium"
+  home.file = import ./util/persist.nix {
+    inherit config;
+    symlinks =
+      [
         ".config/fcitx5"
-        ".config/hypr/extra.conf"
         ".config/Mullvad VPN"
-        ".config/OrcaSlicer"
         ".config/qalculate"
         ".config/Raspberry Pi"
-        ".config/spotify"
-        ".config/xfce4"
         ".local/share/cargo"
-        ".local/share/fish/generated-completions"
-        ".local/share/fish/fish_history"
-        ".local/share/fish/fonts"
-        ".local/share/orca-slicer"
         ".local/share/rustup"
         ".local/share/wine"
         ".local/state/wireplumber"
@@ -51,19 +50,10 @@
       ]
       ++ (
         if osConfig.networking.hostName == "um425"
-        then [
-          ".config/calibre"
-          ".config/cura"
-          ".config/discord"
-          ".config/kicad"
-          ".config/batt-cap"
-          ".local/share/cura"
-          ".local/share/kicad"
-          ".local/share/PrismLauncher"
-        ]
+        then [".config/batt-cap"]
         else []
-      ))
-  );
+      );
+  };
 
   home.packages = with pkgs;
     [
@@ -82,11 +72,9 @@
         with ps; [
           pyserial
         ]))
-      spotify
       transmission_4-qt
       qalculate-qt
       ungoogled-chromium
-      xfce.ristretto
 
       # cli
       alejandra
@@ -112,8 +100,6 @@
       then let
         unstable = import <nixos-unstable> {config = {allowUnfree = true;};};
       in [
-        calibre
-        discord
         # go to factorio.com/profile for the token
         # file homemanager/factorio-credentials.nix should look like this:
         # {
@@ -123,27 +109,19 @@
         # (factorio.override (import ./factorio-credentials.nix))
         gimp
 
-        # ddc
         ddcutil
         ddcui
 
-        # kicad
-        logisim-evolution
-        orca-slicer
-        (prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})
-
-        # sdr
         gnuradio
         gqrx
 
-        # verilog
-        gnome2.GConf
-        gtkwave
-        iverilog
-        verible
-        verilator
+        # logisim-evolution
+        # gnome2.GConf
+        # gtkwave
+        # iverilog
+        # verible
+        # verilator
 
-        # zig
         unstable.zig
         unstable.zls
       ]
@@ -153,34 +131,6 @@
   manual.manpages.enable = false;
 
   programs = {
-    bash.enable = false;
-
-    fish = {
-      enable = true;
-
-      functions = {
-        # la = "ls -lAh $argv";
-        mkcd = "mkdir $argv[1]; cd $argv[1]";
-        mkshell = "nix-shell --run fish ~/Source/dotfiles/shells/$argv[1].nix";
-        p = "nix-shell -p --run fish $argv";
-        pw = "cd ~/Documents/pw24L";
-        fr = "df -h && free -h";
-      };
-
-      interactiveShellInit = ''
-        set fish_greeting ""
-      '';
-
-      loginShellInit = ''
-        if test -z $DISPLAY
-          and test $(tty) = /dev/tty1
-          exec Hyprland
-        end
-      '';
-
-      plugins = [];
-    };
-
     git = {
       enable = true;
       userName = "Piotr Fila";

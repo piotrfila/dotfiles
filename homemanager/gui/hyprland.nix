@@ -9,6 +9,11 @@
     ../../scripts/toggle-calc.nix
   ];
 
+  home.file = import ../util/persist.nix {
+    inherit config;
+    symlinks = [".config/hypr/extra.conf"];
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
@@ -58,7 +63,7 @@
         "float,class:^(pavucontrol)$"
         "size 60% 80%,class:^(pavucontrol)$"
         "move 35% 10%,class:^(pavucontrol)$"
-        
+
         "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
         "noanim,class:^(xwaylandvideobridge)$"
         "nofocus,class:^(xwaylandvideobridge)$"
