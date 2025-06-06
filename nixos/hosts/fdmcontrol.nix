@@ -7,20 +7,19 @@
 }: {
   imports = [
     ../boot/extlinux.nix
-    ../cli.nix
-    ../locale.nix
+    ../common.nix
     ../network/networkmanager.nix
     ../various/adguard.nix
     ../various/klipper/default.nix
-    ../various/zram.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   boot = {
+    extraModulePackages = [];
+    kernelModules = [];
+    loader.generic-extlinux-compatible.enable = true;
     initrd.availableKernelModules = ["xhci_pci"];
     initrd.kernelModules = [];
-    kernelModules = [];
-    extraModulePackages = [];
   };
 
   environment = {
@@ -90,8 +89,6 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  programs.fish.enable = true;
-
   services = {
     getty.autologinUser = "printer";
     openssh.enable = true;
@@ -121,7 +118,7 @@
     };
   };
 
-  # I'm tot sure how to change this with udev
+  # I'm not sure how to change this with udev
   systemd.services."fix-gpiochip-permission" = {
     description = "change permission of /dev/gpiochip0";
     serviceConfig = {
@@ -132,7 +129,6 @@
     wants = ["multi-user.target"];
   };
 
-  users.mutableUsers = false;
   users.users.printer = {
     extraGroups = ["wheel"];
     hashedPasswordFile = "/nix/persist/home/printer/passwd";

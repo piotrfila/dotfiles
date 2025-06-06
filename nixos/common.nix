@@ -4,8 +4,18 @@
   pkgs,
   ...
 }: {
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
-  boot.consoleLogLevel = lib.mkDefault 1;
+  boot = {
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+    consoleLogLevel = lib.mkDefault 1;
+    loader = {
+      grub.enable = lib.mkDefault false;
+      systemd-boot = {
+        configurationLimit = 40;
+        editor = false;
+      };
+      timeout = lib.mkDefault 1;
+    };
+  };
 
   console = {
     font = "Lat2-Terminus16";
@@ -15,14 +25,22 @@
   environment = {
     defaultPackages = [];
 
-    etc."current-system-packages".text = let
-      packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
-      sortedUnique = builtins.sort builtins.lessThan (lib.unique packages);
-      formatted = builtins.concatStringsSep "\n" sortedUnique;
-    in
-      formatted;
+    etc."current-system-packages".text = builtins.concatStringsSep "\n" (
+      builtins.sort builtins.lessThan (lib.unique (
+        builtins.map (p: "${p.name}") config.environment.systemPackages
+      ))
+    );
 
-    etc."nixos/configuration.nix".text = lib.mkDefault "{ ... }: { imports = [ /nix/persist/home/${config.services.getty.autologinUser}/Source/dotfiles/nixos/hosts/${config.networking.hostName}.nix ]; }";
+    etc."nixos/configuration.nix".text = let
+      dotfiles = "/home/${config.services.getty.autologinUser}/Source/dotfiles";
+    in
+      lib.mkDefault ''
+        { ... }: {
+          imports = [
+            ${dotfiles}/nixos/hosts/${config.networking.hostName}.nix
+          ];
+        }
+      '';
 
     sessionVariables = rec {
       # XDG
@@ -43,12 +61,29 @@
       la = "ls -lAh";
       neofetch = "fastfetch";
       python = "python3";
-      ssh = "TERM=xterm /run/current-system/sw/bin/ssh"; # just calling ssh leads to infinite recursion
+      ssh = "TERM=xterm /run/current-system/sw/bin/ssh";
       untar = "tar -xvf";
       wget = "wget --hsts-file=$XDG_DATA_HOME/wget-hsts";
     };
 
     systemPackages = [pkgs.nano];
+  };
+
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = let
+      locale = "pl_PL.UTF-8";
+    in {
+      LC_ADDRESS = locale;
+      LC_IDENTIFICATION = locale;
+      LC_MEASUREMENT = locale;
+      LC_MONETARY = locale;
+      LC_NAME = locale;
+      LC_NUMERIC = locale;
+      LC_PAPER = locale;
+      LC_TELEPHONE = locale;
+      LC_TIME = locale;
+    };
   };
 
   networking.firewall.enable = lib.mkDefault false;
@@ -61,6 +96,8 @@
   nix.extraOptions = "use-xdg-base-directories = true";
 
   nixpkgs.config.allowUnfree = lib.mkDefault true;
+
+  programs.fish.enable = true;
 
   security.polkit = {
     enable = true;
@@ -86,4 +123,12 @@
   system.copySystemConfiguration = lib.mkDefault true;
 
   time.timeZone = "Europe/Warsaw";
+
+  users.mutableUsers = false;
+
+  zramSwap = {
+    enable = lib.mkDefault true;
+    algorithm = lib.mkDefault "zstd";
+    memoryPercent = 75;
+  };
 }

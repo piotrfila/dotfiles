@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  util = import ../util.nix;
+in {
   programs.librewolf = {
     enable = true;
     settings = {
@@ -11,7 +13,7 @@
       "network.cookie.lifetimePolicy" = 0;
     };
   };
-  xdg.mimeApps.defaultApplications = import ../util/fill-with.nix {
+  xdg.mimeApps.defaultApplications = util.fill-with {
     value = ["librewolf.desktop"];
     keys = [
       "application/pdf"

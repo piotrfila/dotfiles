@@ -28,28 +28,14 @@
     users.kaliko.imports = [../../homemanager/kaliko.nix];
   };
 
-  users.mutableUsers = false;
   users.users.kaliko = {
-    extraGroups =
-      [
-        "i2c"
-        "input"
-        "dialout"
-        "plugdev"
-        "udev"
-        "wheel"
-      ]
-      ++ (
-        if config.networking.hostName == "homelab"
-        then [
-          "libvirtd"
-        ]
-        else if config.networking.hostName == "um425"
-        then [
-          "adbusers"
-        ]
-        else []
-      );
+    extraGroups = [
+      "input"
+      "dialout"
+      "plugdev"
+      "udev"
+      "wheel"
+    ];
     hashedPasswordFile = "/nix/persist/home/kaliko/passwd";
     isNormalUser = true;
     shell = pkgs.fish;

@@ -4,39 +4,73 @@
   osConfig,
   pkgs,
   ...
-}: {
-  imports = [
-    ./apps/alacritty.nix
-    ./apps/calibre.nix
-    # ./apps/cura.nix
-    ./apps/discord.nix
-    ./apps/fcitx.nix
-    ./apps/fish.nix
-    ./apps/gimp.nix
-    ./apps/git.nix
-    ./apps/kicad.nix
-    ./apps/kitty.nix
-    ./apps/libreoffice.nix
-    ./apps/librewolf.nix
-    ./apps/ltspice.nix
-    ./apps/obs-studio.nix
-    # ./apps/okteta.nix
-    # ./apps/orca-slicer.nix
-    # ./apps/prism-launcher.nix
-    ./apps/ristretto.nix
-    ./apps/spotify.nix
-    ./apps/thunar.nix
-    ./apps/ungoogled-chromium.nix
-    ./apps/vscodium.nix
-    ./gui/dunst.nix
-    ./gui/hyprland.nix
-    ./gui/hyprpaper.nix
-    ./gui/waybar.nix
-    ./gui/wofi.nix
-    ./python-history.nix
-    ./themes.nix
-  ];
-  home.file = import ./util/persist.nix {
+}: let
+  util = import ./util.nix;
+in {
+  imports =
+    [
+      ./apps/git.nix
+      ./python-history.nix
+    ]
+    ++ (
+      let
+        inputMethod = osConfig.i18n.inputMethod;
+      in
+        if inputMethod.enable && inputMethod.type == "fcitx5"
+        then [./gui/fcitx.nix]
+        else []
+    )
+    ++ (
+      if osConfig.programs.fish.enable
+      then [./apps/fish.nix]
+      else []
+    )
+    ++ (
+      if osConfig.programs.hyprland.enable
+      then [
+        ./apps/alacritty.nix
+        ./apps/calibre.nix
+        # ./apps/cura.nix
+        ./apps/discord.nix
+        ./apps/gimp.nix
+        ./apps/kicad.nix
+        ./apps/kitty.nix
+        ./apps/libreoffice.nix
+        ./apps/librewolf.nix
+        ./apps/ltspice.nix
+        ./apps/obs-studio.nix
+        # ./apps/okteta.nix
+        # ./apps/orca-slicer.nix
+        # ./apps/prism-launcher.nix
+        ./apps/ristretto.nix
+        ./apps/spotify.nix
+        ./apps/ungoogled-chromium.nix
+        ./apps/vscodium.nix
+        ./gui/dunst.nix
+        ./gui/hyprland.nix
+        ./gui/hyprpaper.nix
+        ./gui/waybar.nix
+        ./gui/wofi.nix
+        ./themes.nix
+      ]
+      else []
+    )
+    ++ (
+      if osConfig.programs.obs-studio.enableVirtualCamera
+      then [./apps/obs-studio.nix]
+      else []
+    )
+    ++ (
+      if osConfig.programs.thunar.enable
+      then [./apps/thunar.nix]
+      else []
+    )
+    ++ (
+      if osConfig.hardware.rtl-sdr.enable
+      then [./apps/sdr.nix]
+      else []
+    );
+  home.file = util.persist {
     inherit config;
     symlinks =
       [
@@ -65,7 +99,6 @@
       libnotify
       pavucontrol
       wl-clipboard
-      (nerdfonts.override {fonts = ["FiraCode"];})
 
       # gui
       libreoffice
@@ -108,9 +141,6 @@
 
         ddcutil
         ddcui
-
-        gnuradio
-        gqrx
 
         # logisim-evolution
         # gnome2.GConf

@@ -1,5 +1,7 @@
-{config, ...}: {
-  home.file = import ../util/persist.nix {
+{config, ...}: let
+  util = import ../util.nix;
+in {
+  home.file = util.persist {
     inherit config;
     symlinks = [
       ".local/share/fish/generated-completions"

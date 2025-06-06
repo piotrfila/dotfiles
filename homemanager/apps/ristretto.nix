@@ -2,15 +2,17 @@
   config,
   pkgs,
   ...
-}: {
-  home.file = import ../util/persist.nix {
+}: let
+  util = import ../util.nix;
+in {
+  home.file = util.persist {
     inherit config;
     symlinks = [
       ".config/xfce4/xfconf/xfce-perchannel-xml/ristretto.xml"
     ];
   };
   home.packages = [pkgs.xfce.ristretto];
-  xdg.mimeApps.defaultApplications = import ../util/fill-with.nix {
+  xdg.mimeApps.defaultApplications = util.fill-with {
     value = ["org.xfce.ristretto.desktop"];
     keys = [
       "image/bmp"

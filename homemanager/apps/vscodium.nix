@@ -2,7 +2,9 @@
   pkgs,
   config,
   ...
-}: {
+}: let
+  util = import ../util.nix;
+in {
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
@@ -111,7 +113,7 @@
       ".config/VSCodium/languagepacks.json".text = "{}";
       ".config/VSCodium/machineid".text = "05ba50a4-8665-403f-a22a-a4a914426063";
     };
-  xdg.mimeApps.defaultApplications = import ../util/fill-with.nix {
+  xdg.mimeApps.defaultApplications = util.fill-with {
     value = ["codium.desktop"];
     keys = [
       "application/ecmascript"

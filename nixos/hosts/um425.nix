@@ -6,39 +6,31 @@
   ...
 }: {
   imports = [
-    ../boot/systemd.nix
-    ../cli.nix
-    ../gui.nix
-    ../locale.nix
+    ../common.nix
+    ../gui
     ../users/kaliko.nix
-    ../various/bluetooth.nix
-    ../various/fcitx.nix
-    ../various/fonts.nix
-    ../various/logind.nix
     ../various/nix-ld.nix
     ../various/rtl-sdr.nix
-    ../various/thunar.nix
-    ../various/zram.nix
+    ../various/wine.nix
     <home-manager/nixos>
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   boot = {
+    binfmt.emulatedSystems = ["aarch64-linux" "riscv64-linux"];
+    extraModulePackages = [];
+    kernelModules = ["kvm-amd"];
+    loader = {
+      efi.canTouchEfiVariables = true;
+      systemd-boot.enable = true;
+    };
     initrd.availableKernelModules = ["ahci" "nvme" "xhci_pci"];
     initrd.kernelModules = [];
-    kernelModules = ["kvm-amd"];
-    extraModulePackages = [];
-    binfmt.emulatedSystems = ["aarch64-linux" "riscv64-linux"];
   };
 
   environment = {
     etc.machine-id.text = "0797e38666bb4669a69854f927d8936f\n";
-    systemPackages = with pkgs; [
-      ntfs3g
-      wineWowPackages.stable
-      winetricks
-      wineWowPackages.waylandFull
-    ];
+    systemPackages = [pkgs.ntfs3g];
   };
 
   fileSystems =
@@ -88,26 +80,17 @@
       ]
     ));
 
-  hardware.cpu.amd.updateMicrocode = true;
-  hardware.enableRedistributableFirmware = true;
-  hardware.i2c.enable = true;
+  hardware = {
+    bluetooth.enable = true;
+    cpu.amd.updateMicrocode = true;
+    enableRedistributableFirmware = true;
+    i2c.enable = true;
+  };
 
   networking.hostName = "um425";
   networking.networkmanager.enable = true;
-  systemd.network.wait-online.enable = false;
 
   nixpkgs.hostPlatform = "x86_64-linux";
-
-  programs = {
-    adb.enable = true;
-    dconf.enable = true;
-    fish.enable = true;
-    hyprland = {
-      enable = true;
-      package = pkgs.hyprland;
-      xwayland.enable = true;
-    };
-  };
 
   services = {
     auto-cpufreq = {
@@ -123,6 +106,7 @@
         };
       };
     };
+    blueman.enable = true;
     getty.autologinUser = "kaliko";
     mullvad-vpn.enable = true;
     printing.enable = true;
@@ -137,33 +121,38 @@
 
   system.stateVersion = "23.11";
 
-  systemd.services."set-battery-charging-cap" = {
-    description = "set maximum battery charging capacity";
-    serviceConfig = {
-      ExecStart = "/bin/sh -c \"cat /nix/persist/home/kaliko/.config/batt-cap > /sys/class/power_supply/BATT/charge_control_end_threshold\"";
-      Type = "oneshot";
+  systemd = {
+    services."set-battery-charging-cap" = {
+      description = "set maximum battery charging capacity";
+      serviceConfig = {
+        ExecStart = "/bin/sh -c \"cat /nix/persist/home/kaliko/.config/batt-cap > /sys/class/power_supply/BATT/charge_control_end_threshold\"";
+        Type = "oneshot";
+      };
+      wantedBy = ["default.target"];
     };
-    wantedBy = ["default.target"];
+
+    services."fix-battery-permission" = {
+      description = "change permission of charge_control_end_threshold";
+      serviceConfig = {
+        ExecStart = "/bin/sh -c \"sleep 1; chmod a+w /sys/class/power_supply/BATT/charge_control_end_threshold\"";
+        Type = "oneshot";
+      };
+      wantedBy = ["default.target"];
+      wants = ["multi-user.target"];
+    };
+
+    network.links = {
+      "10-eth0" = {
+        linkConfig.Name = "eth0";
+        matchConfig.MACAddress = "0c:37:96:1b:27:d3";
+      };
+      "15-wlan0" = {
+        linkConfig.Name = "wlan0";
+        matchConfig.MACAddress = "ac:12:03:17:a5:a7";
+      };
+    };
+    network.wait-online.enable = false;
   };
 
-  systemd.services."fix-battery-permission" = {
-    description = "change permission of charge_control_end_threshold";
-    serviceConfig = {
-      ExecStart = "/bin/sh -c \"sleep 1; chmod a+w /sys/class/power_supply/BATT/charge_control_end_threshold\"";
-      Type = "oneshot";
-    };
-    wantedBy = ["default.target"];
-    wants = ["multi-user.target"];
-  };
-
-  systemd.network.links = {
-    "10-eth0" = {
-      linkConfig.Name = "eth0";
-      matchConfig.MACAddress = "0c:37:96:1b:27:d3";
-    };
-    "15-wlan0" = {
-      linkConfig.Name = "wlan0";
-      matchConfig.MACAddress = "ac:12:03:17:a5:a7";
-    };
-  };
+  users.users.kaliko.extraGroups = ["i2c"];
 }

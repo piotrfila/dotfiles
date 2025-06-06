@@ -1,6 +1,8 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  util = import ../util.nix;
+in {
   home.packages = [pkgs.okteta];
-  xdg.mimeApps.defaultApplications = import ../util/fill-with.nix {
+  xdg.mimeApps.defaultApplications = util.fill-with {
     value = ["okteta.desktop"];
     keys = [
       # "application/acad" # .dwg

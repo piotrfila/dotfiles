@@ -3,13 +3,15 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  util = import ../util.nix;
+in {
   imports = [
     ../../scripts/screenshot.nix
     ../../scripts/toggle-calc.nix
   ];
 
-  home.file = import ../util/persist.nix {
+  home.file = util.persist {
     inherit config;
     symlinks = [".config/hypr/extra.conf"];
   };

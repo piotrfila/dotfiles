@@ -2,8 +2,10 @@
   config,
   pkgs,
   ...
-}: {
-  home.file = import ../util/persist.nix {
+}: let
+  util = import ../util.nix;
+in {
+  home.file = util.persist {
     inherit config;
     symlinks = [
       ".config/cura"

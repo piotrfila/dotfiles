@@ -6,25 +6,24 @@
   ...
 }: {
   imports = [
-    ../boot/systemd.nix
-    ../cli.nix
-    ../gui.nix
-    ../locale.nix
+    ../common.nix
+    ../gui
     ../users/kaliko.nix
-    ../various/fcitx.nix
-    ../various/fonts.nix
     ../various/logind.nix
     ../various/passthrough.nix
-    ../various/thunar.nix
     <home-manager/nixos>
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   boot = {
+    extraModulePackages = [];
+    kernelModules = ["kvm-intel"];
+    loader = {
+      efi.canTouchEfiVariables = true;
+      systemd-boot.enable = true;
+    };
     initrd.availableKernelModules = ["ahci" "nvme" "xhci_pci"];
     initrd.kernelModules = [];
-    kernelModules = ["kvm-intel"];
-    extraModulePackages = [];
   };
 
   environment = {
@@ -75,22 +74,14 @@
       ]
     ));
 
-  hardware.cpu.intel.updateMicrocode = true;
-  hardware.enableRedistributableFirmware = true;
+  hardware = {
+    cpu.intel.updateMicrocode = true;
+    enableRedistributableFirmware = true;
+  };
 
   networking.hostName = "homelab";
 
   nixpkgs.hostPlatform = "x86_64-linux";
-
-  programs = {
-    dconf.enable = true;
-    fish.enable = true;
-    hyprland = {
-      enable = true;
-      package = pkgs.hyprland;
-      xwayland.enable = true;
-    };
-  };
 
   services = {
     getty.autologinUser = "kaliko";
@@ -113,5 +104,8 @@
         Name = "eth0";
       };
     };
+    network.wait-online.enable = false;
   };
+
+  users.users.kaliko.extraGroups = ["i2c"];
 }
