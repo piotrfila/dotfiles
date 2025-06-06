@@ -92,6 +92,12 @@
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
+  programs.steam = {
+    enable = true;
+    # remotePlay.openFirewall = true;
+    # dedicatedServer.openFirewall = true;
+  };
+
   services = {
     auto-cpufreq = {
       enable = true;

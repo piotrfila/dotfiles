@@ -25,7 +25,7 @@
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    users.kaliko.imports = [./kaliko-hm.nix];
+    users.kaliko.imports = [../homemanager];
   };
 
   users.users.kaliko = {

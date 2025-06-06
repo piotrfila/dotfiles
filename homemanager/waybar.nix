@@ -12,8 +12,10 @@
   ];
 
   home.packages = with pkgs; [
+    pavucontrol
     playerctl
     util-linux
+    wl-clipboard
   ];
 
   programs.waybar = {

@@ -1,8 +1,14 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   xdg.desktopEntries = {
     ltspice = let
-      docs = "/home/kaliko/Documents/LTspiceXVII";
-      ltspice_path = "/home/kaliko/.local/share/wine/drive_c/users/kaliko/AppData/Local/Programs/ADI/LTspice/";
+      docs = "${config.home.homeDirectory}/Documents/LTspiceXVII";
+      c-drive = "${config.home.homeDirectory}/.local/share/wine/drive_c";
+      appdata = "${c-drive}/users/${config.home.username}/AppData";
+      ltspice_path = "${appdata}/Local/Programs/ADI/LTspice/";
     in {
       name = "LTspice";
       exec = "wine ${ltspice_path}LTspice.exe -ini ${docs}/keybinds.ini";
