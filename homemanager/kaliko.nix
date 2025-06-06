@@ -6,13 +6,21 @@
   ...
 }: {
   imports = [
+    ./apps/alacritty.nix
     ./apps/calibre.nix
     # ./apps/cura.nix
     ./apps/discord.nix
+    ./apps/fcitx.nix
     ./apps/fish.nix
     ./apps/gimp.nix
+    ./apps/git.nix
     ./apps/kicad.nix
     ./apps/kitty.nix
+    ./apps/libreoffice.nix
+    ./apps/librewolf.nix
+    ./apps/ltspice.nix
+    ./apps/obs-studio.nix
+    # ./apps/okteta.nix
     # ./apps/orca-slicer.nix
     # ./apps/prism-launcher.nix
     ./apps/ristretto.nix
@@ -20,11 +28,9 @@
     ./apps/thunar.nix
     ./apps/ungoogled-chromium.nix
     ./apps/vscodium.nix
-    ./gui/alacritty.nix
     ./gui/dunst.nix
     ./gui/hyprland.nix
     ./gui/hyprpaper.nix
-    ./gui/mime.nix
     ./gui/waybar.nix
     ./gui/wofi.nix
     ./python-history.nix
@@ -34,7 +40,6 @@
     inherit config;
     symlinks =
       [
-        ".config/fcitx5"
         ".config/Mullvad VPN"
         ".config/qalculate"
         ".config/Raspberry Pi"
@@ -60,6 +65,7 @@
       libnotify
       pavucontrol
       wl-clipboard
+      (nerdfonts.override {fonts = ["FiraCode"];})
 
       # gui
       libreoffice
@@ -74,25 +80,16 @@
         ]))
       transmission_4-qt
       qalculate-qt
-      ungoogled-chromium
 
-      # cli
       alejandra
-      btop
       dnsutils
-      git
       fastfetch
       file
-      htop
       jq
-      killall
       nano
-      pciutils
       screen
       unzip
-      usbutils
       wget
-      xdg-ninja
       zip
     ]
     ++ (
@@ -128,45 +125,20 @@
       else []
     );
 
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      monospace = ["FiraCode Nerd Font Mono"];
+      serif = ["Noto Serif" "Garamond"];
+      sansSerif = ["Noto Sans"];
+    };
+  };
+
   manual.manpages.enable = false;
 
   programs = {
-    git = {
-      enable = true;
-      userName = "Piotr Fila";
-      userEmail = "piotr.fila.stud@pw.edu.pl";
-      extraConfig = {
-        commit.gpgsign = true;
-        init.defaultBranch = "main";
-      };
-    };
-
     gpg.enable = true;
-
     home-manager.enable = true;
-
-    librewolf = {
-      enable = true;
-      # Enable WebGL, cookies and history
-      settings = {
-        "webgl.disabled" = false;
-        # "security.OCSP.require" = false;
-        "middlemouse.paste" = false;
-        "general.autoScroll" = true;
-        "privacy.clearOnShutdown.history" = false;
-        "privacy.resistFingerprinting.letterboxing" = true;
-        "network.cookie.lifetimePolicy" = 0;
-      };
-    };
-
-    obs-studio = {
-      enable = true;
-      plugins = with pkgs.obs-studio-plugins; [
-        wlrobs
-        obs-backgroundremoval
-        obs-pipewire-audio-capture
-      ];
-    };
   };
 
   # services.gnome-keyring = {
@@ -190,17 +162,5 @@
     };
 
   home.stateVersion = "23.11";
-
-  xdg.desktopEntries = {
-    ltspice = let
-      docs = "/home/kaliko/Documents/LTspiceXVII";
-      ltspice_path = "/home/kaliko/.local/share/wine/drive_c/users/kaliko/AppData/Local/Programs/ADI/LTspice/";
-    in {
-      name = "LTspice";
-      exec = "wine ${ltspice_path}LTspice.exe -ini ${docs}/keybinds.ini";
-      terminal = false;
-      icon = "${docs}/icon.jpg";
-      categories = ["Application"];
-    };
-  };
+  xdg.mimeApps.enable = true;
 }

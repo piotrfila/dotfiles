@@ -185,4 +185,5 @@
     };
     style = ./waybar-style.css;
   };
+  wayland.windowManager.hyprland.settings.exec-once = ["waybar"];
 }

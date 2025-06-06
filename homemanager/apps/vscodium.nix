@@ -111,4 +111,23 @@
       ".config/VSCodium/languagepacks.json".text = "{}";
       ".config/VSCodium/machineid".text = "05ba50a4-8665-403f-a22a-a4a914426063";
     };
+  xdg.mimeApps.defaultApplications = import ../util/fill-with.nix {
+    value = ["codium.desktop"];
+    keys = [
+      "application/ecmascript"
+      "application/java"
+      "application/javascript"
+      "application/java-byte-code"
+      "text/css"
+      "text/javascript"
+      "text/markdown"
+      "text/pascal"
+      "text/plain"
+      "text/tab-separated-values"
+      "text/x-asm"
+      "text/x-c"
+      "text/x-h"
+      "text/x-java-source"
+    ];
+  };
 }
