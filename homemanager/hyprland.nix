@@ -34,31 +34,7 @@ in {
         "QT_STYLE_OVERRIDE,kvantum"
       ];
 
-      windowrule = let
-        float-left = "class:(io.github.Qalculate.qalculate-)((qt)|(gtk))$";
-        float-right = "class:^(io\.missioncenter\.MissionCenter)|(nm-connection-editor)|(\.blueman-manager-wrapped)$";
-      in [
-        "float,${float-left}"
-        "size 30% 80%,${float-left}"
-        "move 5% 10%,${float-left}"
-        # "workspace special,${float-left}"
-
-        "float,class:^(Mullvad VPN)$"
-        # "size 25% 80%,^(Mullvad VPN)$"
-        "move 11.7% 23.7%,class:^(Mullvad VPN)$"
-
-        "float,${float-right}"
-        "size 60% 60%,${float-right}"
-        "move 35% 20%,${float-right}"
-
-        "float,${float-right}"
-        "size 60% 60%,${float-right}"
-        "move 35% 20%,${float-right}"
-
-        "float,${float-right}"
-        "size 60% 60%,${float-right}"
-        "move 35% 20%,${float-right}"
-
+      windowrule = [
         "float,title:^(Confirm to replace files)$"
         "float,title:^(File Operation Progress)$"
 
@@ -172,7 +148,6 @@ in {
 
       exec-once = with pkgs; [
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-        "[workspace special:q silent] qalculate-gtk"
       ];
 
       decoration = {

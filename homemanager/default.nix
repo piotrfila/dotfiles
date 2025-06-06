@@ -89,7 +89,6 @@ in {
     inherit config;
     symlinks =
       [
-        ".config/qalculate"
         ".config/Raspberry Pi"
         ".local/share/cargo"
         ".local/share/rustup"
@@ -132,7 +131,6 @@ in {
         localsend
         obsidian
         transmission_4-qt
-        qalculate-qt
       ]
       else []
     );
