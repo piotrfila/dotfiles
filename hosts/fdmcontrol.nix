@@ -6,9 +6,7 @@
   ...
 }: {
   imports = [
-    ../boot/extlinux.nix
-    ../common.nix
-    ../network/networkmanager.nix
+    ./common.nix
     ../various/adguard.nix
     ../various/klipper/default.nix
     (modulesPath + "/installer/scan/not-detected.nix")

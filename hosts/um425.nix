@@ -6,7 +6,7 @@
   ...
 }: {
   imports = [
-    ../common.nix
+    ./common.nix
     ../gui
     ../users/kaliko.nix
     ../various/nix-ld.nix

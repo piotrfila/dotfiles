@@ -7,8 +7,8 @@
   util = import ../util.nix;
 in {
   imports = [
-    ../../scripts/screenshot.nix
-    ../../scripts/toggle-calc.nix
+    ../scripts/screenshot.nix
+    ../scripts/toggle-calc.nix
   ];
 
   home.file = util.persist {

@@ -5,10 +5,10 @@
   ...
 }: {
   imports = [
-    ../../scripts/brightness.nix
-    ../../scripts/battery-charge-cap.nix
-    ../../scripts/volume.nix
-    ../../scripts/wpctl-current-sink.nix
+    ../scripts/brightness.nix
+    ../scripts/battery-charge-cap.nix
+    ../scripts/volume.nix
+    ../scripts/wpctl-current-sink.nix
   ];
 
   home.packages = with pkgs; [
