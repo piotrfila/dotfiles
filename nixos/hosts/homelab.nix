@@ -9,7 +9,6 @@
     ../common.nix
     ../gui
     ../users/kaliko.nix
-    ../various/logind.nix
     ../various/passthrough.nix
     <home-manager/nixos>
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -85,6 +84,20 @@
 
   services = {
     getty.autologinUser = "kaliko";
+    logind = {
+      hibernateKey = "ignore";
+      hibernateKeyLongPress = "ignore";
+      powerKey = "ignore";
+      powerKeyLongPress = "ignore";
+      suspendKey = "ignore";
+      suspendKeyLongPress = "ignore";
+      rebootKey = "ignore";
+      rebootKeyLongPress = "ignore";
+
+      lidSwitch = "suspend";
+      lidSwitchDocked = "ignore";
+      lidSwitchExternalPower = "suspend";
+    };
     mullvad-vpn.enable = true;
     nfs.server = {
       enable = true;

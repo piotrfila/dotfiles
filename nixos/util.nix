@@ -9,7 +9,6 @@
     })
     keys
   ));
-
   persist = {
     config,
     symlinks,

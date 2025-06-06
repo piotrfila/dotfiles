@@ -5,69 +5,61 @@
   pkgs,
   ...
 }: let
-  util = import ./util.nix;
+  util = import ../util.nix;
 in {
   imports =
     [
-      ./apps/git.nix
-      ./python-history.nix
+      ../homemanager/git.nix
+      ../various/python-history.nix
     ]
     ++ (
-      let
-        inputMethod = osConfig.i18n.inputMethod;
-      in
-        if inputMethod.enable && inputMethod.type == "fcitx5"
-        then [./gui/fcitx.nix]
-        else []
-    )
-    ++ (
       if osConfig.programs.fish.enable
-      then [./apps/fish.nix]
+      then [../homemanager/fish.nix]
       else []
     )
     ++ (
       if osConfig.programs.hyprland.enable
       then [
-        ./apps/alacritty.nix
-        ./apps/calibre.nix
-        # ./apps/cura.nix
-        ./apps/discord.nix
-        ./apps/gimp.nix
-        ./apps/kicad.nix
-        ./apps/kitty.nix
-        ./apps/libreoffice.nix
-        ./apps/librewolf.nix
-        ./apps/ltspice.nix
-        ./apps/obs-studio.nix
-        # ./apps/okteta.nix
-        # ./apps/orca-slicer.nix
-        # ./apps/prism-launcher.nix
-        ./apps/ristretto.nix
-        ./apps/spotify.nix
-        ./apps/ungoogled-chromium.nix
-        ./apps/vscodium.nix
-        ./gui/dunst.nix
-        ./gui/hyprland.nix
-        ./gui/hyprpaper.nix
-        ./gui/waybar.nix
-        ./gui/wofi.nix
-        ./themes.nix
+        ../homemanager/alacritty.nix
+        ../homemanager/calibre.nix
+        # ../homemanager/cura.nix
+        ../homemanager/discord.nix
+        ../homemanager/gimp.nix
+        ../homemanager/kicad.nix
+        ../homemanager/kitty.nix
+        ../homemanager/libreoffice.nix
+        ../homemanager/librewolf.nix
+        ../homemanager/ltspice.nix
+        ../homemanager/obs-studio.nix
+        # ../homemanager/okteta.nix
+        # ../homemanager/orca-slicer.nix
+        # ../homemanager/prism-launcher.nix
+        ../homemanager/ristretto.nix
+        ../homemanager/spotify.nix
+        ../homemanager/ungoogled-chromium.nix
+        ../homemanager/vscodium.nix
+        ../gui/dunst.nix
+        ../gui/hyprland.nix
+        ../gui/hyprpaper.nix
+        ../gui/themes.nix
+        ../gui/waybar.nix
+        ../gui/wofi.nix
       ]
       else []
     )
     ++ (
       if osConfig.programs.obs-studio.enableVirtualCamera
-      then [./apps/obs-studio.nix]
+      then [../homemanager/obs-studio.nix]
       else []
     )
     ++ (
       if osConfig.programs.thunar.enable
-      then [./apps/thunar.nix]
+      then [../homemanager/thunar.nix]
       else []
     )
     ++ (
       if osConfig.hardware.rtl-sdr.enable
-      then [./apps/sdr.nix]
+      then [../homemanager/sdr.nix]
       else []
     );
   home.file = util.persist {

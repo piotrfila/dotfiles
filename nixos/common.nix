@@ -32,12 +32,12 @@
     );
 
     etc."nixos/configuration.nix".text = let
-      dotfiles = "/home/${config.services.getty.autologinUser}/Source/dotfiles";
+      source = "/home/${config.services.getty.autologinUser}/Source";
     in
       lib.mkDefault ''
         { ... }: {
           imports = [
-            ${dotfiles}/nixos/hosts/${config.networking.hostName}.nix
+            ${source}/dotfiles/hosts/${config.networking.hostName}.nix
           ];
         }
       '';
