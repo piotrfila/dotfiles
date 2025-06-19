@@ -41,6 +41,7 @@ in {
           # ./okteta.nix
           # ./orca-slicer.nix
           # ./prism-launcher.nix
+          ./qalculate.nix
           ./ristretto.nix
           ./spotify.nix
           ./themes.nix

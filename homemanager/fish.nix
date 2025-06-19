@@ -19,7 +19,7 @@ in {
       mkshell = "nix-shell --run fish ~/Source/dotfiles/shells/$argv[1].nix";
       p = "nix-shell -p --run fish $argv";
       pw = "cd ~/Documents/pw24L";
-      fr = "df -h && free -h";
+      fr = "df -h; free -h";
     };
 
     interactiveShellInit = ''
