@@ -114,6 +114,7 @@ in {
       ddcui
       dnsutils
       fastfetch
+      ffmpeg
       file
       jq
       nano
