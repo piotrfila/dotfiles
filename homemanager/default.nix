@@ -43,6 +43,7 @@ in {
           # ./prism-launcher.nix
           ./qalculate.nix
           ./ristretto.nix
+          ./signal.nix
           ./spotify.nix
           ./themes.nix
           ./ungoogled-chromium.nix
@@ -122,6 +123,7 @@ in {
         with ps; [
           pyserial
         ]))
+      qemu
       screen
       unzip
       wget
