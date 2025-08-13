@@ -8,15 +8,15 @@
       splash = "false";
 
       preload = [
-        "${wp}/autumn.png"
+        "${wp}/train.png"
       ];
 
       wallpaper = [
-        "eDP-1,${wp}/autumn.png"
-        "DP-1,${wp}/autumn.png"
-        "DP-2,${wp}/autumn.png"
-        "HDMI-A-1,${wp}/autumn.png"
-        "HDMI-A-2,${wp}/autumn.png"
+        "eDP-1,${wp}/train.png"
+        "DP-1,${wp}/train.png"
+        "DP-2,${wp}/train.png"
+        "HDMI-A-1,${wp}/train.png"
+        "HDMI-A-2,${wp}/train.png"
       ];
     };
   };
