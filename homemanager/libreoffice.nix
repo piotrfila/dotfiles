@@ -20,4 +20,5 @@
     "application/vnd.openxmlformats-officedocument.presentationml.presentation" = impress; # .pptx
     "text/richtext" = writer; # .rt .rtf .rtx
   };
+  home.packages = [pkgs.libreoffice];
 }

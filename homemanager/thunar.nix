@@ -3,24 +3,7 @@
 in {
   home.file = util.persist {
     inherit config;
-    symlinks = [
-      ".config/chromium"
-      ".config/fcitx5"
-      ".config/Mullvad VPN"
-      ".config/qalculate"
-      ".config/Raspberry Pi"
-      ".config/spotify"
-      ".config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml"
-      ".local/share/cargo"
-      ".local/share/rustup"
-      ".local/share/wine"
-      ".local/state/wireplumber"
-      ".local/state/python_history"
-      "Documents"
-      "Downloads"
-      "Pictures"
-      "Source"
-    ];
+    symlinks = [".config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml"];
     text.".config/Thunar/uca.xml".text = ''
       <actions>
         <action>

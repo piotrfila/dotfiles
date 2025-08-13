@@ -55,7 +55,7 @@ in {
           let
             im = osConfig.i18n.inputMethod;
           in
-            if im.enable && im.type == "fcitx"
+            if im.enable && im.type == "fcitx5"
             then [../homemanager/fcitx.nix]
             else []
         )
