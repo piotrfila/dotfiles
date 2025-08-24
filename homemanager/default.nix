@@ -126,6 +126,7 @@ in {
       qemu
       screen
       unzip
+      usbutils
       wget
       zip
     ]
