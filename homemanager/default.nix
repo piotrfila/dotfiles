@@ -25,6 +25,7 @@ in {
           ./alacritty.nix
           ./calibre.nix
           # ./cura.nix
+          ./darktable.nix
           ./discord.nix
           ./dunst.nix
           ./gimp.nix
