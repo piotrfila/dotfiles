@@ -41,7 +41,7 @@ in {
           ./obs-studio.nix
           # ./okteta.nix
           # ./orca-slicer.nix
-          # ./prism-launcher.nix
+          ./prism-launcher.nix
           ./qalculate.nix
           ./ristretto.nix
           ./signal.nix
