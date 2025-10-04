@@ -9,7 +9,7 @@
     ./common.nix
     ../gui
     ../users/kaliko.nix
-    ../various/passthrough.nix
+    # ../various/passthrough.nix
     <home-manager/nixos>
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -66,6 +66,8 @@
         "/var/log"
         "/var/lib/alsa"
         "/var/lib/nixos"
+        "/var/lib/private/ollama"
+        "/var/lib/private/open-webui"
         "/var/lib/systemd/coredump"
       ]
     ));
@@ -73,6 +75,14 @@
   hardware = {
     cpu.intel.updateMicrocode = true;
     enableRedistributableFirmware = true;
+    nvidia = {
+      modesetting.available = true;
+      nvidiaSettings = true;
+      open = false;
+      package = config.boot.kernalPackages.nvidiaPackages.stable;
+      powerManagement.enable = false;
+      powerManagement.finegrained = false;
+    };
   };
 
   networking.hostName = "homelab";
@@ -103,6 +113,23 @@
         /export/vol1   192.168.1.2(rw,nohide,insecure,no_subtree_check)
       '';
     };
+    ollama = {
+      enable = true;
+      acceleration = false;
+    };
+    open-webui = {
+      enable = true;
+      environment = {
+        "ANONYMIZED_TELEMETRY" = "False";
+        "DO_NOT_TRACK" = "True";
+        "SCARF_NO_ANALYTICS" = "True";
+        "TZ" = "Europe/Warsaw";
+        "OLLAMA_API_BASE_URL" = "http://127.0.0.1:11434/api";
+        "OLLAMA_BASE_URL" = "http://127.0.0.1:11434";
+        "WEBUI_AUTH" = "False";
+      };
+    };
+    xserver.videoDrivers = ["nvidia"];
   };
 
   system.stateVersion = "23.11";
