@@ -118,7 +118,23 @@
     '';
   };
 
-  services.fstrim.enable = lib.mkDefault true;
+  services = {
+    fstrim.enable = lib.mkDefault true;
+    logind = {
+      hibernateKey = "ignore";
+      hibernateKeyLongPress = "ignore";
+      powerKey = "ignore";
+      powerKeyLongPress = "ignore";
+      suspendKey = "ignore";
+      suspendKeyLongPress = "ignore";
+      rebootKey = "ignore";
+      rebootKeyLongPress = "ignore";
+
+      lidSwitch = "suspend";
+      lidSwitchDocked = "ignore";
+      lidSwitchExternalPower = "suspend";
+    };
+  };
 
   system.copySystemConfiguration = lib.mkDefault true;
 

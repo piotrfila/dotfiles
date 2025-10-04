@@ -114,20 +114,6 @@
     };
     blueman.enable = true;
     getty.autologinUser = "kaliko";
-    logind = {
-      hibernateKey = "ignore";
-      hibernateKeyLongPress = "ignore";
-      powerKey = "ignore";
-      powerKeyLongPress = "ignore";
-      suspendKey = "ignore";
-      suspendKeyLongPress = "ignore";
-      rebootKey = "ignore";
-      rebootKeyLongPress = "ignore";
-
-      lidSwitch = "suspend";
-      lidSwitchDocked = "ignore";
-      lidSwitchExternalPower = "suspend";
-    };
     mullvad-vpn.enable = true;
     printing.enable = true;
     thermald.enable = false;
