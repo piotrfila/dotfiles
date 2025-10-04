@@ -165,6 +165,8 @@ in {
         # no_gaps_when_only = 1;
       };
 
+      ecosystem.no_update_news = true;
+
       general = {
         gaps_in = 5;
         gaps_out = 10;
