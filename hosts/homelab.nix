@@ -76,10 +76,10 @@
     cpu.intel.updateMicrocode = true;
     enableRedistributableFirmware = true;
     nvidia = {
-      modesetting.available = true;
+      modesetting.enable = true;
       nvidiaSettings = true;
       open = false;
-      package = config.boot.kernalPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
       powerManagement.enable = false;
       powerManagement.finegrained = false;
     };
@@ -120,8 +120,8 @@
 
   system.stateVersion = "23.11";
 
-  systemd.network.links = {
-    "10-eth0" = {
+  systemd = {
+    network.links."10-eth0" = {
       matchConfig.MACAddress = "d8:cb:8a:9b:96:6a";
       linkConfig = {
         Name = "eth0";
