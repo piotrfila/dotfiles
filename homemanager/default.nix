@@ -40,7 +40,7 @@ in {
           ./mpv.nix
           ./obs-studio.nix
           # ./okteta.nix
-          # ./orca-slicer.nix
+          ./orca-slicer.nix
           ./prism-launcher.nix
           ./qalculate.nix
           ./ristretto.nix
