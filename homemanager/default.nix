@@ -46,6 +46,7 @@ in {
           ./ristretto.nix
           ./signal.nix
           ./spotify.nix
+          ./starsector.nix
           ./themes.nix
           ./ungoogled-chromium.nix
           # ./verilog.nix
