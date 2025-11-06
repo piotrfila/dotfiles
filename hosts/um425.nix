@@ -148,4 +148,9 @@
   };
 
   users.users.kaliko.extraGroups = ["i2c"];
+
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings.data-root = "/nix/persist/docker";
+  };
 }

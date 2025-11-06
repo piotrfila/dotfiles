@@ -40,4 +40,11 @@
     isNormalUser = true;
     shell = pkgs.fish;
   };
+
+  users.extraGroups.docker.members = let
+    docker = config.virtualisation.docker;
+  in
+    if (docker.enable || docker.rootless.enable)
+    then ["kaliko"]
+    else [];
 }

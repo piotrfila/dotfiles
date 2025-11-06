@@ -52,6 +52,7 @@ in {
           # ./verilog.nix
           ./vscodium.nix
           ./waybar.nix
+          ./winboat.nix
           ./wofi.nix
         ]
         ++ (
