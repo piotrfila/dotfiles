@@ -42,6 +42,7 @@ in {
           # ./okteta.nix
           ./orca-slicer.nix
           ./prism-launcher.nix
+          ./pulseview.nix
           ./qalculate.nix
           ./ristretto.nix
           ./signal.nix
