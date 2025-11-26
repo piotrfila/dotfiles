@@ -133,19 +133,22 @@
       };
     };
     fstrim.enable = lib.mkDefault true;
-    logind = {
-      hibernateKey = "ignore";
-      hibernateKeyLongPress = "ignore";
-      powerKey = "ignore";
-      powerKeyLongPress = "ignore";
-      suspendKey = "ignore";
-      suspendKeyLongPress = "ignore";
-      rebootKey = "ignore";
-      rebootKeyLongPress = "ignore";
+    logind.settings.Login = {
+      HandleHibernateKey = "ignore";
+      HandleHibernateKeyLongPress = "ignore";
 
-      lidSwitch = "suspend";
-      lidSwitchDocked = "ignore";
-      lidSwitchExternalPower = "suspend";
+      HandlePowerKey = "ignore";
+      HandlePowerKeyLongPress = "ignore";
+
+      HandleSuspendKey = "ignore";
+      HandleSuspendKeyLongPress = "ignore";
+
+      HandleRebootKey = "ignore";
+      HandleRebootKeyLongPress = "ignore";
+
+      HandleLidSwitch = "suspend";
+      HandleLidSwitchDocked = "suspend";
+      HandleLidSwitchExternalPower = "suspend";
     };
   };
 

@@ -5,11 +5,11 @@
 }: {
   programs.git = {
     enable = true;
-    userName = "Piotr Fila";
-    userEmail = "piotr.fila.stud@pw.edu.pl";
-    extraConfig = {
+    settings = {
       commit.gpgsign = true;
       init.defaultBranch = "main";
+      user.name = "Piotr Fila";
+      user.email = "piotr.fila.stud@pw.edu.pl";
     };
   };
 }
