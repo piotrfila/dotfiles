@@ -1,13 +1,9 @@
 {config, ...}: let
   util = import ../util.nix;
 in {
-  home.file = util.persist {
+  home.persistence = util.persist {
     inherit config;
-    symlinks = [
-      ".local/share/fish/generated-completions"
-      ".local/share/fish/fish_history"
-      ".local/share/fish/fonts"
-    ];
+    directories = [".local/share/fish"];
   };
   programs.bash.enable = false;
   programs.fish = {

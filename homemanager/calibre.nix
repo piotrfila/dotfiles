@@ -5,9 +5,9 @@
 }: let
   util = import ../util.nix;
 in {
-  home.file = util.persist {
+  home.persistence = util.persist {
     inherit config;
-    symlinks = [".config/calibre"];
+    directories = [".config/calibre"];
   };
   home.packages = [pkgs.calibre];
   xdg.mimeApps.defaultApplications = util.fill-with {

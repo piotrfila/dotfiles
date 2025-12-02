@@ -2,30 +2,16 @@
   config,
   pkgs,
   ...
-}: {
-  fileSystems = builtins.listToAttrs (
-    builtins.map (x: {
-      name = "/home/kaliko/${x}";
-      value = {
-        device = "/nix/persist/home/kaliko/${x}";
-        fsType = "none";
-        options = ["bind"];
-      };
-    }) [
-      ".cache"
-      ".factorio"
-      ".gnupg"
-      ".librewolf"
-      ".pki"
-      ".ssh"
-      ".vscode-oss"
-    ]
-  );
-
+}: let
+  impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/master.tar.gz";
+in {
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    users.kaliko.imports = [../homemanager];
+    users.kaliko.imports = [
+      "${impermanence}/home-manager.nix"
+      ../homemanager
+    ];
   };
 
   users.users.kaliko = {

@@ -11,19 +11,14 @@
   ));
   persist = {
     config,
-    symlinks,
-    text ? {},
-  }:
-    (builtins.listToAttrs (
-      builtins.map (x: {
-        name = x;
-        value.source = config.lib.file.mkOutOfStoreSymlink "/nix/persist${config.home.homeDirectory}/${x}";
-      })
-      symlinks
-    ))
-    // text;
-  # (builtins.map (x: {
-  #     text = x;
-  #   })
-  #   text);
+    files ? [],
+    directories ? [],
+  }: {
+    "/nix/persist${config.home.homeDirectory}" = {
+      removePrefixDirectory = false;
+      allowOther = true;
+      directories = directories;
+      files = files;
+    };
+  };
 }

@@ -5,9 +5,9 @@
 }: let
   util = import ../util.nix;
 in {
-  home.file = util.persist {
+  home.persistence = util.persist {
     inherit config;
-    symlinks = [".config/sigrok/PulseView.conf"];
+    files = [".config/sigrok/PulseView.conf"];
   };
   home.packages = [pkgs.pulseview];
 }

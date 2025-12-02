@@ -84,19 +84,32 @@ in {
         )
       else []
     );
-  home.file = util.persist {
+  home.persistence = util.persist {
     inherit config;
-    symlinks =
+    directories = [
+      ".cache"
+      # ".config/Raspberry Pi"
+      ".config/xfce4/xfconf/xfce-perchannel-xml"
+      ".factorio"
+      ".gnupg"
+      ".librewolf"
+      ".local/bin"
+      # ".local/share/cargo"
+      # ".local/share/rustup"
+      ".local/share/wine"
+      ".local/state/wireplumber"
+      ".pki"
+      ".ssh"
+      "Documents"
+      "Downloads"
+      "Pictures"
+      "Source"
+    ];
+    files =
       [
-        ".config/Raspberry Pi"
-        ".local/share/cargo"
-        ".local/share/rustup"
-        ".local/share/wine"
-        ".local/state/wireplumber"
-        "Documents"
-        "Downloads"
-        "Pictures"
-        "Source"
+        ".local/share/recently-used.xbel"
+        ".local/state/bashhst"
+        ".local/state/lesshst"
       ]
       ++ (
         if osConfig.networking.hostName == "um425"

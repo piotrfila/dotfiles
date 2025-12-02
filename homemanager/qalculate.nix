@@ -5,9 +5,9 @@
 }: let
   util = import ../util.nix;
 in {
-  home.file = util.persist {
+  home.persistence = util.persist {
     inherit config;
-    symlinks = [".config/qalculate"];
+    files = [".config/qalculate"];
   };
 
   home.packages = [pkgs.qalculate-qt];

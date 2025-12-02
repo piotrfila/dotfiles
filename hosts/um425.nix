@@ -4,8 +4,11 @@
   modulesPath,
   pkgs,
   ...
-}: {
+}: let
+  impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/master.tar.gz";
+in {
   imports = [
+    "${impermanence}/nixos.nix"
     ./common.nix
     ../gui
     ../users/kaliko.nix
@@ -29,45 +32,9 @@
   };
 
   environment = {
-    etc.machine-id.text = "0797e38666bb4669a69854f927d8936f\n";
-    systemPackages = [pkgs.ntfs3g];
-  };
-
-  fileSystems =
-    {
-      "/" = {
-        device = "tmpfs";
-        fsType = "tmpfs";
-        options = ["size=32G" "mode=755"];
-      };
-
-      "/boot" = {
-        device = "/dev/disk/by-uuid/9F24-380D";
-        fsType = "vfat";
-        options = ["fmask=0022" "dmask=0022" "noatime"];
-      };
-
-      "/nix" = {
-        device = "/dev/disk/by-uuid/1bf92b6d-6db2-42e8-9b26-6341f09808ef";
-        fsType = "ext4";
-        options = ["noatime"];
-      };
-
-      "/mnt/homelab" = {
-        device = "192.168.1.3:/vol1";
-        fsType = "nfs";
-        options = ["x-systemd.automount" "x-systemd.idle-timeout=60" "noauto" "noatime"];
-      };
-    }
-    // (builtins.listToAttrs (
-      builtins.map (x: {
-        name = x;
-        value = {
-          device = "/nix/persist${x}";
-          fsType = "none";
-          options = ["bind"];
-        };
-      }) [
+    persistence."/nix/persist" = {
+      hideMounts = true;
+      directories = [
         "/etc/NetworkManager/system-connections"
         "/etc/mullvad-vpn"
         "/root"
@@ -77,8 +44,43 @@
         "/var/lib/nixos"
         "/var/lib/systemd/coredump"
         "/var/lib/cups"
-      ]
-    ));
+      ];
+    };
+    etc.machine-id.text = "0797e38666bb4669a69854f927d8936f\n";
+    systemPackages = [pkgs.ntfs3g];
+  };
+
+  fileSystems = {
+    "/" = {
+      device = "tmpfs";
+      fsType = "tmpfs";
+      options = ["size=4G" "mode=755"];
+    };
+
+    "/home/kaliko" = {
+      device = "tmpfs";
+      fsType = "tmpfs";
+      options = ["size=32G" "mode=777"];
+    };
+
+    "/boot" = {
+      device = "/dev/disk/by-uuid/9F24-380D";
+      fsType = "vfat";
+      options = ["fmask=0022" "dmask=0022" "noatime"];
+    };
+
+    "/nix" = {
+      device = "/dev/disk/by-uuid/1bf92b6d-6db2-42e8-9b26-6341f09808ef";
+      fsType = "ext4";
+      options = ["noatime"];
+    };
+
+    "/mnt/homelab" = {
+      device = "192.168.1.3:/vol1";
+      fsType = "nfs";
+      options = ["x-systemd.automount" "x-systemd.idle-timeout=60" "noauto" "noatime"];
+    };
+  };
 
   hardware = {
     bluetooth.enable = true;
@@ -97,6 +99,8 @@
     # remotePlay.openFirewall = true;
     # dedicatedServer.openFirewall = true;
   };
+
+  programs.fuse.userAllowOther = true;
 
   services = {
     blueman.enable = true;

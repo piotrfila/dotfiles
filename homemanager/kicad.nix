@@ -5,12 +5,12 @@
 }: let
   util = import ../util.nix;
 in {
-  home.file = util.persist {
+  home.persistence = util.persist {
     inherit config;
-    symlinks = [
+    directories = [
       ".config/kicad"
       ".local/share/kicad"
     ];
   };
-  home.packages = [pkgs.kicad];
+  home.packages = [pkgs.kicad-small];
 }

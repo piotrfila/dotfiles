@@ -11,9 +11,10 @@ in {
     ../scripts/toggle-calc.nix
   ];
 
-  home.file = util.persist {
+  home.persistence = util.persist {
     inherit config;
-    symlinks = [".config/hypr/extra.conf"];
+    directories = [".local/share/hyprland"];
+    files = [".config/hypr/extra.conf"];
   };
 
   wayland.windowManager.hyprland = {
@@ -175,10 +176,6 @@ in {
         "col.inactive_border" = "rgba(595959aa)";
         resize_on_border = true;
         layout = "dwindle";
-      };
-
-      gestures = {
-        workspace_swipe = "off";
       };
 
       input = {

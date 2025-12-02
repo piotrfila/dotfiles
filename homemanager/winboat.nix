@@ -2,9 +2,9 @@
   util = import ../util.nix;
   unstable = import <nixos-unstable> {};
 in {
-  home.file = util.persist {
+  home.persistence = util.persist {
     inherit config;
-    symlinks = [
+    directories = [
       ".config/winboat"
       ".local/share/winboat"
       ".winboat"
