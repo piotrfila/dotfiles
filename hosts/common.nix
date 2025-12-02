@@ -84,6 +84,12 @@
       LC_TELEPHONE = locale;
       LC_TIME = locale;
     };
+    supportedLocales = [
+      "C.UTF-8/UTF-8"
+      "en_US.UTF-8/UTF-8"
+      "pl_PL.UTF-8/UTF-8"
+      "ja_JP.UTF-8/UTF-8"
+    ];
   };
 
   networking.firewall.enable = lib.mkDefault false;

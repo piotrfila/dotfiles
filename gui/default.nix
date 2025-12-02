@@ -4,7 +4,6 @@
   ...
 }: {
   imports = [
-    ./fcitx.nix
     ./fonts.nix
     ./pipewire.nix
     ./thunar.nix

@@ -28,6 +28,7 @@ in {
           ./darktable.nix
           ./discord.nix
           ./dunst.nix
+          ./fcitx.nix
           ./gimp.nix
           ./hyprland.nix
           ./hyprpaper.nix
@@ -57,36 +58,28 @@ in {
           ./wofi.nix
         ]
         ++ (
-          let
-            im = osConfig.i18n.inputMethod;
-          in
-            if im.enable && im.type == "fcitx5"
-            then [../homemanager/fcitx.nix]
-            else []
-        )
-        ++ (
           if osConfig.programs.obs-studio.enableVirtualCamera
-          then [../homemanager/obs-studio.nix]
+          then [./obs-studio.nix]
           else []
         )
         ++ (
           if osConfig.services.mullvad-vpn.enable
-          then [../homemanager/mullvad-vpn.nix]
+          then [./mullvad-vpn.nix]
           else []
         )
         ++ (
           if osConfig.hardware.rtl-sdr.enable
-          then [../homemanager/rtl-sdr.nix]
+          then [./rtl-sdr.nix]
           else []
         )
         ++ (
           if osConfig.programs.steam.enable
-          then [../homemanager/rtl-sdr.nix]
+          then [./steam.nix]
           else []
         )
         ++ (
           if osConfig.programs.thunar.enable
-          then [../homemanager/thunar.nix]
+          then [./thunar.nix]
           else []
         )
       else []
