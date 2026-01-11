@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/master.tar.gz";
+  impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/69ca099e5318bd9c12bc67211cbb23c4c3643b2b.tar.gz";
 in {
   home-manager = {
     useUserPackages = true;
