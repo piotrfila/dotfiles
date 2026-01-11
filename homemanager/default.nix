@@ -136,6 +136,7 @@ in {
         ]))
       qemu
       screen
+      tio
       unzip
       usbutils
       wget
