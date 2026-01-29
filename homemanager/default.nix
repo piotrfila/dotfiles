@@ -10,7 +10,7 @@ in {
   imports =
     [
       ./git.nix
-      ./python-history.nix
+      ./python.nix
       ./zig.nix
     ]
     ++ (
@@ -131,10 +131,6 @@ in {
       nano
       (octave.withPackages (ps: [
         ps.signal
-      ]))
-      (python3.withPackages (ps: [
-        ps.pyserial
-        ps.tkinter
       ]))
       qemu
       screen
