@@ -9,7 +9,6 @@ in {
     inherit config;
     directories = [".config/fcitx5"];
   };
-
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
@@ -21,7 +20,6 @@ in {
       waylandFrontend = true;
     };
   };
-
   wayland.windowManager.hyprland.settings = {
     env = [
       "XMODIFIERS,@im=fcitx"

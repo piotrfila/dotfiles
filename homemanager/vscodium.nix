@@ -5,14 +5,16 @@
 }: let
   util = import ../util.nix;
 in {
-  home.persistence = util.persist {
-    inherit config;
-    directories = [
-      ".config/VSCodium"
-      ".vscode-oss"
-    ];
+  home = {
+    packages = [pkgs.vscodium];
+    persistence = util.persist {
+      inherit config;
+      directories = [
+        ".config/VSCodium"
+        ".vscode-oss"
+      ];
+    };
   };
-  home.packages = [pkgs.vscodium];
   xdg.mimeApps.defaultApplications = util.fill-with {
     value = ["codium.desktop"];
     keys = [

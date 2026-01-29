@@ -5,12 +5,10 @@
       wp = "~/Pictures/wallpapers";
     in {
       ipc = "off";
-      splash = "false";
-
       preload = [
         "${wp}/train.png"
       ];
-
+      splash = "false";
       wallpaper = [
         "eDP-1,${wp}/train.png"
         "DP-1,${wp}/train.png"

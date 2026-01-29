@@ -3,6 +3,9 @@
   pkgs,
   ...
 }: {
+  wayland.windowManager.hyprland.settings.windowrule = [
+    "tile, title:^(LTspice)$"
+  ];
   xdg.desktopEntries = {
     ltspice = let
       docs = "${config.home.homeDirectory}/Documents/LTspiceXVII";
@@ -17,5 +20,4 @@
       categories = ["Application"];
     };
   };
-  wayland.windowManager.hyprland.settings.windowrule = ["tile, title:^(LTspice)$"];
 }

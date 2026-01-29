@@ -38,8 +38,6 @@
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
-      #   name = "Arc";
-      #   package = pkgs.arc-icon-theme;
     };
 
     theme = {

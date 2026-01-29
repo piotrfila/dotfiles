@@ -10,14 +10,12 @@
     ../scripts/volume.nix
     ../scripts/wpctl-current-sink.nix
   ];
-
   home.packages = with pkgs; [
     pavucontrol
     playerctl
     util-linux
     wl-clipboard
   ];
-
   programs.waybar = {
     enable = true;
     settings.mainBar = {
@@ -187,5 +185,12 @@
     };
     style = ./waybar-style.css;
   };
-  wayland.windowManager.hyprland.settings.exec-once = ["waybar"];
+  wayland.windowManager.hyprland.settings = {
+    exec-once = ["waybar"];
+    windowrule = [
+      "float,class:^(pavucontrol)$"
+      "size 60% 80%,class:^(pavucontrol)$"
+      "move 35% 10%,class:^(pavucontrol)$"
+    ];
+  };
 }

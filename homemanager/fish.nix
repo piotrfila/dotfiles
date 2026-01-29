@@ -10,11 +10,9 @@ in {
     enable = true;
 
     functions = {
-      # la = "ls -lAh $argv";
       mkcd = "mkdir $argv[1]; cd $argv[1]";
       mkshell = "nix-shell --run fish ~/Source/dotfiles/shells/$argv[1].nix";
       p = "nix-shell -p --run fish $argv";
-      pw = "cd ~/Documents/pw24L";
       fr = "df -h; free -h";
     };
 
@@ -28,7 +26,5 @@ in {
         exec Hyprland
       end
     '';
-
-    plugins = [];
   };
 }

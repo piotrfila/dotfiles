@@ -32,17 +32,9 @@ in {
         "QT_QPA_PLATFORMTHEME,qt5ct"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-        "QT_STYLE_OVERRIDE,kvantum"
       ];
 
       windowrule = [
-        "float,title:^(Confirm to replace files)$"
-        "float,title:^(File Operation Progress)$"
-
-        "float,class:^(pavucontrol)$"
-        "size 60% 80%,class:^(pavucontrol)$"
-        "move 35% 10%,class:^(pavucontrol)$"
-
         "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
         "noanim,class:^(xwaylandvideobridge)$"
         "nofocus,class:^(xwaylandvideobridge)$"

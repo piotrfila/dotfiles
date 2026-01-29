@@ -3,7 +3,28 @@
     enable = true;
     font.name = "FiraCode Nerd Font Mono";
     font.size = 12;
-    settings = {
+    settings = let
+      col_bright = {
+        black = "#656565";
+        red = "#d75f5f";
+        green = "#8fee96";
+        yellow = "#cd950c";
+        blue = "#22c3a1";
+        magenta = "#775759";
+        cyan = "#84edb9";
+        white = "#d8d8d8";
+      };
+      col_normal = {
+        black = "#2f2f2f";
+        red = "#d75f5f";
+        green = "#d4d232";
+        yellow = "#af865a";
+        blue = "#22c3a1";
+        magenta = "#775759";
+        cyan = "#84edb9";
+        white = "#c0b18b";
+      };
+    in {
       # The foreground color
       foreground = "#c0b18b";
 
@@ -12,13 +33,13 @@
       background_opacity = "0.9";
 
       # The foreground for selections
-      selection_foreground = "#2f2f2f";
+      selection_foreground = col_normal.black;
 
       # The background for selections
-      selection_background = "#d75f5f";
+      selection_background = col_normal.red;
 
       # The cursor color
-      cursor = "#8fee96";
+      cursor = col_bright.green;
 
       # The cursor shape can be one of (block, beam, underline)
       cursor_shape = "block";
@@ -102,10 +123,10 @@
       window_margin_width = 15;
 
       # The color for the border of the active window
-      active_border_color = "#ffffff";
+      active_border_color = "#fff";
 
       # The color for the border of inactive windows
-      inactive_border_color = "#cccccc";
+      inactive_border_color = "#ccc";
 
       # Tab-bar colors
       active_tab_foreground = "#000";
@@ -117,36 +138,22 @@
       # bright version.
 
       # black
-      color0 = "#2f2f2f";
-      color8 = "#656565";
-
-      # red
-      color1 = "#d75f5f";
-      color9 = "#d75f5f";
-
-      # green
-      color2 = "#d4d232";
-      color10 = "#8fee96";
-
-      # yellow
-      color3 = "#af865a";
-      color11 = "#cd950c";
-
-      # blue
-      color4 = "#22c3a1";
-      color12 = "#22c3a1";
-
-      # magenta
-      color5 = "#775759";
-      color13 = "#775759";
-
-      # cyan
-      color6 = "#84edb9";
-      color14 = "#84edb9";
-
-      # white
-      color7 = "#c0b18b";
-      color15 = "#d8d8d8";
+      color0 = col_normal.black;
+      color1 = col_normal.red;
+      color2 = col_normal.green;
+      color3 = col_normal.yellow;
+      color4 = col_normal.blue;
+      color5 = col_normal.magenta;
+      color6 = col_normal.cyan;
+      color7 = col_normal.white;
+      color8 = col_bright.black;
+      color9 = col_bright.red;
+      color10 = col_bright.green;
+      color11 = col_bright.yellow;
+      color12 = col_bright.blue;
+      color13 = col_bright.magenta;
+      color14 = col_bright.cyan;
+      color15 = col_bright.white;
     };
     shellIntegration.enableFishIntegration = true;
   };

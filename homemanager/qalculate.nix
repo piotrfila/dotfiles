@@ -5,13 +5,13 @@
 }: let
   util = import ../util.nix;
 in {
-  home.persistence = util.persist {
-    inherit config;
-    files = [".config/qalculate"];
+  home = {
+    packages = [pkgs.qalculate-qt];
+    persistence = util.persist {
+      inherit config;
+      files = [".config/qalculate"];
+    };
   };
-
-  home.packages = [pkgs.qalculate-qt];
-
   wayland.windowManager.hyprland.settings = {
     exec-once = with pkgs; [
       "[workspace special:q silent] qalculate-gtk"
