@@ -5,11 +5,7 @@
 }: let
   util = import ../util.nix;
 in {
-  # home.persistence = util.persist {
-  #   inherit config;
-  #   directories = [ ];
-  # };
-  home.packages = [
+  home.packages = with pkgs; [
     logisim-evolution
     gnome2.GConf
     gtkwave

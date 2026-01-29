@@ -51,7 +51,7 @@ in {
           ./starsector.nix
           ./themes.nix
           ./ungoogled-chromium.nix
-          # ./verilog.nix
+          ./verilog.nix
           ./vscodium.nix
           ./waybar.nix
           # ./winboat.nix
