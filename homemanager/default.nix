@@ -40,6 +40,7 @@ in {
           ./mission-center.nix
           ./mpv.nix
           ./obs-studio.nix
+          ./octave.nix
           # ./okteta.nix
           ./orca-slicer.nix
           ./prism-launcher.nix
@@ -129,9 +130,6 @@ in {
       file
       jq
       nano
-      (octave.withPackages (ps: [
-        ps.signal
-      ]))
       qemu
       screen
       tio
