@@ -129,11 +129,13 @@ in {
       file
       jq
       nano
-      (python3.withPackages (ps:
-        with ps; [
-          pyserial
-          tkinter
-        ]))
+      (octave.withPackages (ps: [
+        ps.signal
+      ]))
+      (python3.withPackages (ps: [
+        ps.pyserial
+        ps.tkinter
+      ]))
       qemu
       screen
       tio
