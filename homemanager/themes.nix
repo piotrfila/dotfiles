@@ -30,7 +30,7 @@
       "file://${dirs.documents}/datasheets"
       "file://${dirs.documents}/3D_Models"
       "file:///nix/persist${home}"
-      "file://${dirs.documents}/pw25Z"
+      "file://${dirs.documents}/pw26L"
     ];
     gtk3.extraConfig = gtk-settings;
     gtk4.extraConfig = gtk-settings;
