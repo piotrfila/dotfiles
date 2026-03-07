@@ -89,6 +89,7 @@ in {
     inherit config;
     directories = [
       ".cache"
+      ".ciel"
       # ".config/Raspberry Pi"
       ".config/xfce4/xfconf/xfce-perchannel-xml"
       ".factorio"
