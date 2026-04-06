@@ -144,7 +144,6 @@ in {
       if osConfig.programs.hyprland.enable
       then [
         localsend
-        obsidian
         transmission_4-qt
       ]
       else []
