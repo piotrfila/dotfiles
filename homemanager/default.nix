@@ -37,6 +37,7 @@ in {
           ./libreoffice.nix
           ./librewolf.nix
           ./ltspice.nix
+          ./mindustry.nix
           ./mission-center.nix
           ./mpv.nix
           ./obs-studio.nix
