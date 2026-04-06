@@ -6,7 +6,7 @@
   util = import ../util.nix;
 in {
   home = {
-    packages = [pkgs.kicad];
+    packages = [pkgs.kicad-small];
     persistence = util.persist {
       inherit config;
       directories = [
