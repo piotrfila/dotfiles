@@ -3,13 +3,13 @@
   pkgs,
   ...
 }: let
-  util = import ../util.nix;
+  util = import ../../../util.nix;
 in {
   home = {
-    packages = [pkgs.darktable];
+    packages = [pkgs.signal-desktop];
     persistence = util.persist {
       inherit config;
-      directories = [".config/darktable"];
+      directories = [".config/Signal"];
     };
   };
 }

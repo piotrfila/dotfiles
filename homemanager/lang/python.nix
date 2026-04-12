@@ -3,8 +3,8 @@
   pkgs,
   ...
 }: let
-  util = import ../util.nix;
   histfile_path = ".local/state/pythonhst";
+  util = import ../../util.nix;
 in {
   home = {
     packages = [

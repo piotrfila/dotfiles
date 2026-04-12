@@ -1,5 +1,5 @@
 {config, ...}: let
-  util = import ../util.nix;
+  util = import ../../../util.nix;
 in {
   home.file.".config/Thunar/uca.xml".text = ''
     <actions>

@@ -3,15 +3,15 @@
   pkgs,
   ...
 }: let
-  util = import ../util.nix;
+  util = import ../../../util.nix;
 in {
   home = {
-    packages = [pkgs.orca-slicer];
+    packages = [pkgs.kicad-small];
     persistence = util.persist {
       inherit config;
       directories = [
-        ".config/OrcaSlicer"
-        ".local/share/orca-slicer"
+        ".config/kicad"
+        ".local/share/kicad"
       ];
     };
   };

@@ -4,7 +4,7 @@
   ...
 }: let
   unstable = import <nixos-unstable> {};
-  util = import ../util.nix;
+  util = import ../../../util.nix;
 in {
   home = {
     packages = [unstable.mindustry-wayland];

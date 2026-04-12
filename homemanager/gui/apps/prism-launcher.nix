@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  util = import ../util.nix;
+  util = import ../../../util.nix;
 in {
   home = {
     packages = with pkgs; [(prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})];

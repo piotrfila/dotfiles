@@ -3,15 +3,15 @@
   pkgs,
   ...
 }: let
-  util = import ../util.nix;
+  util = import ../../../util.nix;
 in {
   home = {
-    packages = [pkgs.cura];
+    packages = [pkgs.gimp3];
     persistence = util.persist {
       inherit config;
       directories = [
-        ".config/cura"
-        ".local/share/cura"
+        ".config/GIMP"
+        ".local/share/gegl-0.4"
       ];
     };
   };

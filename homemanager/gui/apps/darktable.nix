@@ -3,13 +3,13 @@
   pkgs,
   ...
 }: let
-  util = import ../util.nix;
+  util = import ../../../util.nix;
 in {
   home = {
-    packages = [pkgs.pulseview];
+    packages = [pkgs.darktable];
     persistence = util.persist {
       inherit config;
-      files = [".config/sigrok/PulseView.conf"];
+      directories = [".config/darktable"];
     };
   };
 }

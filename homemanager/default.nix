@@ -10,80 +10,47 @@ in {
   imports =
     [
       ./git.nix
-      ./python.nix
-      ./zig.nix
+      ./lang/python.nix
+      ./lang/zig.nix
     ]
     ++ (
       if osConfig.programs.fish.enable
-      then [../homemanager/fish.nix]
+      then [./fish.nix]
       else []
     )
     ++ (
       if osConfig.programs.hyprland.enable
-      then
-        [
-          ./alacritty.nix
-          ./calibre.nix
-          # ./cura.nix
-          ./darktable.nix
-          ./discord.nix
-          ./dunst.nix
-          ./fcitx.nix
-          ./gimp.nix
-          ./hyprland.nix
-          ./hyprpaper.nix
-          ./kicad.nix
-          ./kitty.nix
-          ./libreoffice.nix
-          ./librewolf.nix
-          ./ltspice.nix
-          ./mindustry.nix
-          ./mission-center.nix
-          ./mpv.nix
-          ./obs-studio.nix
-          ./octave.nix
-          # ./okteta.nix
-          ./orca-slicer.nix
-          ./prism-launcher.nix
-          ./pulseview.nix
-          ./qalculate.nix
-          ./ristretto.nix
-          ./signal.nix
-          ./spotify.nix
-          ./starsector.nix
-          ./themes.nix
-          ./ungoogled-chromium.nix
-          ./verilog.nix
-          ./vscodium.nix
-          ./waybar.nix
-          # ./winboat.nix
-          ./wofi.nix
-        ]
-        ++ (
-          if osConfig.programs.obs-studio.enableVirtualCamera
-          then [./obs-studio.nix]
-          else []
-        )
-        ++ (
-          if osConfig.services.mullvad-vpn.enable
-          then [./mullvad-vpn.nix]
-          else []
-        )
-        ++ (
-          if osConfig.hardware.rtl-sdr.enable
-          then [./rtl-sdr.nix]
-          else []
-        )
-        ++ (
-          if osConfig.programs.steam.enable
-          then [./steam.nix]
-          else []
-        )
-        ++ (
-          if osConfig.programs.thunar.enable
-          then [./thunar.nix]
-          else []
-        )
+      then [
+        ./gui
+        ./gui/apps/alacritty.nix
+        ./gui/apps/calibre.nix
+        # ./gui/apps/cura.nix
+        ./gui/apps/darktable.nix
+        ./gui/apps/discord.nix
+        ./gui/apps/gimp.nix
+        ./gui/apps/kicad.nix
+        ./gui/apps/kitty.nix
+        ./gui/apps/libreoffice.nix
+        ./gui/apps/librewolf.nix
+        ./gui/apps/ltspice.nix
+        ./gui/apps/mindustry.nix
+        ./gui/apps/mission-center.nix
+        ./gui/apps/mpv.nix
+        ./gui/apps/obs-studio.nix
+        # ./gui/apps/okteta.nix
+        ./gui/apps/orca-slicer.nix
+        ./gui/apps/prism-launcher.nix
+        ./gui/apps/qalculate.nix
+        ./gui/apps/ristretto.nix
+        ./gui/apps/signal.nix
+        ./gui/apps/spotify.nix
+        ./gui/apps/starsector.nix
+        ./gui/apps/ungoogled-chromium.nix
+        ./gui/apps/vscodium.nix
+        ./lang/octave.nix
+        ./lang/verilog.nix
+        # ./winboat.nix
+      ]
       else []
     );
   home.persistence = util.persist {
@@ -91,14 +58,10 @@ in {
     directories = [
       ".cache"
       ".ciel"
-      # ".config/Raspberry Pi"
       ".config/xfce4/xfconf/xfce-perchannel-xml"
       ".factorio"
       ".gnupg"
-      ".librewolf"
       ".local/bin"
-      # ".local/share/cargo"
-      # ".local/share/rustup"
       ".local/share/wine"
       ".local/state/wireplumber"
       ".pki"
@@ -147,6 +110,11 @@ in {
         localsend
         transmission_4-qt
       ]
+      else []
+    )
+    ++ (
+      if osConfig.hardware.rtl-sdr.enable
+      then [gnuradio gqrx]
       else []
     );
 

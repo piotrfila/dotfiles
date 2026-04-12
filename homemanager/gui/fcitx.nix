@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  util = import ../util.nix;
+  util = import ../../util.nix;
 in {
   home.persistence = util.persist {
     inherit config;

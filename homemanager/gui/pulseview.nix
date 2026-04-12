@@ -3,13 +3,13 @@
   pkgs,
   ...
 }: let
-  util = import ../util.nix;
+  util = import ../../util.nix;
 in {
   home = {
-    packages = [pkgs.spotify];
+    packages = [pkgs.pulseview];
     persistence = util.persist {
       inherit config;
-      directories = [".config/spotify"];
+      files = [".config/sigrok/PulseView.conf"];
     };
   };
 }

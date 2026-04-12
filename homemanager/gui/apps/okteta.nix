@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  util = import ../util.nix;
+  util = import ../../../util.nix;
 in {
   home.packages = [pkgs.okteta];
   xdg.mimeApps.defaultApplications = util.fill-with {
