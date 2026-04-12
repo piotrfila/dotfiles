@@ -124,6 +124,7 @@ in {
   home.packages = with pkgs;
     [
       alejandra
+      codespell
       ddcutil
       ddcui
       dnsutils

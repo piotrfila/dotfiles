@@ -17,7 +17,7 @@
         fi
       done
 
-      # increase or decrease brighness
+      # increase or decrease volume
       if [ $1 = "up" ] || [ $1 = "+" ]; then
         wpctl-current-sink set-mute 0
         if [ $current_step -lt $((''\${#steps[@]} - 1)) ]; then

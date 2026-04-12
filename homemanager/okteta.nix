@@ -300,7 +300,7 @@ in {
       # "text/x-script.lisp" = text; # .lsp
       # "text/x-script.perl-module" = text; # .pm
       # "text/x-script.perl" = text; # .pl
-      # "text/x-script.phyton" = text; # .py
+      # "text/x-script.python" = text; # .py
       # "text/x-script.rexx" = text; # .rexx
       # "text/x-script.scheme" = text; # .scm
       # "text/x-script.sh" = text; # .sh

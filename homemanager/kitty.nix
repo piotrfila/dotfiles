@@ -67,7 +67,7 @@
       click_interval = "0.5";
 
       # Characters considered part of a word when double clicking. In addition to these characters
-      # any character that is marked as an alpha-numeric character in the unicode
+      # any character that is marked as an alphanumeric character in the unicode
       # database will be matched.
       select_by_word_characters = ":@-./_~?&=%+#";
 

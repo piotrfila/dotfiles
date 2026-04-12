@@ -19,7 +19,7 @@
 
       echo $current_step
 
-      # increase or decrease brighness
+      # increase or decrease brightness
       if [ $1 = "up" ] || [ $1 = "+" ]; then
         if [ $current_step -lt $((''\${#steps[@]} - 1)) ]; then
           current_step=$(($current_step + 1))
