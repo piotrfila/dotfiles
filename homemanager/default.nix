@@ -155,5 +155,8 @@ in {
     };
 
   home.stateVersion = "23.11";
+
+  home.sessionPath = ["${config.home.homeDirectory}/.local/bin"];
+
   xdg.mimeApps.enable = true;
 }
