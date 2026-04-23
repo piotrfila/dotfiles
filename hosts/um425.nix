@@ -42,7 +42,7 @@ in {
         "/var/lib/alsa"
         "/var/lib/bluetooth"
         "/var/lib/nixos"
-        "/var/lib/systemd/coredump"
+        "/var/lib/systemd"
       ];
     };
     etc.machine-id.text = "0797e38666bb4669a69854f927d8936f\n";
