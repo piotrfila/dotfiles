@@ -43,7 +43,6 @@ in {
         "/var/lib/bluetooth"
         "/var/lib/nixos"
         "/var/lib/systemd/coredump"
-        "/var/lib/cups"
       ];
     };
     etc.machine-id.text = "0797e38666bb4669a69854f927d8936f\n";
@@ -106,7 +105,6 @@ in {
     blueman.enable = true;
     getty.autologinUser = "kaliko";
     mullvad-vpn.enable = true;
-    printing.enable = true;
     thermald.enable = false;
     udev.extraRules = ''
       ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="amdgpu_bl1", MODE="0666", RUN+="${pkgs.coreutils-full}/bin/chmod a+w /sys/class/backlight/%k/brightness"
