@@ -27,6 +27,7 @@ in {
         # ./gui/apps/cura.nix
         ./gui/apps/darktable.nix
         ./gui/apps/discord.nix
+        ./gui/apps/freecad.nix
         ./gui/apps/gimp.nix
         ./gui/apps/kicad.nix
         ./gui/apps/kitty.nix
