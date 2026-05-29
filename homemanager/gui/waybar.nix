@@ -188,9 +188,9 @@
   wayland.windowManager.hyprland.settings = {
     exec-once = ["waybar"];
     windowrule = [
-      "float,class:^(pavucontrol)$"
-      "size 60% 80%,class:^(pavucontrol)$"
-      "move 35% 10%,class:^(pavucontrol)$"
+      "float on,match:class ^(pavucontrol)$"
+      "size 60% 80%,match:class ^(pavucontrol)$"
+      "move 35% 10%,match:class ^(pavucontrol)$"
     ];
   };
 }

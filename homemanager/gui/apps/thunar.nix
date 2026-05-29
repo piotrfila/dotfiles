@@ -34,7 +34,7 @@ in {
     </actions>
   '';
   wayland.windowManager.hyprland.settings.windowrule = [
-    "float,title:^(Confirm to replace files)$"
-    "float,title:^(File Operation Progress)$"
+    "float on, match:title ^(Confirm to replace files)$"
+    "float on, match:title ^(File Operation Progress)$"
   ];
 }

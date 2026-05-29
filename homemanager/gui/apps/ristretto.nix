@@ -5,7 +5,7 @@
 }: let
   util = import ../../../util.nix;
 in {
-  home.packages = [pkgs.xfce.ristretto];
+  home.packages = [pkgs.ristretto];
   xdg.mimeApps.defaultApplications = util.fill-with {
     value = ["org.xfce.ristretto.desktop"];
     keys = [

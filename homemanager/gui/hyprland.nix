@@ -20,6 +20,7 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
+    configType = "hyprlang";
 
     settings = {
       "$mainMod" = "SUPER";
@@ -35,10 +36,10 @@ in {
       ];
 
       windowrule = [
-        "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
-        "noanim,class:^(xwaylandvideobridge)$"
-        "nofocus,class:^(xwaylandvideobridge)$"
-        "noinitialfocus,class:^(xwaylandvideobridge)$"
+        "opacity 0.0 override 0.0 override,match:class ^(xwaylandvideobridge)$"
+        "no_anim on,match:class ^(xwaylandvideobridge)$"
+        "no_focus on,match:class ^(xwaylandvideobridge)$"
+        "no_initial_focus on,match:class ^(xwaylandvideobridge)$"
       ];
 
       animations = {
@@ -152,7 +153,7 @@ in {
       };
 
       dwindle = {
-        pseudotile = "yes";
+        # pseudotile = "yes";
         preserve_split = "yes";
         # smart_split = "yes";
         # no_gaps_when_only = 1;

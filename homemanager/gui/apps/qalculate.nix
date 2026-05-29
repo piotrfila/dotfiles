@@ -17,9 +17,9 @@ in {
       "[workspace special:q silent] qalculate-gtk"
     ];
     windowrule = let
-      name = "class:(io.github.Qalculate.qalculate-)((qt)|(gtk))$";
+      name = "match:class (io.github.Qalculate.qalculate-)((qt)|(gtk))$";
     in [
-      "float,${name}"
+      "float on,${name}"
       "size 30% 80%,${name}"
       "move 5% 10%,${name}"
     ];

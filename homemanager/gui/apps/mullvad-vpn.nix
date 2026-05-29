@@ -13,7 +13,7 @@ in {
     };
   };
   wayland.windowManager.hyprland.settings.windowrule = [
-    "float,class:^(Mullvad VPN)$"
-    "move 11.7% 23.7%,class:^(Mullvad VPN)$"
+    "float on,match:class ^(Mullvad VPN)$"
+    "move 11.7% 23.7%,match:class ^(Mullvad VPN)$"
   ];
 }

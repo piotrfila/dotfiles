@@ -4,14 +4,14 @@
     libraries = with pkgs; [
       alsa-lib
       libGL
-      xorg.libICE
-      xorg.libSM
-      xorg.libX11
-      xorg.libXcursor
-      xorg.libXext
-      xorg.libXi
-      xorg.libXinerama
-      xorg.libXrandr
+      libice
+      libsm
+      libx11
+      libxcursor
+      libxext
+      libxi
+      libxinerama
+      libxrandr
       libpulseaudio
       libxkbcommon
       wayland

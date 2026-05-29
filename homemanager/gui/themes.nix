@@ -9,6 +9,10 @@
       gtk-application-prefer-dark-theme = 1;
       gtk-im-module = "fcitx";
     };
+    theme = {
+      name = "Arc-Dark";
+      package = pkgs.arc-theme;
+    };
   in {
     enable = true;
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
@@ -33,6 +37,8 @@
       "file://${dirs.documents}/pw26L"
     ];
     gtk3.extraConfig = gtk-settings;
+
+    gtk4.theme = theme;
     gtk4.extraConfig = gtk-settings;
 
     iconTheme = {
@@ -40,10 +46,7 @@
       package = pkgs.papirus-icon-theme;
     };
 
-    theme = {
-      name = "Arc-Dark";
-      package = pkgs.arc-theme;
-    };
+    theme = theme;
   };
 
   home.pointerCursor = {
