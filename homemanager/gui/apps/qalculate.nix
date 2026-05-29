@@ -16,12 +16,14 @@ in {
     exec-once = with pkgs; [
       "[workspace special:q silent] qalculate-gtk"
     ];
-    windowrule = let
-      name = "match:class (io.github.Qalculate.qalculate-)((qt)|(gtk))$";
-    in [
-      "float on,${name}"
-      "size 30% 80%,${name}"
-      "move 5% 10%,${name}"
+    windowrule = [
+      {
+        name = "qualculate";
+        "match:class" = "(io.github.Qalculate.qalculate-)((qt)|(gtk))$";
+        float = true;
+        size = "30% 80%";
+        move = "5% 10%";
+      }
     ];
   };
 }

@@ -12,5 +12,11 @@ in {
       directories = [".local/share/PrismLauncher"];
     };
   };
-  wayland.windowManager.hyprland.settings.windowrule = ["tile on, match:class ^(Minecraft)"];
+  wayland.windowManager.hyprland.settings.windowrule = [
+    {
+      name = "minecraft";
+      "match:class" = "^(Minecraft)";
+      tile = true;
+    }
+  ];
 }

@@ -36,10 +36,28 @@ in {
       ];
 
       windowrule = [
-        "opacity 0.0 override 0.0 override,match:class ^(xwaylandvideobridge)$"
-        "no_anim on,match:class ^(xwaylandvideobridge)$"
-        "no_focus on,match:class ^(xwaylandvideobridge)$"
-        "no_initial_focus on,match:class ^(xwaylandvideobridge)$"
+        {
+          name = "xwaylandvideobridge";
+          "match:class" = "^(xwaylandvideobridge)$";
+          no_anim = true;
+          no_focus = true;
+          no_initial_focus = true;
+          opacity = "0.0 override 0.0 override";
+        }
+        {
+          name = "single_window_no_border_tv1";
+          "match:workspace" = "w[tv1]";
+          border_size = 0;
+          rounding = 0;
+          float = false;
+        }
+        {
+          name = "single_window_no_border_f1";
+          "match:workspace" = "f[1]";
+          border_size = 0;
+          rounding = 0;
+          float = false;
+        }
       ];
 
       animations = {

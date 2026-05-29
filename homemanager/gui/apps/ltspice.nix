@@ -4,7 +4,11 @@
   ...
 }: {
   wayland.windowManager.hyprland.settings.windowrule = [
-    "tile on, match:title ^(LTspice)$"
+    {
+      name = "ltspice";
+      "match:title" = "^(LTspice)$";
+      tile = true;
+    }
   ];
   xdg.desktopEntries = {
     ltspice = let
