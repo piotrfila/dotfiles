@@ -5,6 +5,7 @@
   pkgs,
   ...
 }: let
+  desktopEnvironment = "Hyprland";
   util = import ../util.nix;
 in {
   imports =
@@ -19,11 +20,11 @@ in {
       else []
     )
     ++ (
-      if osConfig.programs.hyprland.enable
+      if desktopEnvironment == "Hyprland"
       then [
         ./gui
         ./gui/apps/alacritty.nix
-        ./gui/apps/calibre.nix
+        # ./gui/apps/calibre.nix
         # ./gui/apps/cura.nix
         ./gui/apps/darktable.nix
         ./gui/apps/discord.nix
@@ -33,6 +34,7 @@ in {
         ./gui/apps/kitty.nix
         ./gui/apps/libreoffice.nix
         ./gui/apps/librewolf.nix
+        ./gui/apps/localsend.nix
         ./gui/apps/ltspice.nix
         ./gui/apps/mindustry.nix
         ./gui/apps/mission-center.nix
@@ -46,6 +48,7 @@ in {
         ./gui/apps/signal.nix
         ./gui/apps/spotify.nix
         ./gui/apps/starsector.nix
+        ./gui/apps/transmission.nix
         ./gui/apps/ungoogled-chromium.nix
         ./gui/apps/vscodium.nix
         ./lang/octave.nix
@@ -106,15 +109,7 @@ in {
       zip
     ]
     ++ (
-      if osConfig.programs.hyprland.enable
-      then [
-        localsend
-        transmission_4-qt
-      ]
-      else []
-    )
-    ++ (
-      if osConfig.hardware.rtl-sdr.enable
+      if desktopEnvironment != null && osConfig.hardware.rtl-sdr.enable
       then [gnuradio gqrx]
       else []
     );
