@@ -136,10 +136,12 @@
     };
     vfio-passthrough.configuration = let
       vfioIDs = [
-        # "10de:13c2" # GTX 970 Graphics
-        # "10de:0fbb" # GTX 970 Audio
+        "10de:13c2" # GTX 970 Graphics
+        "10de:0fbb" # GTX 970 Audio
         "10de:1b80" # GTX 1080 Graphics
         "10de:10f0" # GTX 1080 Audio
+        "10de:2203" # RTX 4060 Ti Graphics
+        "10de:28bd" # RTX 4060 Ti Audio
         "1b21:1242" # Secondary USB controller
       ];
     in {
