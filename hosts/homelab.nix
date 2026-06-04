@@ -68,7 +68,7 @@
         "/var/lib/nixos"
         "/var/lib/private/ollama"
         "/var/lib/private/open-webui"
-        "/var/lib/systemd/coredump"
+        "/var/lib/systemd"
       ]
     ));
 
