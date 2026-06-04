@@ -96,6 +96,7 @@ in {
           # ", XF86TouchpadToggle, exec, kitty" # F6
           # "SUPER, l, exec, kitty" # F9
           # ", XF86WebCam, exec, kitty" # F10
+          ", XF86Launch1, exec, codium ~/Source/dotfiles" # F12
           "${mainMod}, F12, exec, codium ~/Source/dotfiles" # F12
         ]
         ++ (builtins.concatLists (builtins.genList (
