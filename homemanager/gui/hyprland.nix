@@ -133,10 +133,6 @@ in {
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
       ];
 
-      exec-once = with pkgs; [
-        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-      ];
-
       general = {
         gaps_in = 5;
         gaps_out = 10;

@@ -30,6 +30,7 @@ in {
         ./gui/apps/discord.nix
         ./gui/apps/freecad.nix
         ./gui/apps/gimp.nix
+        ./gui/apps/keepassxc.nix
         ./gui/apps/kicad.nix
         ./gui/apps/kitty.nix
         ./gui/apps/libreoffice.nix

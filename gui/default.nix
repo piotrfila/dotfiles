@@ -13,11 +13,4 @@
     dconf.enable = true;
     obs-studio.enableVirtualCamera = true;
   };
-
-  security = {
-    pam.services.gdm.enableGnomeKeyring = true;
-    polkit.enable = true;
-  };
-
-  services.gnome.gnome-keyring.enable = true;
 }
