@@ -13,4 +13,13 @@ in {
     enable = true;
     autostart = true;
   };
+  wayland.windowManager.hyprland.settings.windowrule = [
+    {
+      name = "keepassxc_browser_integration";
+      "match:title" = "^(KeePassXC - Browser Access Request)$";
+      float = true;
+      move = "(monitor_w*0.30) (monitor_h*0.30)";
+      size = "(monitor_w*0.40) (monitor_h*0.40)";
+    }
+  ];
 }
