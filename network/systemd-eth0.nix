@@ -1,5 +1,4 @@
 {...}: {
-  networking.interfaces.eth0.useDHCP = true;
   systemd.network = {
     enable = true;
     wait-online.enable = false;

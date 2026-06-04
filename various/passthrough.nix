@@ -4,13 +4,6 @@
   config,
   ...
 }: let
-  vfioIDs = [
-    # "10de:13c2" # GTX 970 Graphics
-    # "10de:0fbb" # GTX 970 Audio
-    "10de:1b80" # GTX 1080 Graphics
-    "10de:10f0" # GTX 1080 Audio
-    "1b21:1242" # Secondary USB controller
-  ];
 in {
   # Make sure vt-x and vt-d are enabled!
   boot = {
@@ -24,11 +17,6 @@ in {
       "vfio"
       "vfio_iommu_type1"
     ];
-
-    kernelParams = [
-      "intel_iommu=on"
-      ("vfio-pci.ids=" + lib.concatStringsSep "," vfioIDs)
-    ];
   };
 
   environment = {
@@ -38,7 +26,7 @@ in {
       @kvm	soft	memlock	21474836480
     '';
 
-    systemPackages = [pkgs.virt-viewer];
+    systemPackages = with pkgs; [virt-viewer qemu_kvm];
   };
 
   programs.virt-manager.enable = true;

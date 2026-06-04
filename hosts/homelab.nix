@@ -8,8 +8,8 @@
   imports = [
     ./common.nix
     ../gui
+    ../network/systemd-eth0.nix
     ../users/kaliko.nix
-    # ../various/passthrough.nix
     <home-manager/nixos>
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -47,10 +47,10 @@
         fsType = "ext4";
         options = ["noatime"];
       };
-      "/export/vol1" = {
-        device = "/nix/server";
-        options = ["bind"];
-      };
+      # "/export/vol1" = {
+      #   device = "/nix/server";
+      #   options = ["bind"];
+      # };
     }
     // (builtins.listToAttrs (
       builtins.map (x: {
@@ -75,19 +75,17 @@
   hardware = {
     cpu.intel.updateMicrocode = true;
     enableRedistributableFirmware = true;
-    nvidia = {
-      modesetting.enable = true;
-      nvidiaSettings = true;
-      open = false;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-      powerManagement.enable = false;
-      powerManagement.finegrained = false;
-    };
+    graphics.enable = true;
   };
 
-  networking.hostName = "homelab";
+  networking = {
+    hostName = "homelab";
+    useNetworkd = true;
+  };
 
   nixpkgs.hostPlatform = "x86_64-linux";
+
+  programs.fuse.userAllowOther = true;
 
   services = {
     getty.autologinUser = "kaliko";
@@ -99,35 +97,66 @@
         /export/vol1   192.168.1.2(rw,nohide,insecure,no_subtree_check)
       '';
     };
-    ollama = {
-      enable = true;
-      acceleration = false;
+    # ollama = {
+    #   enable = true;
+    #   package = pkgs.ollama-cuda;
+    # };
+    # open-webui = {
+    #   enable = true;
+    #   environment = {
+    #     "ANONYMIZED_TELEMETRY" = "False";
+    #     "DO_NOT_TRACK" = "True";
+    #     "SCARF_NO_ANALYTICS" = "True";
+    #     "TZ" = "Europe/Warsaw";
+    #     "OLLAMA_API_BASE_URL" = "http://127.0.0.1:11434/api";
+    #     "OLLAMA_BASE_URL" = "http://127.0.0.1:11434";
+    #     "WEBUI_AUTH" = "False";
+    #   };
+    # };
+  };
+
+  specialisation = let
+    nvidia_base = {
+      modesetting.enable = true;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      powerManagement.enable = false;
+      powerManagement.finegrained = false;
     };
-    open-webui = {
-      enable = true;
-      environment = {
-        "ANONYMIZED_TELEMETRY" = "False";
-        "DO_NOT_TRACK" = "True";
-        "SCARF_NO_ANALYTICS" = "True";
-        "TZ" = "Europe/Warsaw";
-        "OLLAMA_API_BASE_URL" = "http://127.0.0.1:11434/api";
-        "OLLAMA_BASE_URL" = "http://127.0.0.1:11434";
-        "WEBUI_AUTH" = "False";
-      };
+  in {
+    nvidia-proprietary.configuration = {
+      system.nixos.tags = ["nvidia-proprietary"];
+      hardware.nvidia = nvidia_base // {open = false;};
+      services.xserver.videoDrivers = ["nvidia"];
     };
-    xserver.videoDrivers = ["nvidia"];
+    nvidia-semifree.configuration = {
+      system.nixos.tags = ["nvidia-semifree"];
+      hardware.nvidia = nvidia_base // {open = true;};
+      services.xserver.videoDrivers = ["nvidia"];
+    };
+    vfio-passthrough.configuration = let
+      vfioIDs = [
+        # "10de:13c2" # GTX 970 Graphics
+        # "10de:0fbb" # GTX 970 Audio
+        "10de:1b80" # GTX 1080 Graphics
+        "10de:10f0" # GTX 1080 Audio
+        "1b21:1242" # Secondary USB controller
+      ];
+    in {
+      system.nixos.tags = ["vfio-passthrough"];
+      imports = [../various/passthrough.nix];
+      boot.kernelParams = [
+        "intel_iommu=on"
+        ("vfio-pci.ids=" + lib.concatStringsSep "," vfioIDs)
+      ];
+    };
   };
 
   system.stateVersion = "23.11";
 
-  systemd = {
-    network.links."10-eth0" = {
-      matchConfig.MACAddress = "d8:cb:8a:9b:96:6a";
-      linkConfig = {
-        Name = "eth0";
-      };
-    };
-    network.wait-online.enable = false;
+  systemd.network.links."10-eth0" = {
+    matchConfig.MACAddress = "d8:cb:8a:9b:96:6a";
+    linkConfig.Name = "eth0";
   };
 
   users.users.kaliko.extraGroups = ["i2c"];
