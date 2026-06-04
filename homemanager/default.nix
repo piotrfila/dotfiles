@@ -57,62 +57,22 @@ in {
       ]
       else []
     );
-  home.persistence = util.persist {
-    inherit config;
-    directories = [
-      ".cache"
-      ".ciel"
-      ".config/xfce4/xfconf/xfce-perchannel-xml"
-      ".factorio"
-      ".gnupg"
-      ".local/bin"
-      ".local/share/wine"
-      ".local/state/wireplumber"
-      ".pki"
-      ".ssh"
-      "Documents"
-      "Downloads"
-      "Pictures"
-      "Source"
-    ];
-    files =
-      [
-        ".local/share/recently-used.xbel"
-        ".local/state/bashhst"
-        ".local/state/lesshst"
-      ]
-      ++ (
-        if osConfig.networking.hostName == "um425"
-        then [".config/batt-cap"]
-        else []
+
+  dconf = {
+    enable = true;
+    settings =
+      {"org/gnome/desktop/interface".color-scheme = "prefer-dark";}
+      // (
+        if osConfig.networking.hostName == "homelab"
+        then {
+          "org/virt-manager/virt-manager/connections" = {
+            autoconnect = ["qemu:///system"];
+            uris = ["qemu:///system"];
+          };
+        }
+        else {}
       );
   };
-
-  home.packages = with pkgs;
-    [
-      alejandra
-      codespell
-      ddcutil
-      ddcui
-      dnsutils
-      fastfetch
-      ffmpeg
-      file
-      jq
-      nano
-      qemu
-      screen
-      tio
-      unzip
-      usbutils
-      wget
-      zip
-    ]
-    ++ (
-      if desktopEnvironment != null && osConfig.hardware.rtl-sdr.enable
-      then [gnuradio gqrx]
-      else []
-    );
 
   fonts.fontconfig = {
     enable = true;
@@ -123,36 +83,72 @@ in {
     };
   };
 
+  home = {
+    packages = with pkgs;
+      [
+        alejandra
+        codespell
+        ddcutil
+        ddcui
+        dnsutils
+        fastfetch
+        ffmpeg
+        file
+        jq
+        nano
+        qemu
+        screen
+        tio
+        unzip
+        usbutils
+        wget
+        zip
+      ]
+      ++ (
+        if desktopEnvironment != null && osConfig.hardware.rtl-sdr.enable
+        then [gnuradio gqrx]
+        else []
+      );
+    persistence = util.persist {
+      inherit config;
+      directories = [
+        ".cache"
+        ".ciel"
+        ".config/xfce4/xfconf/xfce-perchannel-xml"
+        ".factorio"
+        ".gnupg"
+        ".local/bin"
+        ".local/share/wine"
+        ".local/state/wireplumber"
+        ".pki"
+        ".ssh"
+        "Documents"
+        "Downloads"
+        "Pictures"
+        "Source"
+      ];
+      files =
+        [
+          ".local/share/recently-used.xbel"
+          ".local/state/bashhst"
+          ".local/state/lesshst"
+        ]
+        ++ (
+          if osConfig.networking.hostName == "um425"
+          then [".config/batt-cap"]
+          else []
+        );
+    };
+    sessionPath = ["${config.home.homeDirectory}/.local/bin"];
+    stateVersion = "23.11";
+  };
+
   manual.manpages.enable = false;
 
   programs = {
     gpg.enable = true;
     home-manager.enable = true;
   };
-
-  # services.gnome-keyring = {
-  #   enable = true;
-  #   components = [ "ssh" ];
-  # };
-
-  dconf.enable = true;
-  dconf.settings =
-    if osConfig.networking.hostName == "homelab"
-    then {
-      "org/gnome/desktop/interface".color-scheme = "prefer-dark";
-
-      "org/virt-manager/virt-manager/connections" = {
-        autoconnect = ["qemu:///system"];
-        uris = ["qemu:///system"];
-      };
-    }
-    else {
-      "org/gnome/desktop/interface".color-scheme = "prefer-dark";
-    };
-
-  home.stateVersion = "23.11";
-
-  home.sessionPath = ["${config.home.homeDirectory}/.local/bin"];
 
   xdg.mimeApps.enable = true;
 }
