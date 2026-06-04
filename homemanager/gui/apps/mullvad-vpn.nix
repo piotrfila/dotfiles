@@ -17,7 +17,7 @@ in {
       name = "mullvad_vpn";
       "match:class" = "^(Mullvad VPN)$";
       float = true;
-      move = "11.7% 23.7%";
+      move = "(monitor_w*0.117) (monitor_h*0.237)";
     }
   ];
 }

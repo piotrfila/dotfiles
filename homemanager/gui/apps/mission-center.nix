@@ -5,8 +5,8 @@
       name = "mission_center";
       "match:class" = "^(io\.missioncenter\.MissionCenter)|(nm-connection-editor)|(\.blueman-manager-wrapped)$";
       float = true;
-      size = "60% 60%";
-      move = "35% 20%";
+      move = "(monitor_w*0.35) (monitor_h*0.20)";
+      size = "(monitor_w*0.60) (monitor_h*0.60)";
     }
   ];
 }

@@ -21,8 +21,8 @@ in {
         name = "qualculate";
         "match:class" = "(io.github.Qalculate.qalculate-)((qt)|(gtk))$";
         float = true;
-        size = "30% 80%";
-        move = "5% 10%";
+        move = "(monitor_w*0.05) (monitor_h*0.10)";
+        size = "(monitor_w*0.30) (monitor_h*0.80)";
       }
     ];
   };

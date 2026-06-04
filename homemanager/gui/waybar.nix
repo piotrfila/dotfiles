@@ -192,8 +192,8 @@
         name = "pavucontrol";
         "match:class" = "^(pavucontrol)$";
         float = true;
-        move = "35% 10%";
-        size = "60% 80%";
+        move = "(monitor_w*0.35) (monitor_h*0.10)";
+        size = "(monitor_w*0.60) (monitor_h*0.80)";
       }
     ];
   };
