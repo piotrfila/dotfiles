@@ -19,8 +19,9 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.hyprland;
     configType = "hyprlang";
+    package = pkgs.hyprland;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
     sourceFirst = false;
     xwayland.enable = true;
 

@@ -11,10 +11,6 @@
 
   programs = {
     dconf.enable = true;
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
     obs-studio.enableVirtualCamera = true;
   };
 
@@ -24,9 +20,4 @@
   };
 
   services.gnome.gnome-keyring.enable = true;
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
-  };
 }
