@@ -84,52 +84,36 @@ in {
   };
 
   home = {
-    packages = with pkgs;
-      [
-        alejandra
-        codespell
-        ddcutil
-        ddcui
-        dnsutils
-        fastfetch
-        ffmpeg
-        file
-        jq
-        nano
-        qemu
-        screen
-        tio
-        unzip
-        usbutils
-        wget
-        zip
-      ]
-      ++ (
-        if desktopEnvironment != null && osConfig.hardware.rtl-sdr.enable
-        then [gnuradio gqrx]
-        else []
-      );
+    packages = with pkgs; [
+      alejandra
+      codespell
+      ddcutil
+      ddcui
+      dnsutils
+      fastfetch
+      ffmpeg
+      file
+      jq
+      nano
+      qemu
+      screen
+      tio
+      unzip
+      usbutils
+      wget
+      zip
+    ];
     persistence = util.persist {
       inherit config;
       directories = [
         ".cache"
-        ".ciel"
-        ".config/xfce4/xfconf/xfce-perchannel-xml"
-        ".factorio"
         ".gnupg"
         ".local/bin"
-        ".local/share/wine"
-        ".local/state/wireplumber"
-        ".pki"
         ".ssh"
-        "Documents"
-        "Downloads"
-        "Pictures"
         "Source"
       ];
       files =
         [
-          ".local/share/recently-used.xbel"
           ".local/state/bashhst"
           ".local/state/lesshst"
         ]
@@ -149,6 +133,4 @@ in {
     gpg.enable = true;
     home-manager.enable = true;
   };
-
-  xdg.mimeApps.enable = true;
 }

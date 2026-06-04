@@ -26,7 +26,7 @@ in {
       @kvm	soft	memlock	21474836480
     '';
 
-    systemPackages = with pkgs; [virt-viewer qemu_kvm];
+    systemPackages = [pkgs.virt-viewer pkgs.qemu_kvm];
   };
 
   programs.virt-manager.enable = true;

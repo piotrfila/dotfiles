@@ -13,7 +13,7 @@ in {
     };
   };
   wayland.windowManager.hyprland.settings = {
-    exec-once = with pkgs; [
+    exec-once = [
       "[workspace special:q silent] qalculate-gtk"
     ];
     windowrule = [

@@ -5,9 +5,9 @@
 }: let
   util = import ../../../util.nix;
 in {
-  home.packages = with pkgs; [
-    steam
-    steam-run
+  home.packages = [
+    pkgs.steam
+    pkgs.steam-run
   ];
   # TODO: impersistence
 }

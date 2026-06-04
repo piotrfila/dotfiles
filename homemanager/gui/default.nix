@@ -1,4 +1,10 @@
-{osConfig, ...}: {
+{
+  config,
+  osConfig,
+  ...
+}: let
+  util = import ../../util.nix;
+in {
   imports =
     [
       ./dunst.nix
@@ -10,6 +16,11 @@
       ./waybar.nix
       ./wofi.nix
     ]
+    ++ (
+      if osConfig.hardware.rtl-sdr.enable
+      then [./apps/rtl-sdr.nix]
+      else []
+    )
     ++ (
       if osConfig.programs.obs-studio.enableVirtualCamera
       then [./apps/obs-studio.nix]
@@ -30,4 +41,25 @@
       then [./apps/thunar.nix]
       else []
     );
+
+  home.persistence = util.persist {
+    inherit config;
+    directories = [
+      ".ciel"
+      ".config/xfce4/xfconf/xfce-perchannel-xml"
+      ".factorio"
+      ".local/share/wine"
+      ".local/state/wireplumber"
+      ".pki"
+      "Documents"
+      "Downloads"
+      "Pictures"
+    ];
+    files = [".local/share/recently-used.xbel"];
+  };
+
+  xdg = {
+    autostart.enable = true;
+    mimeApps.enable = true;
+  };
 }
