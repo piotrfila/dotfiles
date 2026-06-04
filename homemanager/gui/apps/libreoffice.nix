@@ -2,8 +2,16 @@
   config,
   pkgs,
   ...
-}: {
-  home.packages = [pkgs.libreoffice];
+}: let
+  util = import ../../../util.nix;
+in {
+  home = {
+    packages = [pkgs.libreoffice];
+    persistence = util.persist {
+      inherit config;
+      files = [".config/libreoffice"];
+    };
+  };
   xdg.mimeApps.defaultApplications = let
     writer = ["writer.desktop"];
     calc = ["calc.desktop"];
