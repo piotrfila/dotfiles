@@ -18,5 +18,10 @@ in {
       "match:class" = "^(Minecraft)";
       tile = true;
     }
+    {
+      name = "prismlauncher_wait";
+      "match:title" = "^(Please wait).*(Prism Launcher)";
+      float = true;
+    }
   ];
 }
