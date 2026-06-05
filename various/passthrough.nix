@@ -4,6 +4,7 @@
   config,
   ...
 }: let
+  legacy = import <nixos-legacy> {};
 in {
   # Make sure vt-x and vt-d are enabled!
   boot = {
@@ -29,7 +30,10 @@ in {
     systemPackages = [pkgs.virt-viewer pkgs.qemu_kvm];
   };
 
-  programs.virt-manager.enable = true;
+  programs.virt-manager = {
+    enable = true;
+    package = legacy.virt-manager;
+  };
 
   users.users.kaliko.extraGroups = ["libvirtd"];
 
