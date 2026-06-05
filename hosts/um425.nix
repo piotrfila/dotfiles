@@ -55,25 +55,21 @@ in {
       fsType = "tmpfs";
       options = ["size=4G" "mode=755"];
     };
-
     "/home/kaliko" = {
       device = "tmpfs";
       fsType = "tmpfs";
       options = ["size=32G" "mode=777"];
     };
-
     "/boot" = {
       device = "/dev/disk/by-uuid/9F24-380D";
       fsType = "vfat";
       options = ["fmask=0022" "dmask=0022" "noatime"];
     };
-
     "/nix" = {
       device = "/dev/disk/by-uuid/1bf92b6d-6db2-42e8-9b26-6341f09808ef";
       fsType = "ext4";
       options = ["noatime"];
     };
-
     "/mnt/homelab" = {
       device = "192.168.1.3:/vol1";
       fsType = "nfs";
@@ -88,18 +84,21 @@ in {
     i2c.enable = true;
   };
 
-  networking.hostName = "um425";
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "um425";
+    networkmanager.enable = true;
+  };
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
-  programs.steam = {
-    enable = true;
-    # remotePlay.openFirewall = true;
-    # dedicatedServer.openFirewall = true;
+  programs = {
+    fuse.userAllowOther = true;
+    steam = {
+      enable = true;
+      # remotePlay.openFirewall = true;
+      # dedicatedServer.openFirewall = true;
+    };
   };
-
-  programs.fuse.userAllowOther = true;
 
   services = {
     blueman.enable = true;

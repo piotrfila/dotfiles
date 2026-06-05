@@ -4,8 +4,11 @@
   modulesPath,
   pkgs,
   ...
-}: {
+}: let
+  impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/69ca099e5318bd9c12bc67211cbb23c4c3643b2b.tar.gz";
+in {
   imports = [
+    "${impermanence}/nixos.nix"
     ./common.nix
     ../gui
     ../network/systemd-eth0.nix
@@ -15,6 +18,7 @@
   ];
 
   boot = {
+    binfmt.emulatedSystems = ["aarch64-linux" "riscv64-linux"];
     extraModulePackages = [];
     kernelModules = ["kvm-intel"];
     loader = {
@@ -26,41 +30,9 @@
   };
 
   environment = {
-    etc.machine-id.text = "a6b226f9843b43d5986bf217c96009d0\n";
-    systemPackages = [pkgs.ntfs3g];
-  };
-
-  fileSystems =
-    {
-      "/" = {
-        device = "tmpfs";
-        fsType = "tmpfs";
-        options = ["size=32G" "mode=755"];
-      };
-      "/boot" = {
-        device = "/dev/disk/by-uuid/4444-3E58";
-        fsType = "vfat";
-        options = ["fmask=0022" "dmask=0022" "noatime"];
-      };
-      "/nix" = {
-        device = "/dev/disk/by-uuid/6c5dd40d-7e9a-4402-b14b-2cad05e39385";
-        fsType = "ext4";
-        options = ["noatime"];
-      };
-      # "/export/vol1" = {
-      #   device = "/nix/server";
-      #   options = ["bind"];
-      # };
-    }
-    // (builtins.listToAttrs (
-      builtins.map (x: {
-        name = x;
-        value = {
-          device = "/nix/persist${x}";
-          fsType = "none";
-          options = ["bind"];
-        };
-      }) [
+    persistence."/nix/persist" = {
+      hideMounts = true;
+      directories = [
         "/etc/mullvad-vpn"
         "/root"
         "/var/log"
@@ -69,8 +41,38 @@
         "/var/lib/private/ollama"
         "/var/lib/private/open-webui"
         "/var/lib/systemd"
-      ]
-    ));
+      ];
+    };
+    etc.machine-id.text = "a6b226f9843b43d5986bf217c96009d0\n";
+    systemPackages = [pkgs.ntfs3g];
+  };
+
+  fileSystems = {
+    "/" = {
+      device = "tmpfs";
+      fsType = "tmpfs";
+      options = ["size=4G" "mode=755"];
+    };
+    "/home/kaliko" = {
+      device = "tmpfs";
+      fsType = "tmpfs";
+      options = ["size=32G" "mode=777"];
+    };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/4444-3E58";
+      fsType = "vfat";
+      options = ["fmask=0022" "dmask=0022" "noatime"];
+    };
+    "/nix" = {
+      device = "/dev/disk/by-uuid/6c5dd40d-7e9a-4402-b14b-2cad05e39385";
+      fsType = "ext4";
+      options = ["noatime"];
+    };
+    # "/export/vol1" = {
+    #   device = "/nix/server";
+    #   options = ["bind"];
+    # };
+  };
 
   hardware = {
     cpu.intel.updateMicrocode = true;
@@ -85,7 +87,14 @@
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
-  programs.fuse.userAllowOther = true;
+  programs = {
+    fuse.userAllowOther = true;
+    # steam = {
+    #   enable = true;
+    # remotePlay.openFirewall = true;
+    # dedicatedServer.openFirewall = true;
+    # };
+  };
 
   services = {
     getty.autologinUser = "kaliko";
