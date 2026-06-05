@@ -6,7 +6,7 @@
   util = import ../../../util.nix;
 in {
   home = {
-    packages = with pkgs; [(prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})];
+    packages = with pkgs; [(prismlauncher.override {jdks = [jdk8 jdk17 jdk21 jdk25];})];
     persistence = util.persist {
       inherit config;
       directories = [".local/share/PrismLauncher"];
