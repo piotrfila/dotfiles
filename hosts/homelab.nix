@@ -62,7 +62,7 @@ in {
     "/boot" = {
       device = "/dev/disk/by-uuid/4444-3E58";
       fsType = "vfat";
-      options = ["fmask=0022" "dmask=0022" "noatime"];
+      options = ["uid=0" "gid=0" "umask=0066" "noatime"];
     };
     "/nix" = {
       device = "/dev/disk/by-uuid/6c5dd40d-7e9a-4402-b14b-2cad05e39385";
