@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  histfile_path = ".local/state/pythonhst";
+  histfile_path = "${config.xdg.stateHome}/pythonhst";
   util = import ../../util.nix;
 in {
   home = {
@@ -17,6 +17,6 @@ in {
       inherit config;
       files = [histfile_path];
     };
-    sessionVariables = {PYTHON_HISTORY = histfile_path;};
+    sessionVariables.PYTHON_HISTORY = histfile_path;
   };
 }

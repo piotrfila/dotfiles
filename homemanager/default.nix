@@ -125,13 +125,19 @@ in {
         );
     };
     sessionPath = ["${config.home.homeDirectory}/.local/bin"];
+    sessionVariables.HISTFILE = "${config.xdg.stateHome}/bashhst";
     stateVersion = "23.11";
   };
 
   manual.manpages.enable = false;
 
   programs = {
-    gpg.enable = true;
+    gpg = {
+      enable = true;
+      homedir = "${config.xdg.dataHome}/gnupg";
+    };
     home-manager.enable = true;
   };
+
+  xdg.enable = true;
 }

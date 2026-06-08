@@ -14,7 +14,6 @@ in {
     ../users/kaliko.nix
     ../various/nix-ld.nix
     ../various/rtl-sdr.nix
-    # ../various/wine.nix
     <home-manager/nixos>
     (modulesPath + "/installer/scan/not-detected.nix")
   ];

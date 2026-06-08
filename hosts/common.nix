@@ -42,21 +42,6 @@
         }
       '';
 
-    sessionVariables = rec {
-      # XDG
-      XDG_CACHE_HOME = "$HOME/.cache";
-      XDG_CONFIG_HOME = "$HOME/.config";
-      XDG_DATA_HOME = "$HOME/.local/share";
-      XDG_STATE_HOME = "$HOME/.local/state";
-
-      # XDG fixes
-      GNUPGHOME = "$XDG_DATA_HOME/gnupg";
-      HISTFILE = "$XDG_STATE_HOME/bashhst";
-      WINEPREFIX = "$XDG_DATA_HOME/wine";
-      GTK2_RC_FILES = "$XDG_CONFIG_HOME/gtk-2.0/gtkrc";
-      GRC_PREFS_PATH = "$XDG_CONFIG_HOME/GNU Radio/";
-    };
-
     shellAliases = {
       la = "ls -lAh";
       neofetch = "fastfetch";
