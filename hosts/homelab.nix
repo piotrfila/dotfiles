@@ -37,6 +37,7 @@ in {
         "/root"
         "/var/log"
         "/var/lib/alsa"
+        "/var/lib/libvirt"
         "/var/lib/nixos"
         "/var/lib/private/ollama"
         "/var/lib/private/open-webui"

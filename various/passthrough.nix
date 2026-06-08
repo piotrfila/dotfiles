@@ -3,9 +3,7 @@
   lib,
   config,
   ...
-}: let
-  legacy = import <nixos-legacy> {};
-in {
+}: {
   # Make sure vt-x and vt-d are enabled!
   boot = {
     blacklistedKernelModules = [
@@ -32,7 +30,7 @@ in {
 
   programs.virt-manager = {
     enable = true;
-    package = legacy.virt-manager;
+    package = pkgs.virt-manager;
   };
 
   users.users.kaliko.extraGroups = ["libvirtd"];
