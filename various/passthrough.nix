@@ -33,8 +33,6 @@
     package = pkgs.virt-manager;
   };
 
-  users.users.kaliko.extraGroups = ["libvirtd"];
-
   virtualisation = {
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;

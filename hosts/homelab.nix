@@ -171,5 +171,5 @@ in {
     linkConfig.Name = "eth0";
   };
 
-  users.users.kaliko.extraGroups = ["i2c"];
+  users.users.kaliko.extraGroups = ["i2c" "libvirtd"];
 }
