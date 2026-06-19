@@ -47,7 +47,6 @@ in {
     directories = [
       ".config/xfce4/xfconf/xfce-perchannel-xml"
       ".factorio"
-      ".local/share/wine"
       ".local/state/wireplumber"
       ".pki"
       "Documents"

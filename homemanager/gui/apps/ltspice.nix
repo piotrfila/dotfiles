@@ -3,6 +3,7 @@
   pkgs,
   ...
 }: {
+  imports = [./wine.nix];
   wayland.windowManager.hyprland.settings.windowrule = [
     {
       name = "ltspice";
@@ -12,16 +13,15 @@
   ];
   xdg.desktopEntries = {
     ltspice = let
-      docs = "${config.home.homeDirectory}/Documents/LTspiceXVII";
-      c-drive = "${config.home.homeDirectory}/.local/share/wine/drive_c";
-      appdata = "${c-drive}/users/${config.home.username}/AppData";
-      ltspice_path = "${appdata}/Local/Programs/ADI/LTspice/";
+      documents = "${config.home.homeDirectory}/Documents/LTspiceXVII";
+      drive_c = "${config.xdg.dataHome}/wine/drive_c";
+      exec_path = "${drive_c}/Program Files/ADI/LTspice/LTspice.exe";
     in {
       name = "LTspice";
-      exec = "wine ${ltspice_path}LTspice.exe -ini ${docs}/keybinds.ini";
+      exec = "wine \"${exec_path}\" -ini \"${documents}/keybinds.ini\"";
       terminal = false;
-      icon = "${docs}/icon.jpg";
-      categories = ["Application"];
+      icon = "${documents}/icon.jpg";
+      categories = ["Science"];
     };
   };
 }
