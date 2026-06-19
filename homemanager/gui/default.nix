@@ -45,7 +45,6 @@ in {
   home.persistence = util.persist {
     inherit config;
     directories = [
-      ".ciel"
       ".config/xfce4/xfconf/xfce-perchannel-xml"
       ".factorio"
       ".local/share/wine"
