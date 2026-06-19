@@ -108,16 +108,13 @@ in {
       inherit config;
       directories = [
         ".cache"
-        ".gnupg"
         ".local/bin"
+        ".local/share/gnupg"
         ".ssh"
         "Source"
       ];
       files =
-        [
-          ".local/state/bashhst"
-          ".local/state/lesshst"
-        ]
+        [".local/state/bashhst"]
         ++ (
           if osConfig.networking.hostName == "um425"
           then [".config/batt-cap"]
