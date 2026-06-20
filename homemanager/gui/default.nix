@@ -46,7 +46,6 @@ in {
     inherit config;
     directories = [
       ".config/xfce4/xfconf/xfce-perchannel-xml"
-      ".factorio"
       ".local/state/wireplumber"
       ".pki"
       "Documents"

@@ -28,6 +28,7 @@ in {
         # ./gui/apps/cura.nix
         ./gui/apps/darktable.nix
         ./gui/apps/discord.nix
+        ./gui/apps/factorio.nix
         ./gui/apps/freecad.nix
         ./gui/apps/gimp.nix
         ./gui/apps/keepassxc.nix
