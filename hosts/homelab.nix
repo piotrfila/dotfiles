@@ -79,6 +79,14 @@ in {
     cpu.intel.updateMicrocode = true;
     enableRedistributableFirmware = true;
     graphics.enable = true;
+    nvidia = {
+      modesetting.enable = true;
+      nvidiaSettings = true;
+      open = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      powerManagement.enable = false;
+      powerManagement.finegrained = false;
+    };
   };
 
   networking = {
@@ -123,27 +131,10 @@ in {
     #     "WEBUI_AUTH" = "False";
     #   };
     # };
+    xserver.videoDrivers = ["nvidia"];
   };
 
-  specialisation = let
-    nvidia_base = {
-      modesetting.enable = true;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-      powerManagement.enable = false;
-      powerManagement.finegrained = false;
-    };
-  in {
-    nvidia-proprietary.configuration = {
-      system.nixos.tags = ["nvidia-proprietary"];
-      hardware.nvidia = nvidia_base // {open = false;};
-      services.xserver.videoDrivers = ["nvidia"];
-    };
-    nvidia-semifree.configuration = {
-      system.nixos.tags = ["nvidia-semifree"];
-      hardware.nvidia = nvidia_base // {open = true;};
-      services.xserver.videoDrivers = ["nvidia"];
-    };
+  specialisation = {
     vfio-passthrough.configuration = let
       vfioIDs = [
         "10de:13c2" # GTX 970 Graphics
